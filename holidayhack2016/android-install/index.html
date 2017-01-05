@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Android</title>
+
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="canonical" href="http://yourdomain.com/android-install/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+
+</head> 
+
+
+<body>
+	<aside>
+	<div class="container">
+		<nav>
+			<ul>
+				   
+				<li><a href="../">Answers</a></li>
+				    
+				<li><a href="../part-1/">Part 1</a></li>
+				  
+				<li><a href="../part-2/">Part 2</a></li>
+				  
+				<li><a href="../part-3/">Part 3</a></li>
+				  
+				<li><a href="../part-4/">Part 4</a></li>
+				  
+				<li><a href="../part-5/">Part 5</a></li>
+				  
+				<li><a href="../tokens/">Tokens</a></li>
+				  
+				<li><a href="../android-install/">Android</a></li>
+				  
+				<li><a href="../elf-chat/">Elf Chat</a></li>
+				 
+			</ul>
+		</nav>
+	</div>
+</aside>
+
+<header>
+	<h1><a href="">Android</a></h1>
+</header>
+
+	<main>
+		<article>
+			    <p>This guide should get you an Android VM that is capable of running the needed programs for the Holiday Hack Challenge.  This guide will probably get out-dated rather quickly, so if something doesn’t line up perfectly just use common sense.  Also this was my first time touching Android, so I may not do things the most efficient way – I would hope there’s some command line flags to automate this update process.</p>
+
+<h1 id="building-the-android-vm">Building the Android VM</h1>
+<ol>
+  <li>Install the Android-SDK and qemu-kvm. <code class="highlighter-rouge">apt-get install android-sdk qemu-kvm</code></li>
+  <li>Launch the android sdk. <code class="highlighter-rouge">android</code></li>
+  <li>
+    <p>In the Android SDK Manager, uncheck everything but Android SDK Tools, Android SDK Platform-tools, and Android SDK Build-Tools underneath the tools folder.
+<img src="../assets/android-install/android-1.png" alt="Android" /></p>
+  </li>
+  <li>Click Install 3 Packages, accept the license agreement and begin installation.</li>
+  <li>Once the update finishes, close and re-open the Android SDK Manager.</li>
+  <li>We now have a lot more items, with everything under API 25 being checked.  Uncheck that and click install 2 packages, this should update Android SDK Tools and SDK Platform-tools.</li>
+  <li>Close and re-open the Android SDK Manager yet again… This is a bit like the Windows Update Process.</li>
+  <li>You should now see “SDK Platform” underneath the API 25 folder.  Uncheck everything but that and click Install 3 packages.</li>
+  <li>You know the drill… Close and Re-Open the Android SDK Manager.</li>
+  <li>Uncheck everything in the API 25 folder yet again, and select Google APIs Intel x86 Atom System Image</li>
+  <li>Good News!  We can now create the Android Device.  Click on Tools in the top left and go to “Manage AVD”</li>
+  <li>Fill the options as you see fit, below are the ones I did:
+<img src="../assets/android-install/android-2.png" alt="Android" /></li>
+  <li>Click Start to launch the KVM.  If you get an error here you most likely need to enable virtualization. In VMWare Workstation the option is “Virtualize Intel VT-x/EPT or AMD-V/RVI” underneath the processors option.  If the option isn’t there right click on the VM, go to Manage and Change Host Compatability to the highest version of VMware it lets you.
+<img src="../assets/android-install/android-3.png" alt="Android" /></li>
+  <li>You should now have an Android VM!
+<img src="../assets/android-install/android-4.png" alt="Android" /></li>
+  <li>Click the SDCard in the top left (you may have to drag it down).</li>
+  <li>Select the SDCard and click something along the lines of “Use with this device, format, or erase”.</li>
+</ol>
+
+<h1 id="configuring-the-proxy-on-the-phone">Configuring the Proxy on the Phone</h1>
+
+<ol>
+  <li>Open Settings and click “More” underneath “Wireless &amp; Networks”</li>
+  <li>Click on “Cellular Networks”</li>
+  <li>Click “Access Point Names”</li>
+  <li>Click “T-Mobile US”</li>
+  <li>Click “Proxy” and set it to your Kali box.</li>
+  <li>Clicl “Port” and set it to your Kali box.</li>
+  <li>Click the 3 dots in the top left and save your settings. After you do this you can go back to the home screen, by clicking the circle button to the right of the VM.</li>
+  <li>Open a web browser and you should be able to see requests now going through burp.  If not, open up Burp go to the proxy &gt; Options tab click edit and change it to listen on all interfaces.
+<img src="../assets/android-install/android-5.png" alt="Android" /></li>
+</ol>
+
+<h1 id="installing-the-burp-certificate">Installing the Burp Certificate</h1>
+
+<ol>
+  <li>On your Kali go to http://burp/cert (note the proxy has to be configured)</li>
+  <li>Download cacert.der</li>
+  <li>Rename cacert.der to cacert.cer</li>
+  <li>Copy the cert to your device by running: <code class="highlighter-rouge">/usr/share/android-sdk/platform-tools/adb push cacert.cer /mnt/sdcard/cacert.cer</code></li>
+  <li>Click Settings &gt; Security &gt; Install from SDCard &gt; Virtual SD Card and click on cacert.cer</li>
+  <li>Give it a name, and click Okay.</li>
+  <li>It will force you to set a PIN, click “Continue without fingerprint” then set a 4 digit pin.</li>
+  <li>All web and app traffic should now be going through Burp!</li>
+</ol>
+
+
+		</article>
+		<footer>
+	<p>By Nick Ippolito</p>
+</footer>
+
+	</main>
+</body>
+
+</html>

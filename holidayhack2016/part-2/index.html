@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Part 2</title>
+
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="canonical" href="http://yourdomain.com/part-2/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+
+</head> 
+
+
+<body>
+	<aside>
+	<div class="container">
+		<nav>
+			<ul>
+				   
+				<li><a href="../">Answers</a></li>
+				    
+				<li><a href="../part-1/">Part 1</a></li>
+				  
+				<li><a href="../part-2/">Part 2</a></li>
+				  
+				<li><a href="../part-3/">Part 3</a></li>
+				  
+				<li><a href="../part-4/">Part 4</a></li>
+				  
+				<li><a href="../part-5/">Part 5</a></li>
+				  
+				<li><a href="../tokens/">Tokens</a></li>
+				  
+				<li><a href="../android-install/">Android</a></li>
+				  
+				<li><a href="../elf-chat/">Elf Chat</a></li>
+				 
+			</ul>
+		</nav>
+	</div>
+</aside>
+
+<header>
+	<h1><a href="">Part 2</a></h1>
+</header>
+
+	<main>
+		<article>
+			    <h2 id="what-is-the-username-and-password-embedded-in-the-apk">3. What is the username and password embedded in the APK?</h2>
+
+<p>After unzipping the file, we are left with an APK.  There are two routes we can go to analyze this:</p>
+
+<ul>
+  <li>Use apktool to disassemble the apk, which gives us smali code.  This is great if we just want to make minor tweaks and convert it back into a valid apk but smali code is not the easiest to read.  For example, defining a variable such as password can span over multiple lines.</li>
+  <li>Use dex2jar to convert the heart of the application into a regular jar which can be decompiled into java code, which is very easy to read.  The downside is that this format cannot easily be converted back into an APK.</li>
+</ul>
+
+<p>Since we are just looking for passwords, decompiling is the way to go.  Both APK and JAR use zip to bundle files together.</p>
+<ol>
+  <li>Unzip the SantaGram APK file to get a copy of the dex file. <code class="highlighter-rouge">unzip SantaGram_4.2.apk</code>.</li>
+  <li>Use dex2jar to convert classes.dex to a jar file. <code class="highlighter-rouge">dex2jar classes.dex</code></li>
+  <li>Unzip the newly created jar file. <code class="highlighter-rouge">unzip classes_dex2jar.jar</code></li>
+  <li>Go into the directory created by the zip and decompile all class files with jad. <code class="highlighter-rouge">find . -name *.class | xargs jad</code></li>
+  <li>Use grep to find hardcoded passwords <code class="highlighter-rouge">grep -r password .</code> – This command should reveal the account guest:busyreindeer78.</li>
+</ol>
+
+<p>This method doesn’t preserve the directory structure, and there are certainly better ways to go about it. But it’s quick, easy and allows us to achieve our goal of searching for sensitive hard coded data.</p>
+
+<p>Below is an example of the Smali Code and Disassembled code for defining the password.  Notice how little information is on each line in Smali, which makes it difficult to find code via grep.</p>
+
+<blockquote>
+  <table>
+    <thead>
+      <tr>
+        <th>Smali Disassemle</th>
+        <th> </th>
+        <th>JAD Decompile</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>const-string v1, “username”</td>
+        <td> </td>
+        <td>jsonobject.put(“username”, “guest”);</td>
+      </tr>
+      <tr>
+        <td>const-string v2, “guest”</td>
+        <td> </td>
+        <td>jsonobject.put(“password”, “busyreindeer78”);</td>
+      </tr>
+      <tr>
+        <td>const-string v1, “password”</td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>const-string v2, “busyreindeer78”</td>
+        <td> </td>
+        <td> </td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<p>Note: You can skip the converting dex -&gt; jar process by using <a href="https://github.com/skylot/jadx">jadx</a>.  However, that program isn’t on the Kali Repo and I avoid running programs directly from github when I can as they tend to be untested and harder to troubleshoot.</p>
+
+<script type="text/javascript" src="https://asciinema.org/a/2v2eo5ozs38go64dreu7fvfq8.js" id="asciicast-2v2eo5ozs38go64dreu7fvfq8" async=""></script>
+
+<h2 id="what-is-the-name-of-the-audible-component-audio-file-in-the-santagram-apk-file">4. What is the name of the audible component (audio file) in the SantaGram APK file?</h2>
+
+<p>This one is easy, go to the directory where you unzipped the apk file and just run <code class="highlighter-rouge">find . | grep mp3</code>.  It should return: ./res/raw/discombobulatedaudio1.mp3</p>
+
+
+		</article>
+		<footer>
+	<p>By Nick Ippolito</p>
+</footer>
+
+	</main>
+</body>
+
+</html>

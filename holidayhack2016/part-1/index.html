@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Part 1</title>
+
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="canonical" href="http://yourdomain.com/part-1/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+
+</head> 
+
+
+<body>
+	<aside>
+	<div class="container">
+		<nav>
+			<ul>
+				   
+				<li><a href="../">Answers</a></li>
+				    
+				<li><a href="../part-1/">Part 1</a></li>
+				  
+				<li><a href="../part-2/">Part 2</a></li>
+				  
+				<li><a href="../part-3/">Part 3</a></li>
+				  
+				<li><a href="../part-4/">Part 4</a></li>
+				  
+				<li><a href="../part-5/">Part 5</a></li>
+				  
+				<li><a href="../tokens/">Tokens</a></li>
+				  
+				<li><a href="../android-install/">Android</a></li>
+				  
+				<li><a href="../elf-chat/">Elf Chat</a></li>
+				 
+			</ul>
+		</nav>
+	</div>
+</aside>
+
+<header>
+	<h1><a href="">Part 1</a></h1>
+</header>
+
+	<main>
+		<article>
+			    <h2 id="what-is-the-secret-message-in-santas-tweets">1. What is the secret message in Santa’s Tweets?</h2>
+
+<p>At the start of the game, you are greeted with Santa’s Business card which has both his Twitter and Instagram name (<a href="https://twitter.com/santawclaus">@SantaWClaus</a>).  His recent tweets don’t make much sense but they all appear to be the same length.  This is an anomaly so I had used the python module Twython to download all his tweets.</p>
+<center><img src="../assets/part-1/twitter-1.png" alt="My Image" /></center>
+
+<p>Before you can do that, you’ll need to create API keys, so:</p>
+
+<ol>
+  <li>Login to your twitter and create a new app at <a href="https://apps.twitter.com">https://apps.twitter.com</a></li>
+  <li>On the App Page, click on “Keys and Access Tokens” and copy the “Consumer Key” and “Consumer Secret”</li>
+  <li>Scroll down and click create my Access Token, then make note of “Access token” and “Access Token Secret”</li>
+</ol>
+
+<p>With those secrets, it is now time to use the “Twython” python module to start downloading all of Santa’s Tweets.  Below is a sample script, just replace all secrets.</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre><span class="kn">from</span> <span class="nn">twython</span> <span class="kn">import</span> <span class="n">Twython</span> <span class="c"># pip install twython</span>
+<span class="kn">import</span> <span class="nn">time</span> <span class="c"># standard lib</span>
+
+<span class="s">''' Go to https://apps.twitter.com/ to register your app to get your api keys '''</span>
+<span class="n">CONSUMER_KEY</span> <span class="o">=</span> <span class="s">'6YfBRwFYd9Fvr33dC9ARRd1V6'</span>
+<span class="n">CONSUMER_SECRET</span> <span class="o">=</span> <span class="s">'NXV7m3urcP6dfLTuPlKkSHXPgZm3WTLXYyS5FSFay3IRtECS2u'</span>
+<span class="n">ACCESS_KEY</span> <span class="o">=</span> <span class="s">'155605470-iabGDtvAiw0SfdTza51RVMqchdlHC2A3JnpL2Uet'</span>
+<span class="n">ACCESS_SECRET</span> <span class="o">=</span> <span class="s">'z4kUuuKIRI84WoYsj9N6KZzBHSXiWiuQWaBrPI6Sj1xwt'</span>
+
+<span class="n">twitter</span> <span class="o">=</span> <span class="n">Twython</span><span class="p">(</span><span class="n">CONSUMER_KEY</span><span class="p">,</span><span class="n">CONSUMER_SECRET</span><span class="p">,</span><span class="n">ACCESS_KEY</span><span class="p">,</span><span class="n">ACCESS_SECRET</span><span class="p">)</span>
+<span class="n">lis</span> <span class="o">=</span> <span class="p">[</span><span class="mi">798175529463676928</span><span class="p">]</span> <span class="c">## this is the latest starting tweet id</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="c">## iterate through all tweets</span>
+<span class="c">## tweet extract method with the last list item as the max_id</span>
+    <span class="n">user_timeline</span> <span class="o">=</span> <span class="n">twitter</span><span class="o">.</span><span class="n">get_user_timeline</span><span class="p">(</span><span class="n">screen_name</span><span class="o">=</span><span class="s">"santawclaus"</span><span class="p">,</span>
+    <span class="n">count</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">include_retweets</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">max_id</span><span class="o">=</span><span class="n">lis</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">user_timeline</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">tweet</span><span class="p">[</span><span class="s">'text'</span><span class="p">]</span> <span class="c">## print the tweet</span>
+        <span class="n">lis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tweet</span><span class="p">[</span><span class="s">'id'</span><span class="p">])</span> <span class="c">## append tweet id's</span>
+</pre></td></tr></tbody></table>
+</code></pre></div>
+<p>After running the script, it becomes clear the secret message is “BUG BOUNTY” as it is displayed in ASCII Art.  Sample below.</p>
+
+<script type="text/javascript" src="https://asciinema.org/a/3lfqwbl9mvv6ydp4kj4k70tzd.js" id="asciicast-3lfqwbl9mvv6ydp4kj4k70tzd" async=""></script>
+
+<h2 id="what-is-inside-the-zip-file-distributed-by-santas-team">2. What is inside the ZIP file distributed by Santa’s Team</h2>
+
+<p>A link to the APK can be found on SanaWClaus’s InstaGram page.  More specifically, the post where SantaWClaus calls one of his elves out on having a messy desk.  The messy desk is forgivable but the elf also left his workstation unlocked which exposed potentially sensitive information.  The domain name <em>NorthPoleWonderland.com</em> is exposed via printed out nmap scans underneath the Violent Python book, and there’s a filename exposed in the Web Browsers title bar (SantaGram_v4.2.zip). We can combine the two pieces of information and download the zip file from <a href="http://northpolewonderland.com/SantaGram_4.2.zip">http://northpolewonderland.com/SantaGram_4.2.zip</a>.
+<img src="../assets/part-1/santa-instagram-pic.png" alt="My Image" /></p>
+
+<p>The zip is encrypted with a password and the “RockYou” wordlist was not able to decrypt it.  I decided to use John-The-Ripper to create a wordlist file based off the word “BUGBOUNTY”, which was the hidden message on Santa’s Twitter feed.  To do this I ran: <code class="highlighter-rouge">john --wordlist=pw --rules --stdout | tee pw.dict</code>, where pw is a text file that just contained the word BUGBOUNTY.</p>
+
+<p>John created 49 variations of the word BUGBOUNTY, which I fed into fcrackzip.  Running <code class="highlighter-rouge">frackzip -Dp pw.dict SantaGram_4.2.zip</code> revealed that the password was “bugbounty”.</p>
+
+<script type="text/javascript" src="https://asciinema.org/a/2d56mk7ap6cfj3xqozgzmbb3z.js" id="asciicast-2d56mk7ap6cfj3xqozgzmbb3z" async=""></script>
+
+
+
+		</article>
+		<footer>
+	<p>By Nick Ippolito</p>
+</footer>
+
+	</main>
+</body>
+
+</html>

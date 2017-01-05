@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Part 3</title>
+
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="canonical" href="http://yourdomain.com/part-3/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+
+</head> 
+
+
+<body>
+	<aside>
+	<div class="container">
+		<nav>
+			<ul>
+				   
+				<li><a href="../">Answers</a></li>
+				    
+				<li><a href="../part-1/">Part 1</a></li>
+				  
+				<li><a href="../part-2/">Part 2</a></li>
+				  
+				<li><a href="../part-3/">Part 3</a></li>
+				  
+				<li><a href="../part-4/">Part 4</a></li>
+				  
+				<li><a href="../part-5/">Part 5</a></li>
+				  
+				<li><a href="../tokens/">Tokens</a></li>
+				  
+				<li><a href="../android-install/">Android</a></li>
+				  
+				<li><a href="../elf-chat/">Elf Chat</a></li>
+				 
+			</ul>
+		</nav>
+	</div>
+</aside>
+
+<header>
+	<h1><a href="">Part 3</a></h1>
+</header>
+
+	<main>
+		<article>
+			    <h2 id="what-is-the-password-for-the-cranpi-account-on-the-cranberry-pi-system">5. What is the password for the “cranpi” account on the Cranberry Pi system?</h2>
+
+<p>Holly Evergreen, located right next to the warp portal in the beginning of the game has the ZIP File we seek.  Unfortunately, she only gives it out to people who have a working Cranberry Pi.  You must walk around and find all the pieces and when you hand them in Holly will give you a link to download the firmware image.  <a href="https://www.northpolewonderland.com/cranbian.img.zip">https://www.northpolewonderland.com/cranbian.img.zip</a></p>
+
+<p>After unzipping we are left with <code class="highlighter-rouge">cranberry-jessie.img</code>, which <code class="highlighter-rouge">binwalk -Me cranberry-jessie.img</code> will extract.  Navigating into the directory binwalk extracted the img file to, reveals a Linix Filesystem.  Local User account for linux have hashed version of their passwords stored at /etc/shadow, which we can now crack.  The relevant line of the shadow file is:</p>
+
+<p>cranpi:$6$2AXLbEoG$zZlWSwrUSD02cm8ncL6pmaYY/39DUai3OGfnBbDNjtx2G99qKbhnidxinanEhahBINm/2YyjFihxg7tgc343b0:17140:0:99999:7:::</p>
+
+<ul>
+  <li>cranpi indicates the username.</li>
+  <li>$6$ indicates that this is a sha512crypt hash</li>
+  <li>$2AXLbEoG$ is the salt.  This is randomly generated and the main purpose is to ensure that two identical passwords do not create the same hash.<br />
+<em>Note: $ are used as a delimiter and not part of the actual salt</em></li>
+  <li>The stuff after the salt, up to the colon is the hash.</li>
+  <li>The numbers after the hash are used for password expiration. Ex: min/max days password expiration, when to warn the user their password is about to expire, etc..</li>
+</ul>
+
+<p>Cracking Sha512Crypt is not a quick process, so we only want to feed it a small dictionary file.  Thankfully, Minty Candycane provides a link to a popular wordlist (RockYou).  The same file is also on kali within the /usr/share/wordlist directory, if you want to use this one just be sure to decompress it.  Run <code class="highlighter-rouge">john --wordlist=rockyou.txt shadow</code> to crack the file, it may take a few minutes.  One odd quirk of John is that it won’t display the password when finished, instead it puts it in an internal database.  To view the password run <code class="highlighter-rouge">john shadow --show</code>, which will return yummycookies.</p>
+
+<p>Extra tidbit: The shadow- file contains the user “pi” which has a password of thenorthpole7</p>
+
+<h2 id="how-did-you-open-each-terminal-door-and-where-had-the-villain-imprisoned-santa">6. How did you open each terminal door and where had the villain imprisoned Santa?</h2>
+
+<p>This is where it gets fun! There are 5 terminals which when clicking on them bring up an actual terminal in the game.  The underlying technology behind it all is WeTTY.</p>
+
+<p>Full text walkthrough is below, but I’ve also recorded myself explaining all the challenges here:</p>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/yy6z3fL3vi8" frameborder="0" allowfullscreen=""></iframe>
+
+<h3 id="terminal-1-pcap---httpsdocker2016holidayhackchallengecom60002">Terminal 1: pcap - https://docker2016.holidayhackchallenge.com:60002</h3>
+
+<p>When accessing this terminal, you are logged in as the user <em>scratchy</em> and told the answer is in /out.pcap.  The problem is that only <em>itchy</em> can read the file, so first we must switch to that user.  One of the first things to check when it comes to linux privilege escalation is what sudo access your current user has.  Running <code class="highlighter-rouge">sudo -l</code>, showed that the scratchy user can run both strings and tcpdump as the itchy user.</p>
+
+<p><img src="../assets/part-3/sudo.png" alt="My Image" /></p>
+
+<p>From here the obvious things to do is use strings to view data inside the capture, or tcpdump to parse the capture.  I went a different route and exfiltrated the pcap onto my machine.  This is a bit of a puzzle because it appears that we Docker Image that doesn’t have a route to the internet and even if we could just send the file back to us over HTTP, strings or tcpdump do not have that capability.</p>
+
+<p>So the first thing to do is to copy the file and hope the UMASK Settings aren’t locked down.  UMASK, is what determines how file permissions are set for newly created files, running <code class="highlighter-rouge">umask</code> showed 0022 which means files will be created with 644 permissions (rw owner, ro group+everyone).  To copy the file we can use tcpdump to read it and output it to a new file. <code class="highlighter-rouge">sudo -u itchy tcpdump --r /out.pcap /tmp/out.pcap</code>.</p>
+
+<p>Now there should be a copy at /tmp/out.pcap and scratchy should be able to read it.  Which means we can now access the pcap with programs other than just strings and tcpdump.  I converted the file to base64, <code class="highlighter-rouge">base64 /tmp/out.pcap</code>.  Base64, encodes the file into only english characters which is copy and paste friendly!  A tip to copy big files on a terminal is to scroll up to the beginning of the output, highlight the first few characters and while still holding the mouse - hit enter to go all the way to the bottom and select the end of output.  Copy with ctrl+c and then open up your favorite text editor and paste the output.  I saved the file as out.pcap.b64.  We can now decode the file and have an identical copy of what was on the server. <code class="highlighter-rouge">base64 -d out.pcap.b64 &gt; out.pcap</code></p>
+
+<p>I opened the file with Wireshark and began looking into the file.  Viewing the very first GET Request, showed the first half of the password was “santasli”.  I did this by right clicking on the GET Request, and selecting Follow Stream.
+<img src="../assets/part-3/wireshark-1.png" alt="Wirehark Image" /></p>
+
+<p>This will open up a window where we can see the entire HTTP Request.  The red text indicates the client and blue indicates server.  We see the client requested the file /firsthalf.html and within the response we see part1 has a value of santasli.
+<img src="../assets/part-3/wireshark-2.png" alt="Wirehark Image" /></p>
+
+<p>When you are done looking at that request, click “Filter out this stream” to go back to the original wireshark window and do the same process with the next request.</p>
+
+<p>We see the second request is attempting to download a binary file and wireshark just shows a bunch of gibberish.  To examine the contents of the binary file, we can save the request to disk.  Before saving it, click the box next to “Show and save data as” and select “raw”.
+<img src="../assets/part-3/wireshark-3.png" alt="Wirehark Image" /></p>
+
+<p>I saved the file as “secondhalf.bin” and began running strings against it.  By default strings just converts hex to ascii and looks for english characters 4 characters or more in length.  Running <code class="highlighter-rouge">strings -h</code>, shows other possible encoding methods to use.  If you run <code class="highlighter-rouge">strings -e b secondhalf.bin</code>, the output will be ttlhelper.</p>
+
+<script type="text/javascript" src="https://asciinema.org/a/58j85ff0f6rni7dcdq4oh9t6e.js" id="asciicast-58j85ff0f6rni7dcdq4oh9t6e" async=""></script>
+
+<p>The full password is santaslittlehelper.  This entire challenge was a Simpsons reference.  Itchy and Scratchy are characters within simpsons and santaslittlehelper is their dog.</p>
+
+<p>For good measure, we can make sure we didn’t miss any easter eggs in the pcap file by going back to wireshark and filtering both requests out.  The following expression will do that: <code class="highlighter-rouge">!(tcp.stream eq 0) and !(tcp.stream eq 1)</code>, and the result shows no more packets.  So there isn’t anything in this pcap file that we didn’t analyze.</p>
+
+<hr />
+
+<h3 id="terminal-2-hard-to-access-file---httpsdocker2016holidayhackchallengecom60003">Terminal 2: Hard to access file - https://docker2016.holidayhackchallenge.com:60003</h3>
+
+<p>This challenge is pretty straight forward, it states there is a file hidden deep within directories.  Running <code class="highlighter-rouge">find .</code>, will list the file structure of the directory and we see the file <em>key_for_the_door.txt</em> behind a lot of hard to type directories.  To top it off they screwed with our TTY settings, so things like tab completion do not work.  If you want to fix that just run <code class="highlighter-rouge">bash</code> and your terminal will be fixed.  However, we don’t need tab completion to help us here we could use find to cat the file for us!  <code class="highlighter-rouge">find . -name *.txt -exec cat {} ;\</code>
+<img src="../assets/part-3/file-1.png" alt="Directory Structure image" /></p>
+
+<p>Got the flag and for good measure I wanted to be sure there weren’t any easer eggs.  The output of find looked interesting with secret, files, cookbook, etc.  I ran <code class="highlighter-rouge">find . -type f</code> to check if they were files I should look at, turns out they were just empty directories.</p>
+
+<p>Obligatory XKCD:
+<img src="../assets/part-3/xkcd.png" title="I searched my .bash_history for the line with the highest ratio of special characters to regular alphanumeric characters, and the winner was: cat out.txt | grep -o &quot;[[(].*[])][^)]]*$&quot; ... I have no memory of this and no idea what I was trying to do, but I sure hope it worked." alt="XKCD-Backslash" /></p>
+
+<hr />
+
+<h3 id="terminal-3-wompus---httpsdocker2016holidayhackchallengecom60004">Terminal 3: Wompus - https://docker2016.holidayhackchallenge.com:60004</h3>
+
+<p>This terminal tells you that you can find the passphrase by playing the game wumpus.  This is just a binary file and you can start playing by typing ./wumpus.  You could try to beat the game legitimately, but text based dungeon games aren’t the most intuitive of games.  The easier way is to “reverse engineer” the game, but to do that you’ll need to exfiltrate (aka steal) the game.  Do this the same way as I showed in Terminal 1 (with base64).</p>
+
+<p>Once the game is on your computer, you can use gdb to run it in a debugger.  Running <code class="highlighter-rouge">info functions</code> will return functions within the game. The function kill_wump, looks interesting.  Instead of playing the game, lets just to call that function.  Run the game by entering “r”, then background and return to the debugger it with ctrl+c.  From here we can just enter <code class="highlighter-rouge">print kill_wump()</code> and see the output of the function, which turns out to be the password.</p>
+
+<p>Note: In the “real world”, the function names are normally stripped out of the program so don’t expect it always to be this easy.</p>
+
+<script type="text/javascript" src="https://asciinema.org/a/3mdg0fnza5a6l80u4lbt4n361.js" id="asciicast-3mdg0fnza5a6l80u4lbt4n361" async=""></script>
+
+<hr />
+
+<h3 id="terminal-4-wargames---httpsdocker2016holidayhackchallengecom60005">Terminal 4: Wargames - https://docker2016.holidayhackchallenge.com:60005</h3>
+
+<p>When accessing this terminal, “GREETINGS PROFESSOR FALKEN” comes across the screen.  If you google that phrase, you’ll find out this is a scene from the movie WarGames.  Simply just type the responses that were in the movie and you will get the flag.  Everything has to be exact it is even case-sensitive.  The responses are:</p>
+
+<ul>
+  <li>Hello.</li>
+  <li>I’m fine. How are you?</li>
+  <li>People sometimes make mistakes.</li>
+  <li>Love to. How about Global Thermonuclear War?</li>
+  <li>Later.  Let’s play Global Thermonuclear War.</li>
+  <li>2</li>
+  <li>Las Vegas</li>
+</ul>
+
+<p>After that it will tell you the password is: LOOK AT THE PRETTY LIGHTS</p>
+
+<hr />
+
+<h3 id="terminal-5-time-traveling-train---httpsdocker2016holidayhackchallengecom60006">Terminal 5: Time Traveling Train - https://docker2016.holidayhackchallenge.com:60006</h3>
+
+<p>You are greeted with a menu prompt, with a few options.</p>
+
+<p>Running HELP will give the descriptions for what each command does.  The description for HELP states: “brings you to this file.  If it’s not here, this console cannot do it, unLESS you know something I don’t”.</p>
+
+<p>It’s odd that LESS is capitalized, and looking at the screen it looks like less is actually being used.  Less is often used to view text files, output of commands, etc.  Many people think that is all it can do.</p>
+
+<p>This is dangerous because less allows people to run system commands, just type <code class="highlighter-rouge">!commandhere</code> and it will execute a command.  Entering <code class="highlighter-rouge">!/bin/sh</code> will bring you to a shell.  Once at the command prompt run ./ActivateTrain to start the train up and teleport back to the past!</p>
+
+<p>Note: The video below has me running everything on my local desktop.</p>
+
+<script type="text/javascript" src="https://asciinema.org/a/4p1shhvgpxjypt6vcab6dq8xf.js" id="asciicast-4p1shhvgpxjypt6vcab6dq8xf" async=""></script>
+
+<p>When poking around on the file system of this docker image there are a few odd things.</p>
+<ul>
+  <li>The password to start the train is an MD5Sum, I tried cracking it briefly but had no luck.  So there is a potential easter egg there.</li>
+  <li>If you run strings on the ActivateTrain binary, it appears to make a web request to an IP.  The Oracle, said the IP Address was out of scope so I left it alone.  My guess is that it is a middle man between the binary and actual game server and that request is what tells the game server to teleport us in time.</li>
+  <li>The ActivateTrain binary calls /usr/game/sl, which has the string “ACCIDENT” in it.  For some reason my gdb did not recognize the format and lldb kept hanging so I didn’t poke around too much.  Perhaps there is an easter egg there?</li>
+</ul>
+
+<p>Well that’s it for the terminals!</p>
+
+
+		</article>
+		<footer>
+	<p>By Nick Ippolito</p>
+</footer>
+
+	</main>
+</body>
+
+</html>

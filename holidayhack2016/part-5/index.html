@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Part 5</title>
+
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="canonical" href="http://yourdomain.com/part-5/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+
+</head> 
+
+
+<body>
+	<aside>
+	<div class="container">
+		<nav>
+			<ul>
+				   
+				<li><a href="../">Answers</a></li>
+				    
+				<li><a href="../part-1/">Part 1</a></li>
+				  
+				<li><a href="../part-2/">Part 2</a></li>
+				  
+				<li><a href="../part-3/">Part 3</a></li>
+				  
+				<li><a href="../part-4/">Part 4</a></li>
+				  
+				<li><a href="../part-5/">Part 5</a></li>
+				  
+				<li><a href="../tokens/">Tokens</a></li>
+				  
+				<li><a href="../android-install/">Android</a></li>
+				  
+				<li><a href="../elf-chat/">Elf Chat</a></li>
+				 
+			</ul>
+		</nav>
+	</div>
+</aside>
+
+<header>
+	<h1><a href="">Part 5</a></h1>
+</header>
+
+	<main>
+		<article>
+			    <h1 id="assembling-the-audio-files">Assembling the Audio Files.</h1>
+
+<p>I’ve already answered the questions for this part on the home page, so this space will be dedicated to assembling the audio files.  There are 7 audio files, every audio file has two numbers associated with it:</p>
+
+<ul>
+  <li>The number in the filename. 0-7 skipping 4</li>
+  <li>The <em>track</em> number in the metadata. 1-7.</li>
+</ul>
+
+<p>You can pull the track numbers via exiftool.  Yes, that tool to view exif data from images also handles pretty much every other file aswell!  I ran <code class="highlighter-rouge">exiftool *.mp3 | grep 'Name\|Track'</code> to show me all the track numbers associated with the files.  The | in my grep command, just means “OR”, it comes in really handy.</p>
+
+<p>I combined all the audio files based upon their track number with ffmpeg.  I could of gone straight to an audio editing program such as Audacity or GarageBand, but I find combining files via command line easier than dragging stuff around on a timeline.  The command to combine is:</p>
+
+<p><code class="highlighter-rouge">ffmpeg -i "concat:discombobulatedaudio1.mp3|discombobulatedaudio2.mp3|discombobulatedaudio3.mp3|debug-20161224235959-0.mp3|discombobulatedaudio5.mp3|discombobulated-audio-6-XyzE3N9YqKNH.mp3|discombobulatedaudio7.mp3" -c copy out.mp3</code>.</p>
+
+<p>Playing the audio file within VLC, I was able to understand “Merry Christmas Santa &lt;jibberish&gt; Jeff”, it was also apparent that the clip had been slowed down.</p>
+
+<center><audio controls=""><source src="../assets/part-5/out-unmodified.mp3" type="audio/mpeg" /></audio></center>
+
+<p>I downloaded Audacity which is a great tool for editing Audio Files.  The first step is to import the audio file into audacity (File &gt; Import).  Once imported, we can now start playing with the effects we know the audio is slowed down so naturally I attempted the “Change speed” effect first.  I chose to make it 7x the speed because there are 7 audio files.  There’s no technical merrit behind that reasoning, just thought that if I was tasked to slowdown and cut up the video files I’d choose the same number.  After changing the speed the pitch of the audio was too high to make out a single word.</p>
+
+<center><audio controls=""><source src="../assets/part-5/out-speed.wav" type="audio/mpeg" /></audio></center>
+
+<p>Looking through the effects again, I saw the “Change Tempo” had a description of “Increase Tempo without Changing Pitch”.  I ran this one with a 700 percent increase and was now able to make out every word: “Merry Christmas Santa Claus, as I’ve always known him Jeff.” which was the passphrase to the final door and lead to The Doctor.</p>
+
+<center><audio controls=""><source src="../assets/part-5/out-modified.wav" type="audio/mpeg" /></audio></center>
+
+<p>The audio was grabbed from <a href="https://www.youtube.com/watch?v=sedD40sEb8M&amp;t=78s">The Doctor Who special of 2012</a>.</p>
+
+
+
+		</article>
+		<footer>
+	<p>By Nick Ippolito</p>
+</footer>
+
+	</main>
+</body>
+
+</html>

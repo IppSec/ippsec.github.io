@@ -178,7 +178,7 @@
   <li>Check the commit log to see if there are any other versions of code within the repository we downloaded <code class="highlighter-rouge">git log</code></li>
   <li>Create a new directory and copy our .git repository into that directory.  This isn’t needed but helps us stay organized. <code class="highlighter-rouge">mkdir commits; cp -r .git commits</code></li>
   <li>Loop through the git log output, pulling out all commits, and creating a directory for each one: <code class="highlighter-rouge">git log | grep commit | awk '{print $2}' | xargs mkdir</code></li>
-  <li>Checkout (Pull) the code for every commit and place it into the corresponding commit folder. <code class="highlighter-rouge">for i in $(ls); do git --work-tree=./$i reset --hard; done</code></li>
+  <li>Checkout (Pull) the code for every commit and place it into the corresponding commit folder. <code class="highlighter-rouge">for i in $(ls); do git --work-tree=./$i $i reset --hard; done</code></li>
   <li>Grep for interesting data.  <code class="highlighter-rouge">grep -i -r 'administrator\|password\|guest'</code></li>
 </ol>
 

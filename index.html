@@ -146,6 +146,25 @@ var search3 = function(regex) {
 
 <div id="list" style="display: none">
 
+Swagshop | qECG2_8xw_s ^ 00:45 - Begin of recon
+Swagshop | qECG2_8xw_s ^ 01:36 - Examining the web page, noticing /index.php/ mod-rewrite misconfig and old copyright
+Swagshop | qECG2_8xw_s ^ 04:50 - Whoops should of done apt search magescan, either way this package is not in Kali
+Swagshop | qECG2_8xw_s ^ 05:30 - Running MageScan to scan the website
+Swagshop | qECG2_8xw_s ^ 08:20 - Finding an open configuration file (app/etc/local.xml)
+Swagshop | qECG2_8xw_s ^ 10:30 - Running searchsploit to identify public exploits
+Swagshop | qECG2_8xw_s ^ 12:10 - Examining an exploit that will add an administrative user via SQL Injection
+Swagshop | qECG2_8xw_s ^ 15:15 - Running the exploit out of the box didn't work, send it through burp in order to debug it
+Swagshop | qECG2_8xw_s ^ 16:45 - Exploit needed to be modified to include index.php due to mod-rewrite misconfig
+Swagshop | qECG2_8xw_s ^ 19:25 - Going back to SearchSploit and using the Authenticated RCE Exploit
+Swagshop | qECG2_8xw_s ^ 21:30 - Making the obvious changes to fix the exploit script
+Swagshop | qECG2_8xw_s ^ 24:17 - Debugging the exploit by running it through burpsuite, find out we need to use an login page
+Swagshop | qECG2_8xw_s ^ 29:00 - Bit more in-depth debugging by setting a breakpoint with pdb
+Swagshop | qECG2_8xw_s ^ 30:30 - The regex is failing due to page not returning anything, the URL has a time span lets increase that
+Swagshop | qECG2_8xw_s ^ 33:15 - Finally fixed this exploit! Reverse Shell Returned
+Swagshop | qECG2_8xw_s ^ 35:30 - Noticing we can exec vim with sudo, lets privesc
+Swagshop | qECG2_8xw_s ^ 37:10 - Mentioning GTFOBins which helps find privesc paths from privileged programs
+Swagshop | qECG2_8xw_s ^ 38:15 - EXTRA: Examining the PHP Object Injection RCE Exploit
+
 Ariekei | Pc4tzsn-ats ^ 00:23  - Explaining VM Layout
 Ariekei | Pc4tzsn-ats ^ 01:47  - Nmap Start
 Ariekei | Pc4tzsn-ats ^ 05:20  - Poking at Virtual Host Routing (Beehive Calvin)
@@ -2613,6 +2632,7 @@ Brainfuck | o5x1yg3JnYI ^ 10:30  - Logged into WP
 Brainfuck | o5x1yg3JnYI ^ 15:00  - Login to SuperSecretForum
 Brainfuck | o5x1yg3JnYI ^ 25:00  - Cracking the SSH Key
 Brainfuck | o5x1yg3JnYI ^ 27:15  - Begin of getting root.txt (RSA Cracking)
+
 
 </div>															    
 <div class="center">

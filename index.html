@@ -1,1 +1,2633 @@
-<a href="/holidayhack2016">Holiday Hack 2016 Report</a>
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+em {padding: 10px; color: white;}
+body {
+	background: #000;
+}
+
+#mySearch {
+    width: 20em;
+    height: 2em;
+    font-size: 20px;
+    font-family: serif;
+    text-align: center;
+}
+
+h1 {color: white;}
+h2 {color: white;}
+
+a:link {color: orange;}
+a:visited { color: orange; }
+a:hover {color: hotpink;}
+a:active {color: yellow; }
+
+.notshown { display:none; }
+
+.button {background-color: #60A9F0; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;}
+.button {-webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s;}
+.button:hover {background-color: orange; /* Green */ color: white;}
+.button1 {background-color: #60A9F0; color: black; border: 2px solid #60A9F0; }
+.button1 {-webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s;}
+.button1:hover {background-color: orange; border: 2px solid orange; color: white;}
+.center {margin: auto; width: 50%; text-align: center; vertical-align: middle;}
+
+
+
+}
+
+.center {margin: auto; width: 50%;text-align: center; vertical-align: middle; }
+.button1 {background-color: #60A9F0; border: 2px solid #60A9F0; color: black;  }
+.button1 {-webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s;}
+.button1:hover {background-color: orange; border: 2px solid orange	; color: white;}
+</style>
+
+<script>
+function go() {
+	document.getElementById('sea').scrollIntoView(); 
+	}
+
+function showdiv(x){
+	document.getElementById(x).style.display="block";
+ }
+
+function hidediv(x){
+	document.getElementById(x).style.display="none";
+	go();
+}
+
+function search(){
+	param = document.getElementById('mySearch').value.toLowerCase();
+	lols = "\<script> alert  prompt '  \" "
+	//alert(lols);
+	if (lols.match(param)){ alert("Don't hack me please!")};
+var search3 = function(regex) {
+{
+		var matches=[], i;
+		var list = document.getElementById('list');
+		var cont = list.innerHTML;
+		var cont2 = cont.split(/\r\n|\r|\n/);
+		var len = cont.split(/\r\n|\r|\n/).length;
+  		for (i=0; i<len; i++) {
+			cont2a = cont2[i].split('|')[0].toLowerCase();
+			var MyString = cont2a;
+			cont2b = cont2[i].split('|')[1];
+			cont3a = cont2[i].split(' ');
+			conttot = cont2[i].split(' ').length;
+			for (ii=6; ii<conttot; ii++) {
+					MyString += cont3a[ii].toLowerCase() + " ";
+				}
+			if (MyString.match(regex)) matches.push(cont2[i]);
+  		}
+    	return matches;
+  		}
+	};
+	var results = search3(param);
+
+	var len2 = (results.length)
+	var added = "<style>body {background: black;} "
+	added += "@keyframes fadeIn { 0% {opacity:0;} 100% {opacity:1; } }"
+	added += "@-moz-keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }"
+	added += "@-webkit-keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1;}}"
+	added += "@-o-keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; }}"
+	added += "@-ms-keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }"
+	added += ".fade-in {animation: fadeIn ease 2s; -webkit-animation: fadeIn ease 2s;-moz-animation: fadeIn ease 2s; -o-animation: fadeIn ease 2s; -ms-animation: fadeIn ease 2s;margin: auto; width: 90%; text-align: center; vertical-align: middle;}"
+	added += "table {font-family: arial, sans-serif; border-collapse: collapse; width: 100%; margin-bottom: 40px;}"
+	added += "td, th {border: 1px solid #dddddd; text-align: left; padding: 8px;}"
+	added += "tr:nth-child(even) {background-color: #dddddd; }" 
+	added += "tr:nth-child(odd) {background-color: #greem; color:#eee}" 	
+	added += ".title {display:inline-block; border: #3ebbcf 2px solid;padding-bottom: 5px; padding-top:5px; padding-left: 10px; padding-right: 10px;}"
+	added += ".button {background-color: #60A9F0; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;}"
+	added += ".button {-webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s;}"
+	added += ".button:hover {background-color: orange; /* Green */ color: white;}"
+	added += ".button1 {background-color: #60A9F0; color: black; border: 2px solid #60A9F0; }"
+	added += ".button1 {-webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s;}"
+	added += ".button1:hover {background-color: orange; border: 2px solid orange; color: white;}"
+	added += ".center {margin: auto; width: 50%; text-align: center; vertical-align: middle;}"
+	added += "#sea {padding-top: 30px;}"
+	added += ".notshown {display:none;} </style> "
+	added += "<script>"
+	added += "function go() {"
+	added += "document.getElementById('sea').scrollIntoView();"
+	added += "}"
+	added += "function showdiv(x){"
+	added += "document.getElementById(x).style.display=\"block\";"
+	added += "}"
+	added += "function hidediv(x){"
+	added += "document.getElementById(x).style.display=\"none\";"
+	added += "go();"
+	added += "}"
+	added += "<\/script>"
+	added += "<div class=\"fade-in\"><table id=\"cont\"><tr><th>MACHINE</th><th>DESCRIPTION</th><th>LINK</th></tr>"
+	function add(){
+	for (i=0; i<len2; i++){
+		machine = results[i].split("|")[0];
+		url = results[i].split("|")[1].split("^")[0];
+		time = results[i].split('^')[1].split('-')[0];
+		min = time.split(':')[0].trim();
+		sec = time.split(':')[1].trim();
+		time1 = Number(min)*60 + Number(sec);
+		divid = "id"+i
+		urllink = url.trim() + "&start=" + time1;
+		description = results[i].split('^')[1].split("-")[1].trim();
+		added += "<tr><td>" + machine + "</td><td>" + description + "</td><td><input class=\"button1\" value=\"Open link\" type=\"submit\" onclick=document.location=\"https://youtube.com/watch?v="+urllink+"\"></td></tr>"
+		}
+	added += "<div id =\"sea\" class=\"center\"><input class=\"button\" value=\"New Search\" onkeypress=\"javascript:window.location = document.URL.replace(/#.*$/, '')\" onclick=\"javascript:window.location = document.URL.replace(/#.*$/, '')\"></div><br />"
+	added += "</div></div></div><br /><br />"
+ 	return added;
+	};
+	added2 = add();
+	document.write(added2);
+	
+	go();
+};
+</script>
+
+<div id="list" style="display: none">
+
+Ariekei | Pc4tzsn-ats ^ 00:23  - Explaining VM Layout
+Ariekei | Pc4tzsn-ats ^ 01:47  - Nmap Start
+Ariekei | Pc4tzsn-ats ^ 05:20  - Poking at Virtual Host Routing (Beehive Calvin)
+Ariekei | Pc4tzsn-ats ^ 10:25  - Fixing GoBuster to find /cgi-bin/
+Ariekei | Pc4tzsn-ats ^ 11:48  - Enumerating WAF (Web Application Firewall), to see how it detects Shellshock
+Ariekei | Pc4tzsn-ats ^ 15:08  - Using VirtualHostRouting to navigate to Calvin.htb.htb
+Ariekei | Pc4tzsn-ats ^ 18:15  - Using ImageTragick to exploit Calvin
+Ariekei | Pc4tzsn-ats ^ 25:30  - Calvin Reverse shell returned
+Ariekei | Pc4tzsn-ats ^ 31:35  - Poking at /common, which allows pivot to Bastion Host
+Ariekei | Pc4tzsn-ats ^ 34:20  - SSH into the Bastion Host
+Ariekei | Pc4tzsn-ats ^ 38:45  - Explain SSH Local and Remote Port Forwarding
+Ariekei | Pc4tzsn-ats ^ 46:00  - Beehive Reverse Shell Returned
+Ariekei | Pc4tzsn-ats ^ 50:00  - Finding the root password via /common/containers/bastion-live/Dockerfile
+Ariekei | Pc4tzsn-ats ^ 54:50  - PrivEsc via Docker (much like the LXC shown in Calamity)
+Ariekei | Pc4tzsn-ats ^ 57:05  - Getting root access to filesystem
+Ariekei | Pc4tzsn-ats ^ 58:10  - Failing to get root shell via Crontab
+Ariekei | Pc4tzsn-ats ^ 01:06:20  - Yeah screw crontab, lets just create an ssh key.
+
+Jail | 80-73OYcrrk ^ 00:52  - Recon - NMAP
+Jail | 80-73OYcrrk ^ 04:05  - Recon - Getting Linux Distro
+Jail | 80-73OYcrrk ^ 04:35  - Recon - GoBuster
+Jail | 80-73OYcrrk ^ 05:40  - Analyzing Jail.c source
+Jail | 80-73OYcrrk ^ 09:45  - Begin Binary Exploitation
+Jail | 80-73OYcrrk ^ 15:10  - Verify Buffer Overflow
+Jail | 80-73OYcrrk ^ 17:35  - Create Exploit Skeleton
+Jail | 80-73OYcrrk ^ 20:50  - Finding EIP Overwrite
+Jail | 80-73OYcrrk ^ 23:02  - Adding Reverse TCP Shellcode
+Jail | 80-73OYcrrk ^ 30:15  - Switching to "Socket Re-Use" Shellcode
+Jail | 80-73OYcrrk ^ 32:20  - Shell Returned
+Jail | 80-73OYcrrk ^ 34:00  - NFSv3 Privesc Begin
+Jail | 80-73OYcrrk ^ 40:15  - Begin incorrectly playing with SetUID
+Jail | 80-73OYcrrk ^ 43:10  - SELinux Escape
+Jail | 80-73OYcrrk ^ 45:25  - Using SELinux Escape to copy SSH Key
+Jail | 80-73OYcrrk ^ 48:55  - Logging in as Frank
+Jail | 80-73OYcrrk ^ 50:00  - Privesc to adm (sudo rvim)
+Jail | 80-73OYcrrk ^ 51:44  - Begin of finding a way to root
+Jail | 80-73OYcrrk ^ 55:58  - Begin cracking rar file 
+Jail | 80-73OYcrrk ^ 57:18  - Using Hashcat to generate custom wordlist
+
+Brainfuck | o5x1yg3JnYI ^ 0:20  - Recon
+Brainfuck | o5x1yg3JnYI ^ 3:40  - Start of WP Hacking
+Brainfuck | o5x1yg3JnYI ^ 10:30  - Logged into WP
+Brainfuck | o5x1yg3JnYI ^ 15:00  - Login to SuperSecretForum
+Brainfuck | o5x1yg3JnYI ^ 25:00  - Cracking the SSH Key
+Brainfuck | o5x1yg3JnYI ^ 27:15  - Begin of getting root.txt (RSA Cracking)
+
+Kryptos | 4uCoI5YzOwk ^ 00:45  - Begin of Recon
+Kryptos | 4uCoI5YzOwk ^ 02:50  - Examining login request while GoBuster runs
+Kryptos | 4uCoI5YzOwk ^ 05:35  - Noticing weird behavior by modifying db parameter in login request
+Kryptos | 4uCoI5YzOwk ^ 07:30  - Finding what the Error numbers mean. (SQL Error Codes)
+Kryptos | 4uCoI5YzOwk ^ 08:50  - Testing if we can trick the application into authentication against us
+Kryptos | 4uCoI5YzOwk ^ 09:50  - Starting up metasploit to steal the login hash of a MYSQL Login
+Kryptos | 4uCoI5YzOwk ^ 12:30  - Cracking the MySQL Hash with Hashcat
+Kryptos | 4uCoI5YzOwk ^ 16:45  - Creating a databse locally for the application to authenticate to
+Kryptos | 4uCoI5YzOwk ^ 23:00  - Examining what MySQL Does after authentication in Wireshark
+Kryptos | 4uCoI5YzOwk ^ 24:30  - Creating the database structure so the application will authenticate against our database
+Kryptos | 4uCoI5YzOwk ^ 27:00  - Begin of the File Encryptor PHP App
+Kryptos | 4uCoI5YzOwk ^ 27:30  - Performing a Known Plaintext attack against the RC4 Encryption
+Kryptos | 4uCoI5YzOwk ^ 28:50  - Explaining the Known Plaintext
+Kryptos | 4uCoI5YzOwk ^ 37:00  - Creating a Python Script to perform a SSRF attack and decrypt content
+Kryptos | 4uCoI5YzOwk ^ 54:25  - Script done, discovering a LFI Exploit in /dev/
+Kryptos | 4uCoI5YzOwk ^ 57:30  - Using PHP Filters to convert LFI to source code disclosure
+Kryptos | 4uCoI5YzOwk ^ 59:50  - Extracting sqlite_test_page.php source code
+Kryptos | 4uCoI5YzOwk ^ 01:01:00  - Manually analyzing the source code to discover a way to write files
+Kryptos | 4uCoI5YzOwk ^ 01:03:00  - Checking PayloadAllTheThings to get a payload for dropping files
+Kryptos | 4uCoI5YzOwk ^ 01:15:38  - Testing dropping a php script for code execution
+Kryptos | 4uCoI5YzOwk ^ 01:18:00  - Using Chankro to bypass PHP Disabled functions
+Kryptos | 4uCoI5YzOwk ^ 01:20:45  - Creating a PHP Script to download Chankro Script to avoid bad characters in the RCE
+Kryptos | 4uCoI5YzOwk ^ 01:24:50  - Reverse shell returned, finding a VIMCrypted file in Rijndael Home
+Kryptos | 4uCoI5YzOwk ^ 01:25:35  - Decrypting Creds.txt with a known plaintext attack in VimCrypt 02 (Blowfish)
+Kryptos | 4uCoI5YzOwk ^ 01:28:20  - Downloading the files to our local box and explaining the attack
+Kryptos | 4uCoI5YzOwk ^ 01:30:30  - Copying our Python Script from earlier and modify it to work with our VIM File
+Kryptos | 4uCoI5YzOwk ^ 01:38:20  - Decrypted the creds and use them to SSH
+Kryptos | 4uCoI5YzOwk ^ 01:39:10  - Analyzing the kryptos.py file
+Kryptos | 4uCoI5YzOwk ^ 01:41:00  - Testing how random the random is
+Kryptos | 4uCoI5YzOwk ^ 01:46:00  - Creating a python script to bruteforce the key as we know the randomness is broken
+Kryptos | 4uCoI5YzOwk ^ 01:57:00  - Script to brute force signing key done
+Kryptos | 4uCoI5YzOwk ^ 01:58:45  - Getting code execution within the eval statement
+Kryptos | 4uCoI5YzOwk ^ 02:04:30  - Extra content, showing by using the encrypt method twice early on — you can decrypt pages
+
+Fortune | _BLd046r-co ^ 01:04  - Begin of recon
+Fortune | _BLd046r-co ^ 04:41  - Exploring the web page on port 80
+Fortune | _BLd046r-co ^ 06:02  - Using wfuzz to do a special character fuzz to identify odd behavior and discover command injection
+Fortune | _BLd046r-co ^ 11:06  - Creating a hotkey in Burpsuite to send requests in repeater pane
+Fortune | _BLd046r-co ^ 11:50  - Start of creating a python program to automate this
+Fortune | _BLd046r-co ^ 17:30  - Script finished
+Fortune | _BLd046r-co ^ 18:30  - Exploring /var/appsrv 
+Fortune | _BLd046r-co ^ 21:15  - Exploring authpf
+Fortune | _BLd046r-co ^ 22:30  - Hunting for the signing key for the CA to view HTTPS
+Fortune | _BLd046r-co ^ 24:40  - Copying the certificates to our box
+Fortune | _BLd046r-co ^ 26:00  - Creating and signing a Client Certificate
+Fortune | _BLd046r-co ^ 28:50  - Importing the certificate into FireFox
+Fortune | _BLd046r-co ^ 30:49  - Discovering the reason our certificate isn't working (time of server is behind)
+Fortune | _BLd046r-co ^ 31:50  - Accessing the HTTPS Website to get a SSH key for NFSUSER
+Fortune | _BLd046r-co ^ 33:40  - Discovering additional ports are open after using SSH with NFSUSER
+Fortune | _BLd046r-co ^ 34:45  - Installing the NFS-COMMON package to get the showmount binary
+Fortune | _BLd046r-co ^ 35:10  - Mounting a NFS Share with Version 2
+Fortune | _BLd046r-co ^ 36:00  - Editing our User ID on our box to gain access to the NFS Directories
+Fortune | _BLd046r-co ^ 37:00  - Reading mail to discover that the root password is set to the Postgres databases root pw
+Fortune | _BLd046r-co ^ 37:30  - Testing if we could setup a SetUID Binary with this NFS (Check Jail Video for this being successful)
+Fortune | _BLd046r-co ^ 40:20  - SSH into the box as Charlie and dumping the database
+Fortune | _BLd046r-co ^ 43:40  - Exploring the source code to the web application
+Fortune | _BLd046r-co ^ 47:00  - Copying the crypto python script to our box, which will let us decrypt it
+Fortune | _BLd046r-co ^ 47:40  - Copying the secrets into the crypto python script and decrypting the password
+
+CTF | 51JQg202csw ^ 00:52  - Start of Recon, discovering CentOS Version via HTTPD Version
+CTF | 51JQg202csw ^ 02:15  - Checking out the HTTP Page
+CTF | 51JQg202csw ^ 03:32  - Checking out login.php
+CTF | 51JQg202csw ^ 05:15  - Identifying a Secure Token is used, most likely STOKEN
+CTF | 51JQg202csw ^ 07:05  - Failing to enumerate usernames through BruteForce
+CTF | 51JQg202csw ^ 09:45  - Fuzzing the login form with special characters to identify a blacklist
+CTF | 51JQg202csw ^ 11:45  - Trying Double URL Encoding to bypass the BlackList
+CTF | 51JQg202csw ^ 12:55  - Explaining Double URL Encoding
+CTF | 51JQg202csw ^ 14:45  - Discovering this is most likely a LDAP Injection
+CTF | 51JQg202csw ^ 16:50  - Explaining how a LDAP Query Works
+CTF | 51JQg202csw ^ 19:15  - Identifying the LDAP Query Structure with a Null Byte
+CTF | 51JQg202csw ^ 20:40  - Injecting the WildCard (*) to enumerate usernames
+CTF | 51JQg202csw ^ 24:00  - Using Wfuzz to extract the username
+CTF | 51JQg202csw ^ 26:00  - Enumerating LDAP Attributes that are utilized
+CTF | 51JQg202csw ^ 30:26  - Creating a python script to extract the Pager Attribute
+CTF | 51JQg202csw ^ 41:38  - Script complete, lets extract the token
+CTF | 51JQg202csw ^ 43:45  - Using STOKEN to generate the OTP and logging in
+CTF | 51JQg202csw ^ 46:00  - Disabling NTP so we can math the server time
+CTF | 51JQg202csw ^ 46:44  - Discovery of that second half of the original LDAP Query at 16 minutes.
+CTF | 51JQg202csw ^ 47:33  - Using a Null Byte to remove the GROUP Check.
+CTF | 51JQg202csw ^ 50:33  - Running Commands
+CTF | 51JQg202csw ^ 50:25  - Reverse Shell Returned
+CTF | 51JQg202csw ^ 53:17  - Checking for the LDAP Bind password, then SSHing into the box
+CTF | 51JQg202csw ^ 55:00  - Going over the /backup directory
+CTF | 51JQg202csw ^ 58:20  - Using ListFiles to have 7za print our the contents of root.txt
+
+Reddish | Yp4oxoQIBAM ^ 00:55  - Begin of Recon (Port Scans)
+Reddish | Yp4oxoQIBAM ^ 04:09  - Reverse Image Searching an favicon to get application used
+Reddish | Yp4oxoQIBAM ^ 08:20  - NODE-RED: Reverse Shell Returned
+Reddish | Yp4oxoQIBAM ^ 15:30  - NODE-RED: Running IP and Port Scans to identify lateral movement targets
+Reddish | Yp4oxoQIBAM ^ 24:29  - Downloading Chisel (Go Program for Tunnels).
+Reddish | Yp4oxoQIBAM ^ 25:00  - Shrinking Go Programs by using ldflags and upx packing from 10Mb to 3Mb!
+Reddish | Yp4oxoQIBAM ^ 27:00  - PowerPoint: Explaining Reverse Pivot Tunnel using Chisel
+Reddish | Yp4oxoQIBAM ^ 31:25  - WWW: Tunnel online, examining the website
+Reddish | Yp4oxoQIBAM ^ 34:23  - Full Port Scan to 172.19.0.2, discover REDIS
+Reddish | Yp4oxoQIBAM ^ 36:30  - Searching for ways to execute code against REDIS
+Reddish | Yp4oxoQIBAM ^ 38:07  - Using REDIS to create a PHP Shell
+Reddish | Yp4oxoQIBAM ^ 41:06  - PowerPoint: Explaining Local Pivot Tunnel using Chisel
+Reddish | Yp4oxoQIBAM ^ 44:30  - WWW: Reverse Shell Returned
+Reddish | Yp4oxoQIBAM ^ 45:45  - Notice wildcard used with RSYNC, go search GTFOBins
+Reddish | Yp4oxoQIBAM ^ 51:32  - Abusing the wildcard within RSYNC
+Reddish | Yp4oxoQIBAM ^ 57:23  - WWW: Got Root, but no flag... Lets go look at RSYNC again.
+Reddish | Yp4oxoQIBAM ^ 01:00:15  - Explaining how to tunnel from Backup - WWW - NODE-RED - Kali
+Reddish | Yp4oxoQIBAM ^ 01:17:50  - Getting reverse shell on BACKUP via uploading CronJob through rsync
+Reddish | Yp4oxoQIBAM ^ 01:20:30  - BACKUP: Reverse Shell Returned... No root.txt here either!?
+Reddish | Yp4oxoQIBAM ^ 01:26:30  - BACKUP: Noticing this is has /dev/sda*, where other dockers do not
+Reddish | Yp4oxoQIBAM ^ 01:28:15  - BACKUP: Dropping a cronjob on root disk to get shell on the host
+Reddish | Yp4oxoQIBAM ^ 01:30:45  - ExtraContent: PowerPoint Reverse SOCKS5 Proxy with Chisel
+
+Mischief | GKo6xoB1g4Q ^ 01:20  - Begin of NMAP
+Mischief | GKo6xoB1g4Q ^ 02:30  - Extra nmaps, SNMP and AllPorts
+Mischief | GKo6xoB1g4Q ^ 04:00  - Playing with OneSixtyOne (SNMP BruteForce)
+Mischief | GKo6xoB1g4Q ^ 07:00  - Looking at SNMPWalk Output
+Mischief | GKo6xoB1g4Q ^ 08:40  - Installing SNMP Mibs so SMPWalk is readable
+Mischief | GKo6xoB1g4Q ^ 10:05  - Accessing the box over Link Local IPv6 Address
+Mischief | GKo6xoB1g4Q ^ 14:00  - Looking at Por 3366 (Website), getting PW from SNMP Info
+Mischief | GKo6xoB1g4Q ^ 17:50  - Getting IPv6 Routable Address via SNMP
+Mischief | GKo6xoB1g4Q ^ 19:20  - NMAP the IPv6 Address
+Mischief | GKo6xoB1g4Q ^ 21:00  - Accessing the page over IPv6
+Mischief | GKo6xoB1g4Q ^ 23:00  - Getting output from the command execution page
+Mischief | GKo6xoB1g4Q ^ 24:55  - Viewing Credentials Files and accessing the box via SSH
+Mischief | GKo6xoB1g4Q ^ 29:00  - Examining why loki cannot use /bin/su (getfacl)
+Mischief | GKo6xoB1g4Q ^ 31:00  - Getting a shell as www-data
+Mischief | GKo6xoB1g4Q ^ 40:30  - Extra content, reading files via ICMP
+
+Nightmarev2 | TVhtjiSedjU ^ 01:10  - End of intro, Start of nmap
+Nightmarev2 | TVhtjiSedjU ^ 02:47  - Playing with Second-Order Union Injection
+Nightmarev2 | TVhtjiSedjU ^ 05:44  - Dumping all users
+Nightmarev2 | TVhtjiSedjU ^ 07:15  - Converting SFTP Exploit from 64bit to 32bit
+Nightmarev2 | TVhtjiSedjU ^ 13:27  - Reversing SLS Binary
+Nightmarev2 | TVhtjiSedjU ^ 15:19  - Kernel Exploit
+Nightmarev2 | TVhtjiSedjU ^ 22:31  - First Method - Executing ELF Binaries from memory (Reflective loading elf)
+Nightmarev2 | TVhtjiSedjU ^ 35:57  - Second Method - Crashing a program to create a write-able file.
+
+Nightmare | frh-jYaUvrU ^ 01:50  - Start of Recon
+Nightmare | frh-jYaUvrU ^ 04:58  - /documents and /secret rabbit hole enumeration
+Nightmare | frh-jYaUvrU ^ 08:13  - Using wfuzz on the /secret rabbit hole to find argument for download.php
+Nightmare | frh-jYaUvrU ^ 13:40  - Begin of Web Application Enumeration, some XSS Found
+Nightmare | frh-jYaUvrU ^ 18:23  - Throwing bad characters in username and finding Second-Order SQL Injection.
+Nightmare | frh-jYaUvrU ^ 23:50  - Begin of Union Injection to dump the database via second order sql injection
+Nightmare | frh-jYaUvrU ^ 39:36  - Dumping users and passwords from SysAdmin table and using Hydra to bruteforce SSH
+Nightmare | frh-jYaUvrU ^ 43:54  - Enumerating SFTP (Using SSHFS to Dump a File Listing)
+Nightmare | frh-jYaUvrU ^ 53:00  - Converting 64-Bit SFTP Exploit to 32-Bit
+Nightmare | frh-jYaUvrU ^ 01:11:46  - Reverse Shell Returned, some stuff and finding Set-GID Binary
+Nightmare | frh-jYaUvrU ^ 01:22:55  - Reversing SLS binary with Radare2 (r2)
+Nightmare | frh-jYaUvrU ^ 01:47:53  - Exploiting SLS Binary with new line character (Get to Decoder User)
+Nightmare | frh-jYaUvrU ^ 01:51:47  - Begin of Kernel Exploitation (CVE-2017-1000112)
+Nightmare | frh-jYaUvrU ^ 01:56:00  - Kernel Exploit Compiled (silly mistake before)
+Nightmare | frh-jYaUvrU ^ 01:59:52  - Creating a new lsb-release file so exploit can identify kernel
+Nightmare | frh-jYaUvrU ^ 02:07:03  - Recap of Box
+Nightmare | frh-jYaUvrU ^ 02:09:56  - Creating a Tamper Script to do Second-Order SQL Injection
+
+Fulcrum | 46RJxJ-Fm0Y ^ 02:08  - Begin of Recon
+Fulcrum | 46RJxJ-Fm0Y ^ 14:00  - XXE Detection on Fulcrum API
+Fulcrum | 46RJxJ-Fm0Y ^ 17:40  - XXE Get Files
+Fulcrum | 46RJxJ-Fm0Y ^ 23:40  - XXE File Retrieval Working
+Fulcrum | 46RJxJ-Fm0Y ^ 24:30  - Lets Code a Python WebServer to Aid in XXE Exploitation
+Fulcrum | 46RJxJ-Fm0Y ^ 39:45  - Combining XXE + SSRF (Server Side Request Forgery) to gain Code Execution
+Fulcrum | 46RJxJ-Fm0Y ^ 47:28  - Shell Returned + Go Over LinEnum
+Fulcrum | 46RJxJ-Fm0Y ^ 56:49  - Finding WebUser's Password and using WinRM to pivot
+Fulcrum | 46RJxJ-Fm0Y ^ 01:06:00  - Getting Shell via WinRM, finding LDAP Credentials
+Fulcrum | 46RJxJ-Fm0Y ^ 01:14:00  - Using PowerView to Enumerate AD Users
+Fulcrum | 46RJxJ-Fm0Y ^ 01:27:06  - Start of getting a Shell on FILE (TroubleShooting FW)
+Fulcrum | 46RJxJ-Fm0Y ^ 01:35:35  - Getting shell over TCP/53 on FILE
+Fulcrum | 46RJxJ-Fm0Y ^ 01:37:58  - Finding credentials on scripts in Active Directories NetLogon Share, then finding a way to execute code as the Domain Admin... Triple Hop Nightmare
+Fulcrum | 46RJxJ-Fm0Y ^ 01:58:10  - Troubleshooting the error correctly and getting Domain Admin!
+Fulcrum | 46RJxJ-Fm0Y ^ 02:03:54  - Begin of unintended method (Rooting the initial Linux Hop)
+Fulcrum | 46RJxJ-Fm0Y ^ 02:09:54  - Root Exploit Found
+Fulcrum | 46RJxJ-Fm0Y ^ 02:12:25  - Mounting the VMDK Files and accessing AD.
+
+Calamity | EloOaaGg3nA ^ 01:28  - Begin of recon
+Calamity | EloOaaGg3nA ^ 02:20  - GoBuster
+Calamity | EloOaaGg3nA ^ 03:30  - admin.php discovered, finding the pw
+Calamity | EloOaaGg3nA ^ 04:50  - Getting Code Execution
+Calamity | EloOaaGg3nA ^ 07:45  - Finding out why Reverse Shells weren't working
+Calamity | EloOaaGg3nA ^ 09:45  - Getting a reverse shell by renaming nc
+Calamity | EloOaaGg3nA ^ 11:30  - Transfering files via nc
+Calamity | EloOaaGg3nA ^ 14:00  - Opening the wav file
+Calamity | EloOaaGg3nA ^ 16:25  - Using audiodiff to identify differences in sound
+Calamity | EloOaaGg3nA ^ 17:05  - The next step, why is the same song there twice?
+Calamity | EloOaaGg3nA ^ 19:25  - Importing files into Audacity and Inverting
+Calamity | EloOaaGg3nA ^ 22:25  - Attempting to exploit the process blacklist
+Calamity | EloOaaGg3nA ^ 24:25  - Unintended root LXC Background
+Calamity | EloOaaGg3nA ^ 28:30  - Creating an Alpine LXC
+Calamity | EloOaaGg3nA ^ 30:40  - Importing the image into lxc
+Calamity | EloOaaGg3nA ^ 32:00  - Creating the container
+Calamity | EloOaaGg3nA ^ 32:40  - Adding the host drive to container
+Calamity | EloOaaGg3nA ^ 34:20  - Starting the container and entering it
+Calamity | EloOaaGg3nA ^ 35:05  - Examining the Process Blacklist script 
+Calamity | EloOaaGg3nA ^ 35:54  - Running through the exploit again on a Ubuntu Host
+
+Holiday | FvHyt7KrsPE ^ 00:46  - NMAP Scan and Review
+Holiday | FvHyt7KrsPE ^ 01:53  - GoBuster and identify User Agent based Routing
+Holiday | FvHyt7KrsPE ^ 04:09  - SQLMap the Login
+Holiday | FvHyt7KrsPE ^ 08:00  - Login to the page
+Holiday | FvHyt7KrsPE ^ 08:55  - Begin of XSS
+Holiday | FvHyt7KrsPE ^ 11:15  - Bypass first XSS Filter
+Holiday | FvHyt7KrsPE ^ 14:45  - Encoded JS Payload - Getting XSS to call back to us
+Holiday | FvHyt7KrsPE ^ 16:56  - Using Python to encode JS which will call back to us.
+Holiday | FvHyt7KrsPE ^ 24:25  - Executing the paylaod
+Holiday | FvHyt7KrsPE ^ 25:06  - Stage 2 XSS Attack - XMLHttpRequest
+Holiday | FvHyt7KrsPE ^ 31:30  - Troubleshooting, No code works the first time.
+Holiday | FvHyt7KrsPE ^ 36:00  - Stage 2 Fixed.
+Holiday | FvHyt7KrsPE ^ 40:57  - Initial access to /admin
+Holiday | FvHyt7KrsPE ^ 42:00  - Finding Command Injection
+Holiday | FvHyt7KrsPE ^ 43:40  - Explanation of IP "Encoding"
+Holiday | FvHyt7KrsPE ^ 48:40  - Rev Shell obtained
+Holiday | FvHyt7KrsPE ^ 49:30  - How I found out about the IP Encode Trick
+Holiday | FvHyt7KrsPE ^ 51:40  - Begin of PrivEsc
+
+Charon | _csbKuOlmdE ^ 1:30  - Rabbit Hole - Searching for SuperCMS
+Charon | _csbKuOlmdE ^ 6:23  - Running enumeration in the background (GoBuster)
+Charon | _csbKuOlmdE ^ 7:40  - Rabbit Hole - SQLMap Blog SinglePost.php
+Charon | _csbKuOlmdE ^ 12:04  - Finding PHP Files in /cmsdata/ (GoBuster)
+Charon | _csbKuOlmdE ^ 12:53  - Manual Identification of SQL Injection
+Charon | _csbKuOlmdE ^ 15:50  - SQL Injection Explanation
+Charon | _csbKuOlmdE ^ 17:20  - Rabbit Hole - Starting SQLMap in the Background
+Charon | _csbKuOlmdE ^ 18:10  - SQL Union Injection Explanation
+Charon | _csbKuOlmdE ^ 19:30  - Identifying "Bad/Filtered Words" in SQL Injection
+Charon | _csbKuOlmdE ^ 21:02  - SQL Union Finding number of items returned
+Charon | _csbKuOlmdE ^ 21:48  - Returning data from Union Injection
+Charon | _csbKuOlmdE ^ 22:48  - SQL Concat Explanation
+Charon | _csbKuOlmdE ^ 23:55  - Enumerating SQL Databases Explanation (Information_Schema)
+Charon | _csbKuOlmdE ^ 25:46  - Returning Database, Table, Columns from Information_Schema
+Charon | _csbKuOlmdE ^ 29:30  - Scripting to dump all columns
+Charon | _csbKuOlmdE ^ 36:45  - Listing of columns in SuperCMS
+Charon | _csbKuOlmdE ^ 37:15  - Dumping User Credentials
+Charon | _csbKuOlmdE ^ 41:36  - Logging in and exploiting SuperCMS
+Charon | _csbKuOlmdE ^ 47:00  - Return of reverse shell
+Charon | _csbKuOlmdE ^ 48:40  - Transfering small files from shell to my machine
+Charon | _csbKuOlmdE ^ 50:56  - Using RsaCtfTool to decrypt contents with weak public key
+Charon | _csbKuOlmdE ^ 52:52  - Breaking weak RSA manually
+Charon | _csbKuOlmdE ^ 1:01:20  - Begin PrivEsc to Root
+Charon | _csbKuOlmdE ^ 1:02:40  - Transering large files with NC
+Charon | _csbKuOlmdE ^ 1:03:50  - Analyzing SuperShell with BinaryNinja (Paid)
+Charon | _csbKuOlmdE ^ 1:06:04  - Analyzing SuperShell with Radare2 (Free)
+Charon | _csbKuOlmdE ^ 1:08:22  - Exploiting SuperShell
+Charon | _csbKuOlmdE ^ 1:12:46  - Encore.  Getting a Root Shell with SetUID Binary
+
+Joker | 5wyvpJa9LdU ^ 00:27  - Port Enumeration
+Joker | 5wyvpJa9LdU ^ 02:54  - UDP Port Review
+Joker | 5wyvpJa9LdU ^ 03:40  - TFTP Enumeration
+Joker | 5wyvpJa9LdU ^ 06:30  - Cracking Squid PW
+Joker | 5wyvpJa9LdU ^ 08:00  - FoxyProxy Setup
+Joker | 5wyvpJa9LdU ^ 09:45  - Burp Setup
+Joker | 5wyvpJa9LdU ^ 14:45  - Running Commands
+Joker | 5wyvpJa9LdU ^ 21:20  - Reverse Shell
+Joker | 5wyvpJa9LdU ^ 22:30  - PrivEsc to Alekos #1
+Joker | 5wyvpJa9LdU ^ 28:00  - PrivEsc to Alekos #2
+Joker | 5wyvpJa9LdU ^ 30:37  - Root #1 (SymLink)
+Joker | 5wyvpJa9LdU ^ 30:48  - Root #2 (Tar Checkpoint)
+Joker | 5wyvpJa9LdU ^ 44:45  - Root #3 (Remove Development)
+
+OneTwoSeven | EXuEDHFjS9E ^ 00:42  - Begin of recon
+OneTwoSeven | EXuEDHFjS9E ^ 01:08  - Examining the webpage 
+OneTwoSeven | EXuEDHFjS9E ^ 04:28  - Discoving SFTP Credentials on the web page
+OneTwoSeven | EXuEDHFjS9E ^ 07:00  - Playing with the SFTP Server
+OneTwoSeven | EXuEDHFjS9E ^ 08:40  - Discoving the SymLink command to break out of home directory
+OneTwoSeven | EXuEDHFjS9E ^ 09:40  - Symlinking the root directory to find the source of login.php through VIM SWP Files.
+OneTwoSeven | EXuEDHFjS9E ^ 13:00  - Second way to get source code, symlink with a file naming ending in not PHP
+OneTwoSeven | EXuEDHFjS9E ^ 15:30  - Examining the source code to login.php and getting a hard coded username
+OneTwoSeven | EXuEDHFjS9E ^ 18:10  - Examining index.php to see how to access a login portal (admin)
+OneTwoSeven | EXuEDHFjS9E ^ 19:20  - Using SSH to do port forwarding (Reddish)
+OneTwoSeven | EXuEDHFjS9E ^ 21:20  - Examinig the admin web page
+OneTwoSeven | EXuEDHFjS9E ^ 24:13  - Examing the Apache Rewrite Engine Rules
+OneTwoSeven | EXuEDHFjS9E ^ 25:10  - Checking the source code to addon-manager to identify how upload/download features work
+OneTwoSeven | EXuEDHFjS9E ^ 26:15  - Explaining the Rewrite attack
+OneTwoSeven | EXuEDHFjS9E ^ 30:40  - Uploading a reverse shell, then executing
+OneTwoSeven | EXuEDHFjS9E ^ 33:30  - Reverse shell returned
+OneTwoSeven | EXuEDHFjS9E ^ 34:30  - Can sudo with apt, checking GTFO Bins
+OneTwoSeven | EXuEDHFjS9E ^ 36:00  - Looks like we can MITM Apt due to passing a proxy through sudo
+OneTwoSeven | EXuEDHFjS9E ^ 37:00  - Configuring Burp to act as an HTTP Proxy and pass it to Python
+OneTwoSeven | EXuEDHFjS9E ^ 40:50  - Creating the Malicious APT Repo
+OneTwoSeven | EXuEDHFjS9E ^ 45:30  - Creating the Malicious Deb File
+OneTwoSeven | EXuEDHFjS9E ^ 51:30  - Getting the Root Shell
+
+Zipper | RLvFwiDK_F8 ^ 01:15  - Start of NMAP
+Zipper | RLvFwiDK_F8 ^ 04:10  - Signing into Zabbix as Guest
+Zipper | RLvFwiDK_F8 ^ 05:30  - Getting potential usernames from inside Zabbix and guessing creds
+Zipper | RLvFwiDK_F8 ^ 06:30  - Running Searchsploit and looking for vulnerabilties
+Zipper | RLvFwiDK_F8 ^ 07:20  - Analyzing the "API" Script from SearchSploit as we have API Creds
+Zipper | RLvFwiDK_F8 ^ 10:15  - Modifying the "API" Script 
+Zipper | RLvFwiDK_F8 ^ 11:15  - Showing a shortcut to skip the Container to Host Lateral Movement.
+Zipper | RLvFwiDK_F8 ^ 15:35  - Shell on the Container.
+Zipper | RLvFwiDK_F8 ^ 17:25  - Searching for Zabbix MySQL Password 
+Zipper | RLvFwiDK_F8 ^ 18:35  - Dumping the Zabbix User Database
+Zipper | RLvFwiDK_F8 ^ 20:00  - Logging into Zabbix as Admin, discover ZBX Agent on Host.  Testing if port is accessible
+Zipper | RLvFwiDK_F8 ^ 23:30  - Running commands on the Zabbix Agent (Host OS) from Zabbix Server (Guest OS)
+Zipper | RLvFwiDK_F8 ^ 29:53  - Getting a Reverse Shell on Zabbix (use nohup to fork)
+Zipper | RLvFwiDK_F8 ^ 32:40  - Running LinEnum on Zabbix Host
+Zipper | RLvFwiDK_F8 ^ 35:15  - Examining home directories to find Zapper Creds
+Zipper | RLvFwiDK_F8 ^ 36:42  - Examining the "Zabbix-Service" SetUID 
+Zipper | RLvFwiDK_F8 ^ 39:00  - PRIVESC #1: Running ltrace to discover it is vulnerable to $PATH Manipulation
+Zipper | RLvFwiDK_F8 ^ 42:00  - PRIVESC #2: Weak permissions on Purge-Backups Service
+Zipper | RLvFwiDK_F8 ^ 48:30  - Extra Content: Building a Zabbix API Client from Scratch!
+Zipper | RLvFwiDK_F8 ^ 48:55  - "Pseudo Terminal" Skeleton Script via Cmd module
+Zipper | RLvFwiDK_F8 ^ 50:00  - Adding Login Functionality
+Zipper | RLvFwiDK_F8 ^ 56:08  - Making the script login upon starting
+Zipper | RLvFwiDK_F8 ^ 57:50  - Adding functionality to dump users
+Zipper | RLvFwiDK_F8 ^ 01:04:00  - Adding functionality to dump groups
+Zipper | RLvFwiDK_F8 ^ 01:05:25  - Adding functionality to add users
+Zipper | RLvFwiDK_F8 ^ 01:10:45  - Adding functionality to modify users
+
+Dab | JvqBaZ0WnV4 ^ 00:40  - Begin of the box
+Dab | JvqBaZ0WnV4 ^ 03:20  - Checking the HTTP Ports out
+Dab | JvqBaZ0WnV4 ^ 04:38  - Using wfuzz to bruteforce a login on port 80
+Dab | JvqBaZ0WnV4 ^ 08:15  - Begin examining port 8080, use wfuzz to bruteforce a cookie
+Dab | JvqBaZ0WnV4 ^ 11:30  - Using wfuzz to enumerate the WAF and determine bad characters
+Dab | JvqBaZ0WnV4 ^ 14:40  - Doing a SSRF Like attack with wfuzz and enumerating open ports on localhost.
+Dab | JvqBaZ0WnV4 ^ 16:50  - Begin examining port 11211 (MemCache)
+Dab | JvqBaZ0WnV4 ^ 18:00  - Dumping data from Memcache
+Dab | JvqBaZ0WnV4 ^ 23:50  - Using CVE-2018-15473 to enumerate valid users over SSH
+Dab | JvqBaZ0WnV4 ^ 27:35  - Cracking the users hash and logging into the box
+Dab | JvqBaZ0WnV4 ^ 29:00  - Using R2 to analyzing rabbit hole application "try_harder"
+Dab | JvqBaZ0WnV4 ^ 33:30  - Going through LinEnum
+Dab | JvqBaZ0WnV4 ^ 38:30  - Using r2 to examine myexec to find password
+Dab | JvqBaZ0WnV4 ^ 40:13  - Using r2 to examine libseclogin.so
+Dab | JvqBaZ0WnV4 ^ 41:30  - Examining ld.so.conf.d to identify if we can use ldconfig to hijack a library
+Dab | JvqBaZ0WnV4 ^ 42:10  - Creating a malicious library to hijack seclogin()
+Dab | JvqBaZ0WnV4 ^ 45:10  - Lets bypass the login by hijacking printf()
+
+Oz | yX00n1UmalE ^ 00:50  - Start of the box
+Oz | yX00n1UmalE ^ 05:30  - Attempting GoBuster but wildcard response gives issue
+Oz | yX00n1UmalE ^ 07:40  - Start of doing wfuzz to find content
+Oz | yX00n1UmalE ^ 10:38  - Manually testing SQLInjection
+Oz | yX00n1UmalE ^ 13:07  - Running SQLMap and telling it exactly where the injection is
+Oz | yX00n1UmalE ^ 16:04  - Manually extracting files with the SQL Injection
+Oz | yX00n1UmalE ^ 19:50  - Cracking the hash with hashcat
+Oz | yX00n1UmalE ^ 25:00  - Start of examining the custom webapp, playing with Template Injection
+Oz | yX00n1UmalE ^ 27:00  - Explaining a way to enumerate language behind a webapp
+Oz | yX00n1UmalE ^ 35:17  - Reverse Shell returned on first Docker Container
+Oz | yX00n1UmalE ^ 38:00  - Examining SQL Database
+Oz | yX00n1UmalE ^ 39:40  - Doing the Port Knock to open up SSH
+Oz | yX00n1UmalE ^ 43:50  - Gain a foothold on the host of the docker container via ssh
+Oz | yX00n1UmalE ^ 46:00  - Identifying containers running
+Oz | yX00n1UmalE ^ 50:10  - Creating SSH Port Forwards without exiting SSH Session then NMAP through
+Oz | yX00n1UmalE ^ 55:11  - Begin looking into Portainer, finding a weak API Endpoint
+Oz | yX00n1UmalE ^ 59:00  - Start of creating a container in portainer that can access the root file
+Oz | yX00n1UmalE ^ 01:08:25  - Changing sudoers so dorthy can privesc to root
+Oz | yX00n1UmalE ^ 01:09:50  - Lets go back and create a python script to play with SQL Injection
+
+Falafel | CUbWpteTfio ^ 01:15  - Begin of Recon
+Falafel | CUbWpteTfio ^ 04:25  - Bruteforcing valid users
+Falafel | CUbWpteTfio ^ 11:15  - Manually finding SQL Injection
+Falafel | CUbWpteTfio ^ 13:13  - Using --string with SQLMap to aid Boolean Detection
+Falafel | CUbWpteTfio ^ 15:41  - PHP Type Confusion ( == vs === with 0e12345) [Type Juggling]
+Falafel | CUbWpteTfio ^ 18:35  - Attempting Wget Exploit with FTP Redirection (failed)
+Falafel | CUbWpteTfio ^ 26:39  - Exploiting wget's maximum file length
+Falafel | CUbWpteTfio ^ 33:30  - Reverse Shell Returned
+Falafel | CUbWpteTfio ^ 36:19  - Linux Priv Checking Enum
+Falafel | CUbWpteTfio ^ 41:00  - Checking web crap for passwords
+Falafel | CUbWpteTfio ^ 44:00  - Grabbing the screenshot of tty
+Falafel | CUbWpteTfio ^ 49:00  - Privesc via Yossi being in Disk Group (debugfs)
+Falafel | CUbWpteTfio ^ 50:15  - Grabbing ssh root key off /dev/sda1
+Falafel | CUbWpteTfio ^ 52:15  - Attempting RationLove (Fails, apparently machine got patched so notes were wrong /troll)
+Falafel | CUbWpteTfio ^ 01:07:42  - Manually exploiting the SQL Injection! with Python
+
+CrimeStoppers | bgKth1K44QA ^ 01:18  - Begin of Recon: Getting ubuntu version
+CrimeStoppers | bgKth1K44QA ^ 04:00  - Navigating to the CrimeStoppers Page
+CrimeStoppers | bgKth1K44QA ^ 05:15  - First Hint - Read The Source!
+CrimeStoppers | bgKth1K44QA ^ 05:50  - 2nd Hint - No SQL Databases and playing with the upload form
+CrimeStoppers | bgKth1K44QA ^ 07:55  - 3rd Hint - Setting Admin cookie to 1 to see whiterose.txt
+CrimeStoppers | bgKth1K44QA ^ 09:00  - Explanation of PHP App and why I went down testing $op parameter
+CrimeStoppers | bgKth1K44QA ^ 10:45  - Testing $op parameter, another hint what year is it?
+CrimeStoppers | bgKth1K44QA ^ 12:20  - Finding out $op appends .php
+CrimeStoppers | bgKth1K44QA ^ 13:05  - Using php b64 filter to view php files ("Read the source luke")
+CrimeStoppers | bgKth1K44QA ^ 22:50  - Looking into PHP Wrappers to try to gain code execution
+CrimeStoppers | bgKth1K44QA ^ 24:50  - Placing our PHP Script in a zip so we can reference it with zip://, also improperly upload it to the server
+CrimeStoppers | bgKth1K44QA ^ 26:20  - Attempting to use the zip:// wrapper to execute our php script, then troubleshooting the bad upload.
+CrimeStoppers | bgKth1K44QA ^ 30:30  - Easy way to copy binary data into BurpSuite (Base64)
+CrimeStoppers | bgKth1K44QA ^ 34:10  - Getting a shell
+CrimeStoppers | bgKth1K44QA ^ 37:18  - Downloading ThunderBird Directory and reading email + getting dom's password
+CrimeStoppers | bgKth1K44QA ^ 46:20  - Begin of looking into Apache Rootkit (mod_rootme)
+CrimeStoppers | bgKth1K44QA ^ 48:04  - Begin of using r2 (Radare) to analyze rootkit, basic intro
+CrimeStoppers | bgKth1K44QA ^ 50:55  - Analyzing DarkArmy Function
+CrimeStoppers | bgKth1K44QA ^ 55:30  - Grabbing the strings and using python to XOR them to get secret that allows root
+CrimeStoppers | bgKth1K44QA ^ 58:35  - Get Root 
+CrimeStoppers | bgKth1K44QA ^ 59:10  - Potential rabbit hole in the binary /var/www/html/whiterose.txt in the binary
+CrimeStoppers | bgKth1K44QA ^ 01:04:20  - Second way to get root, looking around at file modification times to find FunSociety in logs
+
+Kotarak | 38e-sxPWiuY ^ 01:38  - Start of nmap
+Kotarak | 38e-sxPWiuY ^ 03:40  - Accessing port 60000
+Kotarak | 38e-sxPWiuY ^ 06:20  - Manually enumerating ports on localhost via SSRF
+Kotarak | 38e-sxPWiuY ^ 07:00  - Using wfuzz to portscan localhost via SSRF
+Kotarak | 38e-sxPWiuY ^ 10:00  - Tomcat creds exposed Uploading tomcat reverse shell
+Kotarak | 38e-sxPWiuY ^ 13:40  - Return of shell
+Kotarak | 38e-sxPWiuY ^ 14:20  - Extracting NTDS + SYSTEM Hive
+Kotarak | 38e-sxPWiuY ^ 20:20  - Using HashKiller to crack the hashes
+Kotarak | 38e-sxPWiuY ^ 21:30  - Escalating to Atanas Identifying wget vulnerability
+Kotarak | 38e-sxPWiuY ^ 27:10  - Starting exploit
+Kotarak | 38e-sxPWiuY ^ 33:22  - Exploit failed, light debugging
+Kotarak | 38e-sxPWiuY ^ 35:40  - Issue found, not listening all interfaces
+Kotarak | 38e-sxPWiuY ^ 39:35  - Root shell returned.
+Kotarak | 38e-sxPWiuY ^ 40:10  - Unintentional Root Method (Edited Footage, IP Change)
+
+Shrek | tI592BjTd4o ^ 01:00  - Nmap
+Shrek | tI592BjTd4o ^ 02:23  - Examining the Web Page
+Shrek | tI592BjTd4o ^ 04:08  - GoBuster
+Shrek | tI592BjTd4o ^ 04:53  - Finding /uploads/ Directory
+Shrek | tI592BjTd4o ^ 05:50  - Finding /secret_area_51/ Directory
+Shrek | tI592BjTd4o ^ 06:20  - Using Audacity to find Steg in Audio
+Shrek | tI592BjTd4o ^ 08:50  - FTP With Creds revealed from Steg
+Shrek | tI592BjTd4o ^ 10:06  - Examining files downloaded from FTP
+Shrek | tI592BjTd4o ^ 12:43  - Finding decryption key + blob
+Shrek | tI592BjTd4o ^ 14:33  - Using Python seccure to decrypt ecc
+Shrek | tI592BjTd4o ^ 16:05  - SSH Into Shrek as SEC
+Shrek | tI592BjTd4o ^ 16:35  - Farquad Rabbit Hole
+Shrek | tI592BjTd4o ^ 17:42  - Incident Response : Finding files modified between two times
+Shrek | tI592BjTd4o ^ 20:47  - What is /usr/src/thoughts.txt?
+Shrek | tI592BjTd4o ^ 21:45  - Privesc through cron running: chown *
+
+Carrier | 2ZxRA8BgmnA ^ 00:53  - Begin of Recon
+Carrier | 2ZxRA8BgmnA ^ 03:30  - Checking out the Web Page
+Carrier | 2ZxRA8BgmnA ^ 04:20  - Doing UDP/GoBuster Scans
+Carrier | 2ZxRA8BgmnA ^ 08:20  - Running SNMPWalk and then logging into web interface
+Carrier | 2ZxRA8BgmnA ^ 10:20  - Reading the tickets on the web page
+Carrier | 2ZxRA8BgmnA ^ 12:00  - Discovering code execution
+Carrier | 2ZxRA8BgmnA ^ 16:00  - Reverse Shell Returned
+Carrier | 2ZxRA8BgmnA ^ 23:15  - Discovering FTP Server 10.120.15.10
+Carrier | 2ZxRA8BgmnA ^ 26:00  - Gaining access to a Router Interface
+Carrier | 2ZxRA8BgmnA ^ 27:30  - Using Draw.io to draw out the network
+Carrier | 2ZxRA8BgmnA ^ 32:40  - Examining routing information
+Carrier | 2ZxRA8BgmnA ^ 35:45  - Looking at BGP Information
+Carrier | 2ZxRA8BgmnA ^ 39:00  - First attempt at BGP Hijack, advertising a route
+Carrier | 2ZxRA8BgmnA ^ 43:30  - Did not work, examining routing loop.
+Carrier | 2ZxRA8BgmnA ^ 50:50  - Blocking the routing advertisement to AS300
+Carrier | 2ZxRA8BgmnA ^ 56:50  - Showing the new routing loop (AS300 sends to AS200)
+Carrier | 2ZxRA8BgmnA ^ 01:00:00  - Telling AS200 not to advertise the route to AS300
+Carrier | 2ZxRA8BgmnA ^ 01:04:00  - Grabbing FTP Traffic to get root password
+Carrier | 2ZxRA8BgmnA ^ 01:07:00  - Logging into all 3 routers for some fun
+Carrier | 2ZxRA8BgmnA ^ 01:08:50  - Hiding from TraceRoute by mucking with TTL's
+Carrier | 2ZxRA8BgmnA ^ 01:13:20  - Redoing the attack, but showing routing tables on all routers
+Carrier | 2ZxRA8BgmnA ^ 01:17:30  - Unintended route, Just adding an IP to eth2
+
+Waldo | 1klneIHECqY ^ 01:15  - Begin of Recon
+Waldo | 1klneIHECqY ^ 02:00  - Looking at what Filtered means in Nmap
+Waldo | 1klneIHECqY ^ 05:00  - Start of looking at webpage (GoBuster)
+Waldo | 1klneIHECqY ^ 06:30  - Manual HTTP Enumeration
+Waldo | 1klneIHECqY ^ 09:50  - Start of exploiting with BurpSuite
+Waldo | 1klneIHECqY ^ 17:00  - SSH Key Found, logging in with nobody
+Waldo | 1klneIHECqY ^ 19:12  - Discovering a second SSH Server
+Waldo | 1klneIHECqY ^ 23:36  - Using the same SSH Key to login to the second SSH Server as monitor
+Waldo | 1klneIHECqY ^ 24:38  - Escaping rBash by modifying an executable file in our current $PATH
+Waldo | 1klneIHECqY ^ 28:13  - Running LinEnum.sh to search for PrivEscs
+Waldo | 1klneIHECqY ^ 30:50  - Enabling ThoroughTests in LinEnum to see what else it will check
+Waldo | 1klneIHECqY ^ 36:30  - Looking into capabilities permission sin linux
+Waldo | 1klneIHECqY ^ 39:00  - Begin of second way to escape rBash and setup a SSH Tunnel for fun
+
+Hawk | UGd9JE1ZXUI ^ 01:00  - Begin nmap, discover FTP, Drupal, H2, and its Ubuntu Beaver
+Hawk | UGd9JE1ZXUI ^ 03:50  - Checking FTP Server for hidden files
+Hawk | UGd9JE1ZXUI ^ 04:30  - Examining encrypted file, discovering encrypted with OpenSSL and likely a block cipher
+Hawk | UGd9JE1ZXUI ^ 08:20  - Creating a bunch of files varying in length to narrow likely ciphers down.
+Hawk | UGd9JE1ZXUI ^ 14:35  - Encrypting all of the above files and checking their file sizes
+Hawk | UGd9JE1ZXUI ^ 22:45  - Decrypting file, obtaining a password
+Hawk | UGd9JE1ZXUI ^ 24:25  - Begin looking at Drupal, running Droopescan
+Hawk | UGd9JE1ZXUI ^ 25:12  - Manually examining Drupal, finding a way to enumerate usernames
+Hawk | UGd9JE1ZXUI ^ 25:50  - Placing invalid emails in create account, is a semi-silent way to enumerate usernames
+Hawk | UGd9JE1ZXUI ^ 28:15  - Logging into Drupal with Admin.  
+Hawk | UGd9JE1ZXUI ^ 29:25  - Gaining code execution by enabling PHP Plugin, then previewing a page with php code
+Hawk | UGd9JE1ZXUI ^ 32:30  - Reverse Shell Returned
+Hawk | UGd9JE1ZXUI ^ 33:25  - Running LinEnum.sh - Discover H2 (Database) runs as root
+Hawk | UGd9JE1ZXUI ^ 37:00  - Hunting for passwords in Drupal Configuration
+Hawk | UGd9JE1ZXUI ^ 39:25  - Finding database connection settings.  SSHing with daniel and the database password (not needed)
+Hawk | UGd9JE1ZXUI ^ 40:10  - Doing Local (Daniel) and Reverse (www) SSH Tunnels.  To access services on Hawk’s Loopback.  Only need to do one of those, just showing its possible without daniel
+Hawk | UGd9JE1ZXUI ^ 44:30  - Accessing Hawk’s H2 Service (8082) via the loopback address
+Hawk | UGd9JE1ZXUI ^ 50:00  - Finding the H2 Database Code Execution through Alias Commands, then hunting for a way to login to H2 Console.
+Hawk | UGd9JE1ZXUI ^ 51:45  - Logging into H2 by using a non-existent database, then testing code execution
+Hawk | UGd9JE1ZXUI ^ 52:50  - Playing with an awesome Reverse Shell Generator (RSG), then accidentally breaking the service.
+Hawk | UGd9JE1ZXUI ^ 59:50  - Reverted box, cleaning up environment then getting reverse shell
+Hawk | UGd9JE1ZXUI ^ 01:02:45  - Discovering could have logged into the database with Drupal Database Creds.
+
+Tartarsauce | 9MeBiP637ZA ^ 01:10  - Begin of recon
+Tartarsauce | 9MeBiP637ZA ^ 03:00  - Discovery of Wordpress and fixing broken links with burp
+Tartarsauce | 9MeBiP637ZA ^ 06:50  - Start of WPScan
+Tartarsauce | 9MeBiP637ZA ^ 07:14  - Start of poking at Monstra, (Rabbit Hole)
+Tartarsauce | 9MeBiP637ZA ^ 13:05  - Back to looking at WPScan, Find Gwolle Plugin is vulnerable to RFI Exploits
+Tartarsauce | 9MeBiP637ZA ^ 16:30  - Reverse shell returned as www-data
+Tartarsauce | 9MeBiP637ZA ^ 18:08  - Confirming monstra was read-only
+Tartarsauce | 9MeBiP637ZA ^ 18:50  - Running LinEnum.sh to see www-data can run tar via sudo
+Tartarsauce | 9MeBiP637ZA ^ 20:30  - Use GTFOBins to find a way to execute code with Tar
+Tartarsauce | 9MeBiP637ZA ^ 22:00  - Begin of Onuma user, use LinEnum again to see SystemD Timer of a custom script
+Tartarsauce | 9MeBiP637ZA ^ 24:10  - Examining backuperer script
+Tartarsauce | 9MeBiP637ZA ^ 26:00  - Hunting for vulnerabilities in Backuperer
+Tartarsauce | 9MeBiP637ZA ^ 32:15  - Playing with If/Then exit codes in Bash.  Tuns out exit(0/1) evaluate as True, 2 is false
+Tartarsauce | 9MeBiP637ZA ^ 34:20  - Begin of exploiting the backuperer service by exploiting intregrity check
+Tartarsauce | 9MeBiP637ZA ^ 36:40  - Creating our 32-bit setuid binary
+Tartarsauce | 9MeBiP637ZA ^ 39:16  - Replacing backup tar, with our malicious one.  (File Owner of Shell is wrong)
+Tartarsauce | 9MeBiP637ZA ^ 40:54  - Explaning file owners are embedded within Tar, creating tar on our local box so we can have the SetUID File owned by root
+Tartarsauce | 9MeBiP637ZA ^ 42:30  - Exploiting the Backuperer Service via SetUID!
+Tartarsauce | 9MeBiP637ZA ^ 45:00  - Unintended Exploit: Using SymLinks to read files via backuperer service
+
+DevOops | tQ34Ntkr7H4 ^ 00:54  - Start of Recon
+DevOops | tQ34Ntkr7H4 ^ 03:10  - Start of GoBuster
+DevOops | tQ34Ntkr7H4 ^ 04:00  - Looking at /upload, testing with a normal XML File
+DevOops | tQ34Ntkr7H4 ^ 06:15  - Valid XML File created, begin of looking for XML Entity Injection XXE
+DevOops | tQ34Ntkr7H4 ^ 08:20  - XXE Returns a a local file off the server
+DevOops | tQ34Ntkr7H4 ^ 09:30  - Grabbing the source code to the webserver to find newpost function.
+DevOops | tQ34Ntkr7H4 ^ 11:35  - Discovery of vulnerability due to user data being passed to pickle
+DevOops | tQ34Ntkr7H4 ^ 12:44  - Creating the script to exploit pickle
+DevOops | tQ34Ntkr7H4 ^ 16:38  - Reverse shell returns!
+DevOops | tQ34Ntkr7H4 ^ 19:55  - Poking around at Source Code
+DevOops | tQ34Ntkr7H4 ^ 20:15  - Discover of an SSH Key within deployment stuff.
+DevOops | tQ34Ntkr7H4 ^ 21:15  - Trying SSH Key for other users on the box to see if it is valid
+DevOops | tQ34Ntkr7H4 ^ 22:57  - Hunting for git filers, the boxes name is "Gitter" and we have an SSH Key that goes nowhere.  
+DevOops | tQ34Ntkr7H4 ^ 23:00  - Discovery ~roosa/work is the same as ~roosa/deploy but there's a .git repo in this one!
+DevOops | tQ34Ntkr7H4 ^ 23:45  - Examining Git Log to see the SSH Key has changed!
+DevOops | tQ34Ntkr7H4 ^ 25:20  - SSH'ing with the old key, to see it's root's key.
+DevOops | tQ34Ntkr7H4 ^ 25:58  - The webserver could read Roosa's SSH Key.  Could bypass the entire pickle portion
+DevOops | tQ34Ntkr7H4 ^ 26:20  - Start of "Extra Practice"
+DevOops | tQ34Ntkr7H4 ^ 27:40  - Creating a Python Script to automate the LFI With XXE
+DevOops | tQ34Ntkr7H4 ^ 35:50  - Script completed, lets improve it to try to download an exposed git repo
+
+Olympus | 7ifJOon5-G8 ^ 01:30  - Begin of Recon, nmap filtered explanation
+Olympus | 7ifJOon5-G8 ^ 03:30  - Begin of initial DNSRecon, hunting for a domain name
+Olympus | 7ifJOon5-G8 ^ 06:04  - Web page enumeration, finding xdebug in header
+Olympus | 7ifJOon5-G8 ^ 09:47  - Installing xdebug plugin in Chrome to show its use
+Olympus | 7ifJOon5-G8 ^ 12:50  - Getting a reverse shell on the first docker (Icarus)
+Olympus | 7ifJOon5-G8 ^ 15:00  - Setting up nginx to accept files uploaded over HTTP / WebDav
+Olympus | 7ifJOon5-G8 ^ 20:30  - Examining the Wireless Capture from Icarus
+Olympus | 7ifJOon5-G8 ^ 21:30  - Cracking WPA with aircrack / hashcat
+Olympus | 7ifJOon5-G8 ^ 25:00  - Decrypting WPA traffic in Wireshark
+Olympus | 7ifJOon5-G8 ^ 27:50  - Enumerating valid usernames via SSH (CVE-2018-15473)
+Olympus | 7ifJOon5-G8 ^ 33:15  - SSH into port 2222 with information from Wireless Capture
+Olympus | 7ifJOon5-G8 ^ 34:40  - Domain Name found!  Time to do a DNS Zone Transfer
+Olympus | 7ifJOon5-G8 ^ 36:15  - Port Knocking to open up port 22
+Olympus | 7ifJOon5-G8 ^ 40:05  - PrivEsc to root via being a member of the Docker Group
+
+Canape | rs75y2qPonc ^ 00:43  - Start of Recon, nmap and poking around the website
+Canape | rs75y2qPonc ^ 04:00  - Dirbusting a site that always respond 200
+Canape | rs75y2qPonc ^ 09:43  - Switching to a different Wordlist (SecLists/Discovery/Web/Common)
+Canape | rs75y2qPonc ^ 10:48  - Discovery of .git - Poking around to clone it and download
+Canape | rs75y2qPonc ^ 15:10  - Downloaded .git, examining commit history
+Canape | rs75y2qPonc ^ 19:50  - Start of Pickle Talk
+Canape | rs75y2qPonc ^ 21:25  - Begin writing of the pickle exploit
+Canape | rs75y2qPonc ^ 28:45  - Return of Reverse Shell as www-data
+Canape | rs75y2qPonc ^ 32:30  - Begin looking into CouchDB
+Canape | rs75y2qPonc ^ 34:00  - Poking around at documents within CouchDB
+Canape | rs75y2qPonc ^ 36:15  - Examining first exploit with creating a CouchDB User
+Canape | rs75y2qPonc ^ 39:50  - Exploring the passwords database with our newly created admin user and finding Homers Password.
+Canape | rs75y2qPonc ^ 42:00  - Getting root with sudo pip install
+Canape | rs75y2qPonc ^ 45:55  - Box Done.  Begin second unintended way to get to Homer User
+Canape | rs75y2qPonc ^ 47:03  - Playing with the public RCE Exploit for CouchDB 
+Canape | rs75y2qPonc ^ 48:20  - Running the exploit
+Canape | rs75y2qPonc ^ 49:36  - Examining the exploit, doing each step manually to see where it fails
+Canape | rs75y2qPonc ^ 54:30  - Searching on how to create a new CouchDB Cluster, maybe it will allow this work?
+Canape | rs75y2qPonc ^ 55:55  - Digging into how erlang works
+Canape | rs75y2qPonc ^ 57:30  - Finding default CouchDB Cookie
+Canape | rs75y2qPonc ^ 59:10  - Connecting to the Erlang pool then searching for how to run commands.
+Canape | rs75y2qPonc ^ 01:01:54  - Exploring how to send long commands as distributed task
+Canape | rs75y2qPonc ^ 01:04:30  - Getting reverse shell
+
+Poison | rs4zEwONzzk ^ 00:56  - Start of recon, use Bootstrap XSL Script to make nmap pretty
+Poison | rs4zEwONzzk ^ 03:10  - Looking at nmap in web browser 
+Poison | rs4zEwONzzk ^ 03:52  - Navigating to the web page, and testing all the pages.
+Poison | rs4zEwONzzk ^ 06:25  - Testing for LFI
+Poison | rs4zEwONzzk ^ 07:00  - Using PHP  Filters to view the contents of php file through LFI (Local File Inclusion)
+Poison | rs4zEwONzzk ^ 08:40  - Testing for RFI (Remote File Inclusion) [not vuln]
+Poison | rs4zEwONzzk ^ 10:00  - Code Execution via LFI + phpinfo()
+Poison | rs4zEwONzzk ^ 14:45  - Modifying the PHP-LFI Script code to get it working
+Poison | rs4zEwONzzk ^ 17:10  - Debugging the script to see why tmp_name couldn't be found
+Poison | rs4zEwONzzk ^ 20:12  - Shell returned!
+Poison | rs4zEwONzzk ^ 21:25  - Looking at pwdbackup.txt and decoding 13 times to get password.
+Poison | rs4zEwONzzk ^ 23:37  - SSH into the box (Do not privesc right away!)
+Poison | rs4zEwONzzk ^ 24:29  - Getting shell via Log Poisoning
+Poison | rs4zEwONzzk ^ 26:39  - Whoops.  Broke the exploit, because of bad PHP Code... We'll come back to this!
+Poison | rs4zEwONzzk ^ 28:47  - Begin of PrivEsc, grabbing secret.zip off
+Poison | rs4zEwONzzk ^ 32:38  - Searching for processes running as root, find VNC
+Poison | rs4zEwONzzk ^ 33:49  - Setting up SSH Tunnels without exiting SSH Session.
+Poison | rs4zEwONzzk ^ 37:43  - Something weird happend... Setting up SSH Tunnels manually.
+Poison | rs4zEwONzzk ^ 40:10  - PrivEsc: VNC through the SSH Tunnel, passing the encrypted VNC Password
+Poison | rs4zEwONzzk ^ 41:40  - Decrypting the VNC Password because we can.
+Poison | rs4zEwONzzk ^ 42:50  - Examining the log file to see why our Log Poison Failed, then doing the Log Poison
+
+Stratosphere | uMwcJQcUnmY ^ 01:11  - Begin of recon
+Stratosphere | uMwcJQcUnmY ^ 03:48  - Manually checking the page out
+Stratosphere | uMwcJQcUnmY ^ 04:30  - Discovering the webserver is java/tomcact
+Stratosphere | uMwcJQcUnmY ^ 05:35  - Starting up GoBuster / Hydra
+Stratosphere | uMwcJQcUnmY ^ 09:40  - The Directory /Monitoring was found - Discovering its Struts because of .action
+Stratosphere | uMwcJQcUnmY ^ 11:00  - Stumbling upon an exploit trying to find out how to enumerate Struts Versions
+Stratosphere | uMwcJQcUnmY ^ 14:10  - Searching Github for CVE-2017-5638 exploit script, exploiting the box to find out its firewalled off
+Stratosphere | uMwcJQcUnmY ^ 21:10  - Using a HTTP Forward Shell to get around the strict firewall
+Stratosphere | uMwcJQcUnmY ^ 22:40  - Go here if you want to start copying the Forward Shell Script
+Stratosphere | uMwcJQcUnmY ^ 23:34  - Explaining how it works
+Stratosphere | uMwcJQcUnmY ^ 25:10  - Explaining the code
+Stratosphere | uMwcJQcUnmY ^ 31:06  - Forward Shell Returned - Enumerating Database to find creds
+Stratosphere | uMwcJQcUnmY ^ 37:29  - Examining User.py
+Stratosphere | uMwcJQcUnmY ^ 40:15  - Privesc: Abusing Python's Path to load a malicious library and sudo user.py
+
+Celestial | aS6z4NgRysU ^ 00:58  - Begin of Recon
+Celestial | aS6z4NgRysU ^ 03:00  - Looking at the web application and finding the Serialized Cookie
+Celestial | aS6z4NgRysU ^ 04:38  - Googling for Node JS Deserialization Exploits
+Celestial | aS6z4NgRysU ^ 06:30  - Start of building our payload
+Celestial | aS6z4NgRysU ^ 07:10  - Examining Node-Serialize to see what the heck _$$ND_FUNC$$_ is
+Celestial | aS6z4NgRysU ^ 09:10  - Moving our serialized object to "Name", hoping to get to read stdout
+Celestial | aS6z4NgRysU ^ 11:30  - Really busing the deserialize function by removing the Immediately Invokked Expression (IIFE)
+Celestial | aS6z4NgRysU ^ 13:25  - Failing to convert an object (stdout) to string.
+Celestial | aS6z4NgRysU ^ 14:02  - Verifying code execution via ping
+Celestial | aS6z4NgRysU ^ 15:32  - Code execution verified, gaining a shell
+Celestial | aS6z4NgRysU ^ 18:49  - Reverse shell returned, running LinEnum.sh
+Celestial | aS6z4NgRysU ^ 21:26  - Examining logs to find the Cron Job running as root
+Celestial | aS6z4NgRysU ^ 22:09  - Privesc by placing a python root shell in script.py
+Celestial | aS6z4NgRysU ^ 24:15  - Going back and getting a shell with NodeJSShell
+
+Luke | gaBdfD4BGBo ^ 00:40  - Begin of Recon
+Luke | gaBdfD4BGBo ^ 02:45  - Checking FTP to get a note
+Luke | gaBdfD4BGBo ^ 03:38  - Going to each of the three websites
+Luke | gaBdfD4BGBo ^ 04:30  - Running Gobuster on port 80/3000
+Luke | gaBdfD4BGBo ^ 06:30  - Taking notes of all the login pages (forgot Ajenti)
+Luke | gaBdfD4BGBo ^ 07:55  - config.php found which has a password
+Luke | gaBdfD4BGBo ^ 10:15  - Discovering /login on port 3000 accepts username=&amp;password= 
+Luke | gaBdfD4BGBo ^ 11:25  - Successful login! JWT Token returned
+Luke | gaBdfD4BGBo ^ 14:00  - Using curl to add the JWT Token in the header to access other api endpoints
+Luke | gaBdfD4BGBo ^ 15:10  - Using BurpSuite to add headers
+Luke | gaBdfD4BGBo ^ 18:30  - Navigating the Rest API to dump the usernames and passwords
+Luke | gaBdfD4BGBo ^ 20:30  - Attempting logins on other services
+Luke | gaBdfD4BGBo ^ 21:30  - Derry can login to /management
+Luke | gaBdfD4BGBo ^ 22:50  - Ajenti Password! Lets try logging in
+Luke | gaBdfD4BGBo ^ 22:30  - Ajenti has a virtual terminal that is running as root!
+Luke | gaBdfD4BGBo ^ 26:20  - Extra Content - Getting a reverse shell
+Luke | gaBdfD4BGBo ^ 28:30  - Grabbing the JWT Secret, so we can forge our own tokens!
+Luke | gaBdfD4BGBo ^ 29:10  - Creating a python script to generate JWT Tokens
+Luke | gaBdfD4BGBo ^ 30:20  - This token has no expiration time, and is assigned at 0.  Should never expire!
+Luke | gaBdfD4BGBo ^ 31:30  - Adding Requests to our script, so the script can make web requests
+Luke | gaBdfD4BGBo ^ 33:15  - Lets try removing all signing algorithms from the token and see if server accepts it
+Luke | gaBdfD4BGBo ^ 34:40  - Cracking the JWT Token Signing key with Hashcat
+
+Aragog | NFdi-2tgvxY ^ 01:26  - Start of Recon
+Aragog | NFdi-2tgvxY ^ 03:25  - Notice SSH configured for Pub Key Only.  Hint at what to grab later!
+Aragog | NFdi-2tgvxY ^ 03:50  - Grabbing test.txt off ftp server via anonymous auth
+Aragog | NFdi-2tgvxY ^ 04:07  - Determining if I want to go down the "Exploit VSFTPD" rabbit hole
+Aragog | NFdi-2tgvxY ^ 05:54  - Viewing test.txt and hosts.php
+Aragog | NFdi-2tgvxY ^ 06:48  - Figuring out how hosts.php works and discovering XXE
+Aragog | NFdi-2tgvxY ^ 08:58  - Start of XXE Discovery
+Aragog | NFdi-2tgvxY ^ 10:16  - Making the XXE Output /etc/passwd
+Aragog | NFdi-2tgvxY ^ 11:33  - Encoding output in Base64 in order to view PHP Files
+Aragog | NFdi-2tgvxY ^ 12:58  - Using Burp Intruder to BruteForce Files
+Aragog | NFdi-2tgvxY ^ 16:20  - Creating a program to bruteforce home directories
+Aragog | NFdi-2tgvxY ^ 26:41  - Program Finished.  Finding SSH ID_RSA Key
+Aragog | NFdi-2tgvxY ^ 28:15  - Low Priv Access Granted
+Aragog | NFdi-2tgvxY ^ 30:24  - LinEnum.sh shows Wordpress CHMOD'd to 777
+Aragog | NFdi-2tgvxY ^ 31:05  - Examining Wordpress Site (big hint left by author)
+Aragog | NFdi-2tgvxY ^ 32:10  - Enumerating MySQL Database
+Aragog | NFdi-2tgvxY ^ 35:15  - Giving up on MySQL, lets edit PHP Files to dump passwords!
+Aragog | NFdi-2tgvxY ^ 36:50  - Identifying the file we want to backdoor
+Aragog | NFdi-2tgvxY ^ 37:51  - Placing our PHP Code
+Aragog | NFdi-2tgvxY ^ 42:06  - Got the password!
+
+Flux | XLIBbkQJKuY ^ 01:25  - Begin of recon
+Flux | XLIBbkQJKuY ^ 02:20  - Wiresharking NMAP to identify fingerprint
+Flux | XLIBbkQJKuY ^ 05:53  - Checking the WebPage
+Flux | XLIBbkQJKuY ^ 09:15  - Finding /sync and why web browser has a 403
+Flux | XLIBbkQJKuY ^ 12:45  - Using wfuzz to find what arguments /sync takes
+Flux | XLIBbkQJKuY ^ 15:45  - The actual wfuzz command
+Flux | XLIBbkQJKuY ^ 20:30  - Finding Bad Characters with wfuzz
+Flux | XLIBbkQJKuY ^ 24:51  - Getting command execution
+Flux | XLIBbkQJKuY ^ 32:00  - Getting a reverse shell
+Flux | XLIBbkQJKuY ^ 43:40  - Privesc to root abusing custom script
+Flux | XLIBbkQJKuY ^ 47:48  - Examining how NGINX/OpenResty was configured
+
+Inception | J2I-5xPgyXk ^ 01:05  - Start of Recon + Finding dompdf
+Inception | J2I-5xPgyXk ^ 08:30  - PHP Wrappers + Failed testing for RCE
+Inception | J2I-5xPgyXk ^ 11:35  - Writing Python Program to automate file disclosure bug
+Inception | J2I-5xPgyXk ^ 18:40  - Finding WebDav Configuration + Uploading Files for RCE
+Inception | J2I-5xPgyXk ^ 25:50  - Modifying Sokar's Forward Shell (PTY over HTTP)
+Inception | J2I-5xPgyXk ^ 33:55  - Forward shell returned
+Inception | J2I-5xPgyXk ^ 38:50  - Using Squid to pivot to ports listening locally + NMAP via ProxyChains
+Inception | J2I-5xPgyXk ^ 47:48  - Getting nmap on Inception to speed up scanning private network
+Inception | J2I-5xPgyXk ^ 59:16  - Nmap results returned for 192.168.0.1, FTP Anonymous Login
+Inception | J2I-5xPgyXk ^ 1:01:15  - Finding TFTP as a Running Service
+Inception | J2I-5xPgyXk ^ 1:06:35  - Using TFTP to grab crontab creating a pre-invoke apt script
+
+Enterprise | NWVJ2b0D1r8 ^ 01:00  - Begin of recon
+Enterprise | NWVJ2b0D1r8 ^ 10:00  - Finding the vulnerable Wordpress Plugin
+Enterprise | NWVJ2b0D1r8 ^ 17:50  - Exploiting lcars plugin 
+Enterprise | NWVJ2b0D1r8 ^ 28:30  - Logging into WP and Getting Reverse Shell
+Enterprise | NWVJ2b0D1r8 ^ 35:00  - Wordpress RevShell Returned
+Enterprise | NWVJ2b0D1r8 ^ 40:00  - Using Meterpreter to pivot and provide access to MySQL
+Enterprise | NWVJ2b0D1r8 ^ 50:00  - MySQL Shell Returned
+Enterprise | NWVJ2b0D1r8 ^ 52:00  - Logging into Joomla and Getting Reverse Shell
+Enterprise | NWVJ2b0D1r8 ^ 57:20  - Joomla Reverse Shell returned
+Enterprise | NWVJ2b0D1r8 ^ 59:00  - Getting Reverse Shell on Host OS (port 443)
+Enterprise | NWVJ2b0D1r8 ^ 1:02:00  - Shell Returned begin of local privesc recon
+Enterprise | NWVJ2b0D1r8 ^ 1:12:06  - Beginning of Binary Exploitation 
+Enterprise | NWVJ2b0D1r8 ^ 1:21:00  - Start writing exploit script 
+Enterprise | NWVJ2b0D1r8 ^ 1:28:30  - Analyzing the PHP SQL Injection Scripts
+Enterprise | NWVJ2b0D1r8 ^ 1:36:30  - Viewing what SQLMap does to exploit this
+Enterprise | NWVJ2b0D1r8 ^ 1:40:00  - Stepping through Double Query Injection
+Enterprise | NWVJ2b0D1r8 ^ 1:47:20  - Writing our own SQL Injection Exploit Script
+
+Node | sW10TlZF62w ^ 00:45  - Begin of NMAP
+Node | sW10TlZF62w ^ 03:00  - GoBuster (Fails)
+Node | sW10TlZF62w ^ 08:15  - Screw GoBuster, BurpSpider FTW
+Node | sW10TlZF62w ^ 09:12  - Examing Routes File to find more pages
+Node | sW10TlZF62w ^ 10:10  - Finding Credentials and downloading backup
+Node | sW10TlZF62w ^ 14:45  - Cracking the zip with fcrackzip
+Node | sW10TlZF62w ^ 16:45  - Finding more credentials (SSH) within MongoSource
+Node | sW10TlZF62w ^ 21:50  - Privesc to Tom User
+Node | sW10TlZF62w ^ 35:04  - Analyzing Backup Binary File
+Node | sW10TlZF62w ^ 36:49  - Using strace to find binary password
+Node | sW10TlZF62w ^ 40:25  - Finding blacklisted characters/words
+Node | sW10TlZF62w ^ 50:00  - Unintended method one, abusing CWD
+Node | sW10TlZF62w ^ 52:20  - Unintended method two, wildcards to bypass blacklist
+Node | sW10TlZF62w ^ 54:45  - Unintended method three, command injection via new line
+Node | sW10TlZF62w ^ 59:15  - Intended root Buffer Overflow ASLR Brute Force
+
+SolidState | _QapCUx55Xk ^ 
+
+Nineveh | K9DKULxSBK4 ^ 00:00  - Intro
+Nineveh | K9DKULxSBK4 ^ 01:58  - Begin Recon (NMAP)
+Nineveh | K9DKULxSBK4 ^ 04:19  - GoBuster HTTP + HTTPS
+Nineveh | K9DKULxSBK4 ^ 06:35  - Accessing Pages 
+Nineveh | K9DKULxSBK4 ^ 07:05  - Using Hydra against HTTP + HTTPS Web Forms
+Nineveh | K9DKULxSBK4 ^ 11:30  - Logging into HTTP and hunting for vulns
+Nineveh | K9DKULxSBK4 ^ 17:00  - Second Hydra attempt against HTTPS
+Nineveh | K9DKULxSBK4 ^ 17:57  - Logging into HTTPS (phpLiteAdmin)
+Nineveh | K9DKULxSBK4 ^ 20:17  - Chaining Exploits to get Code Execution
+Nineveh | K9DKULxSBK4 ^ 26:38  - Reverse Shell Returned
+Nineveh | K9DKULxSBK4 ^ 28:00  - LinEnum.sh Script Review
+Nineveh | K9DKULxSBK4 ^ 31:30  - Watching for new Processes
+Nineveh | K9DKULxSBK4 ^ 37:00  - Found the error in script :)
+Nineveh | K9DKULxSBK4 ^ 39:30  - Getting reverse root shell
+Nineveh | K9DKULxSBK4 ^ 41:51  - Intended Route to get User
+Nineveh | K9DKULxSBK4 ^ 46:12  - Reviewing Knockd configuration
+Nineveh | K9DKULxSBK4 ^ 49:33  - Doing the PortKnock
+
+Europa | OsxDB41jg6A ^ 00:24  - Recon with Sparta
+Europa | OsxDB41jg6A ^ 02:00  - Enumerating SSL Certificate 
+Europa | OsxDB41jg6A ^ 03:55  - Manually View SSL Certificate
+Europa | OsxDB41jg6A ^ 04:35  - VirtualHostRouting Explanation
+Europa | OsxDB41jg6A ^ 07:42  - SQL Injection - Auth Bypass
+Europa | OsxDB41jg6A ^ 13:00  - Dumping the Database with SQLMap
+Europa | OsxDB41jg6A ^ 16:45  - Begin of Web Exploit (Regex //e)
+Europa | OsxDB41jg6A ^ 23:00  - Getting a Shell
+Europa | OsxDB41jg6A ^ 27:10  - Begin PrivEsc (CronJob)
+
+Apocalyst | TJVghYBByIA ^ 01:26  - Enumeration Start
+Apocalyst | TJVghYBByIA ^ 02:58  - WPScan Start
+Apocalyst | TJVghYBByIA ^ 05:40  - Directory Scanning with GoBuster
+Apocalyst | TJVghYBByIA ^ 10:54  - Examining WPScan Output
+Apocalyst | TJVghYBByIA ^ 13:40  - Bruteforcing with WPScan
+Apocalyst | TJVghYBByIA ^ 14:40  - Bruteforcing HTTP Post with Hydra
+Apocalyst | TJVghYBByIA ^ 18:30  - Edit WP Theme to get Code Execution
+Apocalyst | TJVghYBByIA ^ 22:09  - Return of Reverse Shell
+Apocalyst | TJVghYBByIA ^ 26:25  - Privelege Escalation Word Writeable Passwd
+
+Sneaky | 1UGxjqTnuyo ^ 00:00  - Intro
+Sneaky | 1UGxjqTnuyo ^ 00:44  - Recon + Web Enum
+Sneaky | 1UGxjqTnuyo ^ 01:33  - SQL Injection
+Sneaky | 1UGxjqTnuyo ^ 05:30  - Start of IPv6 Talk
+Sneaky | 1UGxjqTnuyo ^ 06:30  - What is an IPv6 IP Address?
+Sneaky | 1UGxjqTnuyo ^ 11:27  - Types of IPv6 Addresses
+Sneaky | 1UGxjqTnuyo ^ 14:06  - IPv6 Subnetting Explained
+Sneaky | 1UGxjqTnuyo ^ 21:20  - End of IPv6 Primer, Exploit time!
+Sneaky | 1UGxjqTnuyo ^ 22:43  - Method 1: Getting MAC and calculating fe80
+Sneaky | 1UGxjqTnuyo ^ 30:30  - Method 2: Enumerating Networks by pinging Multicast
+Sneaky | 1UGxjqTnuyo ^ 33:56  - Extra: Getting Windows to respond from Multicast Ping
+Sneaky | 1UGxjqTnuyo ^ 38:07  - Extra: NMAP Scanning ipv6 local networks
+Sneaky | 1UGxjqTnuyo ^ 40:15  - Convert RPM to DEB (Needed for install nmap on tenten)
+Sneaky | 1UGxjqTnuyo ^ 41:30  - Intended Solution: Getting IPv6 via SNMP
+Sneaky | 1UGxjqTnuyo ^ 43:58  - No SNMP MIB Output
+Sneaky | 1UGxjqTnuyo ^ 45:58  - Getting SNMP MIBS Installed and Configured
+Sneaky | 1UGxjqTnuyo ^ 47:52  - Tool: Enyx - SNMPv6 Enumeration via Python
+Sneaky | 1UGxjqTnuyo ^ 50:44  - Privesc Enumeration
+Sneaky | 1UGxjqTnuyo ^ 52:49  - Buffer Overflow
+
+Unattended | 2SATzCQY0Zw ^ 01:00  - Begin of recon
+Unattended | 2SATzCQY0Zw ^ 03:30  - Running GoBuster to discover /dev and index.php
+Unattended | 2SATzCQY0Zw ^ 06:50  - Checking out the web application
+Unattended | 2SATzCQY0Zw ^ 07:55  - Discovering SQL Injection in ID and playing with it
+Unattended | 2SATzCQY0Zw ^ 11:45  - Running SQLMap to dump pieces of the database
+Unattended | 2SATzCQY0Zw ^ 14:55  - Nginx Misconfiguration, missing trailing slash
+Unattended | 2SATzCQY0Zw ^ 19:10  - Downloading source code of the application
+Unattended | 2SATzCQY0Zw ^ 21:20  - Exploring the source of the application
+Unattended | 2SATzCQY0Zw ^ 25:47  - Specifying an error string in SQLMap to have it do boolean logic versus time-based
+Unattended | 2SATzCQY0Zw ^ 27:00  - Installing a Docker LAMP Server to run the web application
+Unattended | 2SATzCQY0Zw ^ 45:40  - Finally got the application running locally (Missed a comma which created a lot more work)
+Unattended | 2SATzCQY0Zw ^ 46:15  - Analyzing the SQL Injection with Debug turned on to see how it works
+Unattended | 2SATzCQY0Zw ^ 50:00  - Explanation of gaining code execution through an LFI + PHP Cookies
+Unattended | 2SATzCQY0Zw ^ 53:00  - Exploring the cookie
+Unattended | 2SATzCQY0Zw ^ 55:40  - Have code execution on our docker, lets exploit the server
+Unattended | 2SATzCQY0Zw ^ 01:00:00  - Reverse Shell returned
+Unattended | 2SATzCQY0Zw ^ 01:02:35  - Exploring MySQL database and escalating to GULY
+Unattended | 2SATzCQY0Zw ^ 01:08:30  - Running LinEnum as Guly and going through the results
+Unattended | 2SATzCQY0Zw ^ 01:12:00  - Exploring files Guly can access due to Grub Group, downloading initrd
+Unattended | 2SATzCQY0Zw ^ 01:14:10  - Decompressing initrd.img and looking for the file GULY modified
+Unattended | 2SATzCQY0Zw ^ 01:21:20  - Running STRACE to see what uinitrd does
+Unattended | 2SATzCQY0Zw ^ 01:24:20  - Running uinitrd after modifying /etc/hosts and /boot/guid
+Unattended | 2SATzCQY0Zw ^ 01:26:20  - Extra Content: If you had trouble with TTY, SSH is accessible via IPv6
+Unattended | 2SATzCQY0Zw ^ 01:30:50  - Extra Content: Runing GIXY to analyze the NGINX Configuration
+Unattended | 2SATzCQY0Zw ^ 01:35:20  - Extra Content: Looking at uinitrd in Ghidra
+
+Lazy | 3VxZNflJqsw ^ 00:39  - Basic Web Page Discovery
+Lazy | 3VxZNflJqsw ^ 03:30  - Examining Cookies - Pt1 (Burp Sequencer)
+Lazy | 3VxZNflJqsw ^ 05:05  - Fuzzing Usernames (2nd Order SQL Injection)
+Lazy | 3VxZNflJqsw ^ 07:15  - Examining Cookies - Pt2
+Lazy | 3VxZNflJqsw ^ 07:40  - Cookie Bitflip
+Lazy | 3VxZNflJqsw ^ 12:45  - Oracle Padding Attack - Pt1
+Lazy | 3VxZNflJqsw ^ 15:30  - Rooting the Box
+Lazy | 3VxZNflJqsw ^ 22:50  - Oracle Padding Attack - Pt2
+
+Haircut | 9ZXG1qb8lUI ^ 01:45  - GoBuster
+Haircut | 9ZXG1qb8lUI ^ 04:40  - Exploiting exposed.php
+Haircut | 9ZXG1qb8lUI ^ 11:40  - Getting Shell
+Haircut | 9ZXG1qb8lUI ^ 20:09  - Screen Privesc
+
+CronOS | CYeVUmOar3I ^ 
+
+- | A4U3xiRWfsU ^ 
+
+October | K05mJazHhF4 ^ 00:45  - Pulling up Web Page.
+October | K05mJazHhF4 ^ 01:10  - Searchsploit
+October | K05mJazHhF4 ^ 02:40  - Enumerating Version (Download Versions, Hash Static Files)
+October | K05mJazHhF4 ^ 08:20  - Default cred /backend -- Upload Shell
+October | K05mJazHhF4 ^ 09:51  - User Reverse Shell
+October | K05mJazHhF4 ^ 12:10  - Transfering file over nc
+October | K05mJazHhF4 ^ 14:45  - Begin "fuzzing" Binary
+October | K05mJazHhF4 ^ 16:15  - GDB Analysis
+October | K05mJazHhF4 ^ 18:46  - Get a full reverse shell with tab autocomplete.
+October | K05mJazHhF4 ^ 19:00  - Showing ASLR changing address 
+October | K05mJazHhF4 ^ 20:20  - Disable ASLR on Exploit Dev Machine
+October | K05mJazHhF4 ^ 21:15  - Start of exploit development for ovrflw binary (Pattner_Create)
+October | K05mJazHhF4 ^ 27:27  - Start of Return to LibC attack - Getting Addresses
+October | K05mJazHhF4 ^ 37:20  - Grabbing memory locations off October Machine
+October | K05mJazHhF4 ^ 41:00  - Convert script to Bruteforce ASLR
+
+Popcorn | NMGsnPSm8iw ^ 00:25  - TMUX and Connecting to HTB
+Popcorn | NMGsnPSm8iw ^ 02:00  - Virtual Host Routing Explanation
+Popcorn | NMGsnPSm8iw ^ 02:40  - File Enumeration (Dirb)
+Popcorn | NMGsnPSm8iw ^ 03:59  - Discover of Web App
+Popcorn | NMGsnPSm8iw ^ 05:45  - Starting SQLMap in the Background
+Popcorn | NMGsnPSm8iw ^ 09:30  - Uploading a PHP Shell
+Popcorn | NMGsnPSm8iw ^ 14:01  - Python PTY Reverse Shell (Tab Autocomplete!)
+Popcorn | NMGsnPSm8iw ^ 19:25  - MOTD Root (Method 1)
+Popcorn | NMGsnPSm8iw ^ 23:50  - Dirtyc0w Root (Method 2)
+
+LaCasaDePapel | OSRCEOQQJ4E ^ 01:05  - Start of nmap
+LaCasaDePapel | OSRCEOQQJ4E ^ 02:50  - Attempting to execute an VSFTPD Backdoor via MSF
+LaCasaDePapel | OSRCEOQQJ4E ^ 03:40  - Discovering the backdoor opened 6200, discovering a weird shell
+LaCasaDePapel | OSRCEOQQJ4E ^ 04:50  - Lets figure out what just happened
+LaCasaDePapel | OSRCEOQQJ4E ^ 06:50  - Triggering the backdoor without Metasploit
+LaCasaDePapel | OSRCEOQQJ4E ^ 09:05  - Exploring the Psy PHP Shell opened up by the backdoor
+LaCasaDePapel | OSRCEOQQJ4E ^ 10:20  - Several functions for executing bash aren't working, checking disable_functions
+LaCasaDePapel | OSRCEOQQJ4E ^ 11:40  - Attempting to bypass disabled_functions (does not work)
+LaCasaDePapel | OSRCEOQQJ4E ^ 12:50  - Using ScanDir() and File_Get_Contents(), to explore the filesystem
+LaCasaDePapel | OSRCEOQQJ4E ^ 14:50  - Identifying we are probably running as the Dali User (Unintended Path)
+LaCasaDePapel | OSRCEOQQJ4E ^ 17:00  - Downloading CA.KEY, which is a private key to a webserver
+LaCasaDePapel | OSRCEOQQJ4E ^ 21:40  - Using the CA.KEY to generate client certificates to access the HTTPS Page
+LaCasaDePapel | OSRCEOQQJ4E ^ 30:25  - Weird it didn't work, lets just verify all our certificates are good
+LaCasaDePapel | OSRCEOQQJ4E ^ 32:28  - This time it worked! We connected to the server
+LaCasaDePapel | OSRCEOQQJ4E ^ 33:20  - Failing to add the certificate to BurpSuite
+LaCasaDePapel | OSRCEOQQJ4E ^ 33:50  - Discovering File Traversal by editing the PATH variable
+LaCasaDePapel | OSRCEOQQJ4E ^ 36:38  - Discovering the LFI just puts the path as Base64 Encoded
+LaCasaDePapel | OSRCEOQQJ4E ^ 37:15  - Using the LFI to download the SSH Private Key
+LaCasaDePapel | OSRCEOQQJ4E ^ 38:45  - Testing SSH Key against users on the box to gain access!
+LaCasaDePapel | OSRCEOQQJ4E ^ 39:13  - UNINTENDED: Skipping the HTTPS Certificate - Generating SSH Keys to upload via PHP Shell
+LaCasaDePapel | OSRCEOQQJ4E ^ 40:30  - UNINTENDED: Using file_put_contents() to append our public key to authorized_keys
+LaCasaDePapel | OSRCEOQQJ4E ^ 41:30  - UNINTENDED: Using SSH to tunnel through Dali (SOCKS Proxy)
+LaCasaDePapel | OSRCEOQQJ4E ^ 42:30  - UNINTENDED: Scanning ports on Dali that are listening on LocalHost
+LaCasaDePapel | OSRCEOQQJ4E ^ 43:08  - UNINTENDED: Port 8000 is open, and its one step after the Reverse_Proxy that performs SSL Authentication!
+LaCasaDePapel | OSRCEOQQJ4E ^ 45:35  - Running PSPY and LinEnum
+LaCasaDePapel | OSRCEOQQJ4E ^ 50:20  - Using PSPY to view FileSystem Events which will show the cron
+LaCasaDePapel | OSRCEOQQJ4E ^ 52:30  - Taking control of ~/memcached.ini because we own the folder!
+LaCasaDePapel | OSRCEOQQJ4E ^ 54:45  - Exploiting the cron that utilizes memcached.ini to get a root shell
+LaCasaDePapel | OSRCEOQQJ4E ^ 55:55  - Exploring how the SSL Authentication is working
+
+FriendZone | Zf8p49IzEEA ^ 00:45  - Begin of Recon
+FriendZone | Zf8p49IzEEA ^ 04:10  - Running SMBMap to identify and crawl file shares
+FriendZone | Zf8p49IzEEA ^ 05:00  - Downloading creds.txt from an smb share and checking FTP/SMB
+FriendZone | Zf8p49IzEEA ^ 06:50  - Checking the webpage and grabbing potential DNS Names for the box
+FriendZone | Zf8p49IzEEA ^ 10:40  - Using dig to perform a DNS Zone Transfer to obtain additional host names
+FriendZone | Zf8p49IzEEA ^ 12:00  - Adding all hostnames to /etc/hosts
+FriendZone | Zf8p49IzEEA ^ 12:55  - Running Aquatone to take screenshots of all the pages for quick examination
+FriendZone | Zf8p49IzEEA ^ 15:15  - Testing Uploads.Friendzone.red
+FriendZone | Zf8p49IzEEA ^ 16:30  - Testing admin.friendzone.red
+FriendZone | Zf8p49IzEEA ^ 17:00  - Testing administrator1.friendzone.red, logging in with creds found from SMB
+FriendZone | Zf8p49IzEEA ^ 18:35  - Found an LFI in the Dashboard.PHP script (PageName Variable)
+FriendZone | Zf8p49IzEEA ^ 20:15  - Using PHP Wrappers with the LFI To obtain PHP Script Source
+FriendZone | Zf8p49IzEEA ^ 23:00  - Revisiting recon to find ways to upload files, end up using SMBClient
+FriendZone | Zf8p49IzEEA ^ 25:10  - Gaining code execution through the LFI Exploit and SMB File Share
+FriendZone | Zf8p49IzEEA ^ 27:30  - Reverse Shell Returned
+FriendZone | Zf8p49IzEEA ^ 28:50  - Exploring /var/www/html to see if any troll directories had useful files in them, find creds to Friend user
+FriendZone | Zf8p49IzEEA ^ 31:20  - Running PSPY to identify cron jobs we don't have permission to see
+FriendZone | Zf8p49IzEEA ^ 33:15  - Running LinEnum.sh to enumerate the box and discover the Python OS Library is writeable
+FriendZone | Zf8p49IzEEA ^ 38:20  - Fixing our reverse shell by setting ROWS and COLUMNS of our terminal so we can use Vi
+FriendZone | Zf8p49IzEEA ^ 40:45  - Placing a reverse shell in the Python OS library
+
+Chaos | no9UnySBQrU ^ 01:05  - Begin of recon
+Chaos | no9UnySBQrU ^ 02:20  - Starting up GoBuster then editing /etc/hosts to add the hosts in nmap
+Chaos | no9UnySBQrU ^ 03:20  - Going over the website
+Chaos | no9UnySBQrU ^ 06:00  - Discovering a wordpress instance (/wp/ form goBuster)
+Chaos | no9UnySBQrU ^ 09:50  - Finding webmail credentials from a wordpress Protected Post
+Chaos | no9UnySBQrU ^ 10:30  - Discovering webmail.chaos.htb (Method 1)
+Chaos | no9UnySBQrU ^ 12:50  - Testing IMAP, then configuring Evolution to login to the mail server (Method 2)
+Chaos | no9UnySBQrU ^ 16:40  - Decrypting the message that was in the draft.
+Chaos | no9UnySBQrU ^ 22:55  - Message decrypted, new page discovered
+Chaos | no9UnySBQrU ^ 23:11  - Discovering a webpage for creating pdfs
+Chaos | no9UnySBQrU ^ 24:10  - Searching for a code injection path for LaTex
+Chaos | no9UnySBQrU ^ 24:45  - Discovering the blacklist is on "input"
+Chaos | no9UnySBQrU ^ 25:30  - Testing for blind command execution via ping
+Chaos | no9UnySBQrU ^ 27:43  - Reverse Shell Returned
+Chaos | no9UnySBQrU ^ 28:10  - Enumerating the web directory to find passwords
+Chaos | no9UnySBQrU ^ 29:11  - Switching to the "Ayush" user with mail password, discover we are in rBash
+Chaos | no9UnySBQrU ^ 29:45  - Escaping rBash by via tar (Method 1: GTFOBins)
+Chaos | no9UnySBQrU ^ 31:00  - Escaping rBash by editing path (Method 2)
+Chaos | no9UnySBQrU ^ 32:55  - Discovering a mozilla user configuration directory, copying it off to export passwords
+Chaos | no9UnySBQrU ^ 36:30  - Using firefox_decrypt to export root password
+Chaos | no9UnySBQrU ^ 37:30  - Logging into webmin with credentials from firefox
+Chaos | no9UnySBQrU ^ 37:50  - Privesc via switching to root user with known password (Method 1)
+Chaos | no9UnySBQrU ^ 38:10  - Using webmin to execute commands as root (Method 2)
+
+LightWeight | yQgtDoCDAYk ^ 00:45  - Begin of recon, Nmap
+LightWeight | yQgtDoCDAYk ^ 01:30  - Taking the CentOS Apache Version to find major version
+LightWeight | yQgtDoCDAYk ^ 03:20  - Running GoBuster with a Common-PHP-Files wordlist.
+LightWeight | yQgtDoCDAYk ^ 06:00  - Enumerating Ldap with ldapsearch
+LightWeight | yQgtDoCDAYk ^ 07:30  - Discovery of Password Hashes within ldap information
+LightWeight | yQgtDoCDAYk ^ 10:55  - Attempting to crack the hashes. (does not crack)
+LightWeight | yQgtDoCDAYk ^ 12:30  - Back to the web page
+LightWeight | yQgtDoCDAYk ^ 13:15  - Page says to login with ip@Lightweight with the password of your ip
+LightWeight | yQgtDoCDAYk ^ 15:35  - Running LinEnum
+LightWeight | yQgtDoCDAYk ^ 20:15  - Discovery of Extended Capabilities set on tcpdump
+LightWeight | yQgtDoCDAYk ^ 20:50  - Performing a packet capture over SSH without touching disk
+LightWeight | yQgtDoCDAYk ^ 23:45  - Examining the pcap created, don't see anything on ens33
+LightWeight | yQgtDoCDAYk ^ 24:20  - Performing a packet capture through SSH and piping live results to WireShark
+LightWeight | yQgtDoCDAYk ^ 26:00  - Discovery of LDAP Traffic, ldapuser2 password passed in clear-text
+LightWeight | yQgtDoCDAYk ^ 28:15  - Using bash to exfil a file over the network (backup.7z)
+LightWeight | yQgtDoCDAYk ^ 29:25  - Using 7z2john and hashcat to crack a 7zip file
+LightWeight | yQgtDoCDAYk ^ 32:05  - Examining extracted files to discover a new credential (ldapuser1)
+LightWeight | yQgtDoCDAYk ^ 33:30  - The openssl binary in ldapuser1 has an empty capability (which is all)
+LightWeight | yQgtDoCDAYk ^ 35:00  - Using GTFOBins to see what we can do with openssl
+LightWeight | yQgtDoCDAYk ^ 37:11  - Reading /etc/shadow with openssl
+LightWeight | yQgtDoCDAYk ^ 37:35  - Adding an entry into /etc/sudoers to allow us to escalate to root
+
+Redcross | -GNyDEQ9UDU ^ 00:20  - Flow chart of potential paths through this box
+Redcross | -GNyDEQ9UDU ^ 02:25  - Begin of recon, SSL Enumeration, examining PHP Behavior
+Redcross | -GNyDEQ9UDU ^ 06:23  - Using GoBuster to dicover directories, pdf's, and php scripts
+Redcross | -GNyDEQ9UDU ^ 08:10  - Using wfuzz to discover subdomains (virtual host routing)
+Redcross | -GNyDEQ9UDU ^ 12:15  - Guessing credential, logging in with guest:guest disover SQL Injection
+Redcross | -GNyDEQ9UDU ^ 16:45  - Manually doing an error-based SQL Injection with extractquery()
+Redcross | -GNyDEQ9UDU ^ 31:50  - A good screenshot showing the SQL Inject Queries used, then cracking
+Redcross | -GNyDEQ9UDU ^ 35:00  - Doing the SQLInjection with SQLMap, needed the delay flag!
+Redcross | -GNyDEQ9UDU ^ 37:50  - Examining the account-signup.pdf to create a user
+Redcross | -GNyDEQ9UDU ^ 39:50  - Doing XSS (cross site scripting) to steal a cookie of  the admin
+Redcross | -GNyDEQ9UDU ^ 43:15  - Going to admin.redcross.htb and showing that any way you got the PHPSESSID cookie would work
+Redcross | -GNyDEQ9UDU ^ 46:15  - Poking at admin.redcross.htb, creating a user that lands us in an SSH Jail
+Redcross | -GNyDEQ9UDU ^ 48:38  - Playing with the Firewall portion of the site, discover command injection in deleting rules!
+Redcross | -GNyDEQ9UDU ^ 52:28  - Reverse shell as www-data
+Redcross | -GNyDEQ9UDU ^ 54:40  - Discover postgresql credentials in actions.php, this database lets you create users!
+Redcross | -GNyDEQ9UDU ^ 1:00:21  - Inserting a user into the database, then logging in with SSH
+Redcross | -GNyDEQ9UDU ^ 1:02:40  - Examining /etc to discover a different postgresql account-signup
+Redcross | -GNyDEQ9UDU ^ 1:04:50  - Adding a root user with the new credentials, then sudo to root!
+Redcross | -GNyDEQ9UDU ^ 1:06:29  - Discovering Haraka running
+Redcross | -GNyDEQ9UDU ^ 1:09:10  - Using Metasploit to exploit haraka, get shell as penelope
+Redcross | -GNyDEQ9UDU ^ 1:12:26  - Doing the PG thing again but this time specify sudo group, so we don't need to use the other PG account.
+Redcross | -GNyDEQ9UDU ^ 1:15:50  - Examining iptctl.c
+Redcross | -GNyDEQ9UDU ^ 1:19:56  - Using Pattern_Create to discover where the RSP (RIP) Overwrite occours.
+Redcross | -GNyDEQ9UDU ^ 1:21:15  - Start of python script
+Redcross | -GNyDEQ9UDU ^ 1:24:11  - Dumping PLT Functions to use with our rop chain (no aslr on binary)
+Redcross | -GNyDEQ9UDU ^ 1:28:00  - Getting pop gadgets with radare
+Redcross | -GNyDEQ9UDU ^ 1:29:40  - Building our ROP Chain
+Redcross | -GNyDEQ9UDU ^ 1:34:28  - Exploiting the binary! To get root.
+
+Vault | LfbwlPxToBc ^ 01:08  - Begin of Recon
+Vault | LfbwlPxToBc ^ 03:08  - Begin of GoBustering
+Vault | LfbwlPxToBc ^ 07:15  - Discovery of an image upload script
+Vault | LfbwlPxToBc ^ 08:39  - Attempting to bypass the upload filter
+Vault | LfbwlPxToBc ^ 12:46  - Reverse Shell to ubuntu Returned.  Examining Web Source
+Vault | LfbwlPxToBc ^ 15:28  - ALTERNATIVE: Checking out the host name pollution, setting host header to localhost
+Vault | LfbwlPxToBc ^ 19:27  - Resume of poking around the host, discover passwords and other hosts in /home
+Vault | LfbwlPxToBc ^ 23:14  - Uploading a static-compiled nmap to the box (static-binaries is a github repo)
+Vault | LfbwlPxToBc ^ 24:57  - SSH Local Port Forward and Dynamic, to let our Kali box communicate with the next hop.
+Vault | LfbwlPxToBc ^ 27:27  - Discovery of a page that lets us create ovpn (openvpn) configs and test the VPN
+Vault | LfbwlPxToBc ^ 28:45  - Think i broke the box here, sent unicode to the box.... It stops responding on web.
+Vault | LfbwlPxToBc ^ 32:55  - Machine reverted, getting back to where I started.
+Vault | LfbwlPxToBc ^ 34:50  - Trying this again, and get a shell on ubuntu -- Lets do a Reverse Port Forward to get a shell on our kali box.
+Vault | LfbwlPxToBc ^ 36:12  - Shell returned to Kali Box, explaining how to use socat if SSH Forward cannot listen on all ports.
+Vault | LfbwlPxToBc ^ 38:58  - Exploring the DNS Server box.
+Vault | LfbwlPxToBc ^ 39:26  - Finding a password in /home/dave/ssh
+Vault | LfbwlPxToBc ^ 40:15  - Discovering Vault's IP Address in /etc/hosts
+Vault | LfbwlPxToBc ^ 41:20  - Perfoming a NMAP on the vault box, discover two ports closed
+Vault | LfbwlPxToBc ^ 41:50  - Doing a NMAP with the source port of one of the above ports to test for a lazy firewall, discover SSH on port 987
+Vault | LfbwlPxToBc ^ 43:20  - ALTERNATIVE: Bypassing the firewall by using IPv6
+Vault | LfbwlPxToBc ^ 49:47  - How to set the source port with SSH via ncat
+Vault | LfbwlPxToBc ^ 50:45  - Discovering root.txt.gpg on Vault, it is encrypted with RSA Key D1EB1F03
+Vault | LfbwlPxToBc ^ 51:35  - Dave has the above RSA Key, use SCP to send the file back to Ubuntu
+Vault | LfbwlPxToBc ^ 54:45  - The file has been copied, using gpg to decrypt the file.
+Vault | LfbwlPxToBc ^ 55:39  - MAJOR UNINTENDED WAY: Discovering SPICE ports are listening on localhost:5900-5903, this is like VNC
+Vault | LfbwlPxToBc ^ 57:05  - Using Remote-Viewer to connect to the SPICE Port and getting physical access to the machine.
+Vault | LfbwlPxToBc ^ 57:42  - Rebooting Vault by sending the Ctrl+Alt+delete key
+Vault | LfbwlPxToBc ^ 58:00  - Editing grub to get a root shell without a password
+Vault | LfbwlPxToBc ^ 58:56  - Changing the password to root, then rebooting again
+Vault | LfbwlPxToBc ^ 59:30  - Logging in with the new password.
+
+Bashed | 2DqdPcbYcy8 ^ 
+
+Sense | d2nVDoVr0jE ^ 01:20  - Star of Recon
+Sense | d2nVDoVr0jE ^ 03:40  - GoBuster
+Sense | d2nVDoVr0jE ^ 04:45  - Getting banned and Pivoting to verify
+Sense | d2nVDoVr0jE ^ 10:20  - Logging into PFSense
+Sense | d2nVDoVr0jE ^ 16:50  - Manually Exploiting PFsense 
+Sense | d2nVDoVr0jE ^ 38:30  - Using Metasploit to exploit
+Sense | d2nVDoVr0jE ^ 42:00  - Creating a Bruteforce Script in Python ( CSRF )
+
+Shocker | IBlTdguhgfY ^ 00:39  - Begin Nmap, OS Enum via SSH/HTTP Banner
+Shocker | IBlTdguhgfY ^ 05:00  - GoBuster
+Shocker | IBlTdguhgfY ^ 07:08  - Viewing CGI Script
+Shocker | IBlTdguhgfY ^ 08:50  - Begin NMAP Shellshock
+Shocker | IBlTdguhgfY ^ 09:50  - Debugging Nmap HTTP Scripts via Burp
+Shocker | IBlTdguhgfY ^ 11:10  - Fixing the HTTP Request nmap script
+Shocker | IBlTdguhgfY ^ 14:45  - Performing Shellshock more fixing
+Shocker | IBlTdguhgfY ^ 18:25  - Getting a reverse shell
+Shocker | IBlTdguhgfY ^ 21:19  - Running LinEnum.sh
+Shocker | IBlTdguhgfY ^ 23:00  - Rooting the box
+
+Mirai | SRmvRGUuuno ^ 00:49  - Nmap
+Mirai | SRmvRGUuuno ^ 01:31  - Examining some odd behavior. Nmap different result than browser.
+Mirai | SRmvRGUuuno ^ 04:00  - Getting to /admin and testing for Zone Transfer
+Mirai | SRmvRGUuuno ^ 05:40  - Testing SSH Default Raspberry Pi Creds
+Mirai | SRmvRGUuuno ^ 06:11  - Escalate to root 'sudo su'
+Mirai | SRmvRGUuuno ^ 07:10  - Recovering the deleted root.txt
+Mirai | SRmvRGUuuno ^ 08:38  - GrepFu
+Mirai | SRmvRGUuuno ^ 10:40  - Downloading /dev/sdb via SSH
+Mirai | SRmvRGUuuno ^ 12:48  - Running Binwalk against it
+Mirai | SRmvRGUuuno ^ 13:18  - Trying to recover with TestDisk
+Mirai | SRmvRGUuuno ^ 14:37  - Trying to recover with PhotoRec
+
+Blocky | C2O-rilXA6I ^ 01:15  - Begin Recon with Reconnoitre
+Blocky | C2O-rilXA6I ^ 03:15  - Examining findings from Reconnoitre
+Blocky | C2O-rilXA6I ^ 06:50  - Decompiling java Jar Files with JAD
+Blocky | C2O-rilXA6I ^ 08:18  - Using JD-GUI
+Blocky | C2O-rilXA6I ^ 10:33  - Running WPScan
+Blocky | C2O-rilXA6I ^ 12:10  - Manually enumerating wordpress users
+Blocky | C2O-rilXA6I ^ 12:43  - SSH To the box and PrivEsc
+Blocky | C2O-rilXA6I ^ 15:30  - Rabbit hole, gaining access through FTP
+Blocky | C2O-rilXA6I ^ 17:09  - Finding Wordpress DB Password
+Blocky | C2O-rilXA6I ^ 18:33  - Switching to WWW-DATA by using phpMyAdmin + Wordpress
+Blocky | C2O-rilXA6I ^ 20:10  - Generating a PHP Password for Wordpress
+Blocky | C2O-rilXA6I ^ 21:50  - Gaining code execution with Wordpress Admin access
+Blocky | C2O-rilXA6I ^ 25:40  - Shell as www-data
+Blocky | C2O-rilXA6I ^ 26:40  - Enumerating Kernel Exploits with Linux-Exploit-Suggester
+Blocky | C2O-rilXA6I ^ 30:10  - Attempting CVE-2017-6074 Dccp Kernel Exploit (Unstable AF)
+
+Bank | JRPWFSzFaG0 ^ 00:39  - Nmap Results
+Bank | JRPWFSzFaG0 ^ 01:15  - DNS Enumeration
+Bank | JRPWFSzFaG0 ^ 04:08  - HTTP VirtualHost Routing
+Bank | JRPWFSzFaG0 ^ 05:28  - DirSearch (Web Enumeration) 
+Bank | JRPWFSzFaG0 ^ 08:50  - HTTP Redirect Vulnerability
+Bank | JRPWFSzFaG0 ^ 13:23  - PW in Balance-Transfer
+Bank | JRPWFSzFaG0 ^ 18:00  - File Upload, WebShell
+Bank | JRPWFSzFaG0 ^ 21:48  - First Shell
+Bank | JRPWFSzFaG0 ^ 30:10  - First Privesc Method (SUID)
+Bank | JRPWFSzFaG0 ^ 31:38  - Second Privesc Method (passwd)
+
+Beep | XJmBpOd__N8 ^ 1:35  - Method 1: LFI + Password
+Beep | XJmBpOd__N8 ^ 16:03  - Method 2: Turning LFI into RCE
+Beep | XJmBpOd__N8 ^ 37:46  - Method 3: Code exec via call
+Beep | XJmBpOd__N8 ^ 54:00  - Method 4: Shellshock
+
+Help | XB8CbhfOczU ^ 00:49  - Begin of recon
+Help | XB8CbhfOczU ^ 01:45  - Running gobuster to find /support
+Help | XB8CbhfOczU ^ 02:50  - Searching for a way to find version of HelpdeskZ
+Help | XB8CbhfOczU ^ 03:35  - Reading over the File Upload exploit script to see it requires server time
+Help | XB8CbhfOczU ^ 05:10  - Uploading a PHP Reverse Shell Script
+Help | XB8CbhfOczU ^ 07:45  - Going back to GitHub to find where uploads are saved
+Help | XB8CbhfOczU ^ 09:10  - Begin of modifying the script to pull the server time out of HTTP Headers
+Help | XB8CbhfOczU ^ 10:30  - Figuring out the python to pull the "Date" HTTP Header
+Help | XB8CbhfOczU ^ 14:30  - Getting the Time Format right with STRFTIME.COM
+Help | XB8CbhfOczU ^ 19:40  - Testing out the exploit and getting a shell
+Help | XB8CbhfOczU ^ 23:20  - Discovery of an old kernel, looking for an exploit
+Help | XB8CbhfOczU ^ 24:30  - Copying the exploit, compiling, and privesc!
+Help | XB8CbhfOczU ^ 25:50  - Looking into port 3000
+Help | XB8CbhfOczU ^ 27:00  - /graphql discovered
+Help | XB8CbhfOczU ^ 27:42  - Dumping the schema to discover what data is inside
+Help | XB8CbhfOczU ^ 30:15  - Dumping username, password from the database
+Help | XB8CbhfOczU ^ 32:12  - Logging into HelpdeskZ
+Help | XB8CbhfOczU ^ 33:40  - Discovering the Boolean SQL Injection
+Help | XB8CbhfOczU ^ 34:50  - Running SQLMap
+Help | XB8CbhfOczU ^ 36:00  - Explaining the Injection
+Help | XB8CbhfOczU ^ 37:10  - Begin of creating a python script to exploit this
+
+Irked | OGFTM_qvtVI ^ 31:35 .  Sorry, was an extremely busy week and didn't get to verify everything was good.
+Irked | OGFTM_qvtVI ^ 00:39  - Begin on Recon
+Irked | OGFTM_qvtVI ^ 01:39  - Starting a full nmap scan 
+Irked | OGFTM_qvtVI ^ 04:15  - Discovery of IRC
+Irked | OGFTM_qvtVI ^ 04:35  - Manually looking at IRC
+Irked | OGFTM_qvtVI ^ 06:00  - Looking at the IRC to understand how to connect to an IRC Server
+Irked | OGFTM_qvtVI ^ 07:00  - Pulling the IRC Version and discovering the exploit
+Irked | OGFTM_qvtVI ^ 08:50  - Going into the history of the IRC Backdoor
+Irked | OGFTM_qvtVI ^ 09:45  - Manually exploiting the IRC Server
+Irked | OGFTM_qvtVI ^ 13:10  - Shell returned on the server
+Irked | OGFTM_qvtVI ^ 14:30  - Discovery of .backup which gives a steg password
+Irked | OGFTM_qvtVI ^ 16:45  - Logging in with djmardov
+Irked | OGFTM_qvtVI ^ 21:20  - Discovery of SetUID enabled custom binary, viewuser
+Irked | OGFTM_qvtVI ^ 23:25  - Using ltrace to see what the binary does, executes the file /tmp/listusers
+Irked | OGFTM_qvtVI ^ 23:50  - Getting a root shell
+Irked | OGFTM_qvtVI ^ 25:50  - Testing exploiting the binary with "who", fails due to no setuid
+Irked | OGFTM_qvtVI ^ 27:50  - Looking at the binary within Ghidra
+
+Teacher | u2-te8n2WbY ^ 00:40  - Begin of recon
+Teacher | u2-te8n2WbY ^ 02:00  - Poking around at the website to identify what techologies it utilizes
+Teacher | u2-te8n2WbY ^ 02:30  - Discovering something odd about images/5.png
+Teacher | u2-te8n2WbY ^ 03:25  - Downloading 5.png to discover it is a text file with a portion of a password
+Teacher | u2-te8n2WbY ^ 06:00  - Finding a place to login (/moodle), attempt to enumerate valid usernames
+Teacher | u2-te8n2WbY ^ 08:00  - Using wfuzz to bruteforce the password
+Teacher | u2-te8n2WbY ^ 11:20  - Looking for a way to enumerate Moodle Versions
+Teacher | u2-te8n2WbY ^ 13:20  - Searching for exploits for this version and finding "Bad Teacher"
+Teacher | u2-te8n2WbY ^ 14:40  - Start of manually exploiting this vulnerability
+Teacher | u2-te8n2WbY ^ 16:00  - Adding a "Calculated Question" which has the formula (vulnerable) parameter
+Teacher | u2-te8n2WbY ^ 20:16  - Finding artifacts of creating/testing the machine which spoils what we are supposed to do
+Teacher | u2-te8n2WbY ^ 24:21  - Fixing our forumla to allow for code execution
+Teacher | u2-te8n2WbY ^ 28:30  - Getting a reverse shell
+Teacher | u2-te8n2WbY ^ 30:00  - Looking around the MySQL Database to discover hashes of other users
+Teacher | u2-te8n2WbY ^ 31:52  - The account Giovannibak stands out due to the hash being just MD5
+Teacher | u2-te8n2WbY ^ 32:30  - Attempting the password (expelled) of the MD5 hash above to login to "Su" to Giovannibak
+Teacher | u2-te8n2WbY ^ 36:20  - Grabbing and compiling pspy to find a cronjob
+Teacher | u2-te8n2WbY ^ 38:30  - Running PSPY to discover /usr/bin/backup.sh
+Teacher | u2-te8n2WbY ^ 40:00  - Abusing the backup cron to have it chmod 777 /etc/shadow (could do anything, sudoers is a bit less noisy)
+
+Curling | Paajc2Dupms ^ 01:12  - Begin of Recon
+Curling | Paajc2Dupms ^ 01:55  - Running Cewl to generate a wordlist
+Curling | Paajc2Dupms ^ 02:50  - Finding secret.txt in the HTML Source, which happens to be the password
+Curling | Paajc2Dupms ^ 03:28  - Runninh JoomScan so we have something running in the background
+Curling | Paajc2Dupms ^ 04:20  - Checking the manifest to get the Joomla Version
+Curling | Paajc2Dupms ^ 06:20  - Explaining what equals mean in base64
+Curling | Paajc2Dupms ^ 07:50  - Begin of hunting for Joomla Username
+Curling | Paajc2Dupms ^ 08:30  - BruteForcing Joomla Login with WFUZZ
+Curling | Paajc2Dupms ^ 10:35  - Troubleshooting by sending wfuzz through burp
+Curling | Paajc2Dupms ^ 12:25  - Turns out the CSRF Token is tied to cookie, adding that to the wfuzz command
+Curling | Paajc2Dupms ^ 17:10  - Success! Logged into Joomla
+Curling | Paajc2Dupms ^ 17:58  - Gaining code execution by modifying a template
+Curling | Paajc2Dupms ^ 20:20  - Getting a reverse shell
+Curling | Paajc2Dupms ^ 23:20  - Finding the file: password_backup which is encoded
+Curling | Paajc2Dupms ^ 23:55  - Extracting password_backup manually with xxd, zcat, bzcat, tar
+Curling | Paajc2Dupms ^ 25:43  - Extracting Password_Backup with CyberChef
+Curling | Paajc2Dupms ^ 27:35  - Logging in with Floris
+Curling | Paajc2Dupms ^ 28:17  - Looking at /home/floris/AdminArea
+Curling | Paajc2Dupms ^ 28:50  - Testing the input file by changing the url to us
+Curling | Paajc2Dupms ^ 29:30  - Getting LFI by using file:// within curl
+Curling | Paajc2Dupms ^ 30:38  - Pulling the cron, to see what is going on
+Curling | Paajc2Dupms ^ 31:25  - Cron shows curl -K to use curl with a config file, checking man page.
+Curling | Paajc2Dupms ^ 32:05  - Changing where curl saves to, in order to gain a root shell
+Curling | Paajc2Dupms ^ 33:45  - Showing another good file to read with the LFI (logs)
+Curling | Paajc2Dupms ^ 34:18  - Using pspy to show when processes start/end, which shows the curl command with no exploits
+
+Frolic | b6WGQSJu_zQ ^ 01:16  - Begin of Recon, until around 13 minutes gathering information to avoid rabbit holes
+Frolic | b6WGQSJu_zQ ^ 04:04  - Using nc/ncat to verify a port is open (-zv)
+Frolic | b6WGQSJu_zQ ^ 11:17  - Doing gobuster across man of the sub directories
+Frolic | b6WGQSJu_zQ ^ 13:03  - Examining /admin/ - Examine the HTML Source because login is not sending any data
+Frolic | b6WGQSJu_zQ ^ 14:09  - Discover some weird text encoding (Ook), how I went about decoding it
+Frolic | b6WGQSJu_zQ ^ 15:44  - Decoded to base64 with some spaces, clean up the base64 and are left with a zip file
+Frolic | b6WGQSJu_zQ ^ 19:19  - After cracking the zip, there is another text encoding challenge (BrainF*)
+Frolic | b6WGQSJu_zQ ^ 25:11  - With potential information, return to our long running recon for more information
+Frolic | b6WGQSJu_zQ ^ 28:49  - Discovering /playsms
+Frolic | b6WGQSJu_zQ ^ 32:00  - Reading ExploitDB Articles and then attempting to manuall exploit PlaySMS via uploading a CSV
+Frolic | b6WGQSJu_zQ ^ 34:34  - Getting a reverse shell
+Frolic | b6WGQSJu_zQ ^ 39:00  - Running LinEnum.sh
+Frolic | b6WGQSJu_zQ ^ 40:00  - Finding the SetUID file: rop
+Frolic | b6WGQSJu_zQ ^ 42:00  - Exploiting ROP Program with ret2libc
+Frolic | b6WGQSJu_zQ ^ 45:30  - Getting offsets of system, exit, /bin/sh from libc using ldd, readelf, and strings
+Frolic | b6WGQSJu_zQ ^ 50:34  - Running our exploit to get root shell
+Frolic | b6WGQSJu_zQ ^ 54:00  - Begin of recovering rop.c source code
+Frolic | b6WGQSJu_zQ ^ 56:41  - Recreating rop.c then compiling
+Frolic | b6WGQSJu_zQ ^ 59:44  - Copying the physical disk to our local box via SSH and DD
+Frolic | b6WGQSJu_zQ ^ 01:01:44  - Using PhotoRec to restore files and finding rop.c
+
+Sunday | xUrq29OTSuM ^ 00:48  - Begin of NMAP Discovery of Finger
+Sunday | xUrq29OTSuM ^ 03:36  - Enumerating Finger with Finger-User-Enum
+Sunday | xUrq29OTSuM ^ 05:00  - Nmap'ing all port quickly by lowering max-retries
+Sunday | xUrq29OTSuM ^ 08:40  - Adding an old Key Exchange Alogorithm to SSH
+Sunday | xUrq29OTSuM ^ 09:30  - Showing Hydra doesn't work, then using Patator
+Sunday | xUrq29OTSuM ^ 11:19  - Using find to count lines in all wordlist files
+Sunday | xUrq29OTSuM ^ 14:07  - Logged in with sunny:sunday
+Sunday | xUrq29OTSuM ^ 14:45  - Grabbing /backup/shadow.backup and cracking sha256crypt with Hashcat
+Sunday | xUrq29OTSuM ^ 16:46  - Just noticed this box is oooooold, try to privesc with sudo and ShellShock (Fail)
+Sunday | xUrq29OTSuM ^ 18:53  - Privesc by overwriting the /root/troll binary
+Sunday | xUrq29OTSuM ^ 23:30  - Using wget to exfil files quickly
+Sunday | xUrq29OTSuM ^ 24:50  - Viewing what wget --post-file looks like
+Sunday | xUrq29OTSuM ^ 25:50  - Creating a PHP Script to accept uploaded files
+Sunday | xUrq29OTSuM ^ 27:30  - Hardening our upload location to prevent executing PHP Files and/or reading what was uploaded
+Sunday | xUrq29OTSuM ^ 29:10  - Starting a php webserver with php -S (ip):(port) -t .
+Sunday | xUrq29OTSuM ^ 31:10  - Replacing the root password by changing the shadow file
+Sunday | xUrq29OTSuM ^ 33:30  - Demoing a way to create directories and upload files!
+
+Valentine | XYXNvemgJUo ^ 00:25  - Start of Recon, identifying end of life OS from nmap
+Valentine | XYXNvemgJUo ^ 03:20  - Running vulnerability scripts in nmap to discover heartbleed
+Valentine | XYXNvemgJUo ^ 04:16  - Going to the HTTP Page to see what it looks like
+Valentine | XYXNvemgJUo ^ 06:30  - Begin of Heartbleed - Grabbing Python Module
+Valentine | XYXNvemgJUo ^ 07:13  - Explaining Heartbleed -- XKCD ftw
+Valentine | XYXNvemgJUo ^ 10:15  - Explaining and running the exploit
+Valentine | XYXNvemgJUo ^ 13:40  - Exporting large chunks of memory by running in a loop
+Valentine | XYXNvemgJUo ^ 14:10  - Finding an encrypted SSH Key on the server
+Valentine | XYXNvemgJUo ^ 15:35  - Examining heartbleed output to discover SSH Key Password
+Valentine | XYXNvemgJUo ^ 17:45  - SSH as low priv user returned
+Valentine | XYXNvemgJUo ^ 21:55  - Finding a writable tmux socket to hijack session and find a root shell
+Valentine | XYXNvemgJUo ^ 23:50  - Alternative Privesc, DirtyC0w
+
+Nibbles | s_0GcRGv6Ds ^ 00:18  - Start of Recon
+Nibbles | s_0GcRGv6Ds ^ 01:15  - Finding hidden directory via Source
+Nibbles | s_0GcRGv6Ds ^ 02:15  - Downloading NibbleBlog to help us with finding version information
+Nibbles | s_0GcRGv6Ds ^ 03:59  - Identifying what vresion of NibblesBlog is running
+Nibbles | s_0GcRGv6Ds ^ 04:42  - Using SearchSploit to find vulnerabilities
+Nibbles | s_0GcRGv6Ds ^ 05:36  - Examining the Exploit
+Nibbles | s_0GcRGv6Ds ^ 06:08  - Explanation of exploit
+Nibbles | s_0GcRGv6Ds ^ 07:25  - Attempting to find valid usernames for NibblesBlog
+Nibbles | s_0GcRGv6Ds ^ 09:13  - Finding usernames in /content/private
+Nibbles | s_0GcRGv6Ds ^ 10:15  - Using Hydra to attempt to bruteforce
+Nibbles | s_0GcRGv6Ds ^ 14:08  - Oh crap. Hydra not good idea we're blocked...
+Nibbles | s_0GcRGv6Ds ^ 15:40  - Using SSH Proxies to hit nibbles from another box (Falafel)
+Nibbles | s_0GcRGv6Ds ^ 18:20  - Guessing the password
+Nibbles | s_0GcRGv6Ds ^ 20:10  - Logged in, lets attempt our exploit!
+Nibbles | s_0GcRGv6Ds ^ 22:46  - Code Execution achieved.  Lets get a reverse shell
+Nibbles | s_0GcRGv6Ds ^ 24:53  - Reverse shell returned.
+Nibbles | s_0GcRGv6Ds ^ 26:00  - Running sudo -l examine sudoer, then finding out why sudo took forever to return
+Nibbles | s_0GcRGv6Ds ^ 26:50  - Privesc via bad sudo rules
+Nibbles | s_0GcRGv6Ds ^ 32:10  - Alternative PrivEsc via RationalLove
+
+HackBack | B9nozi1PrhY ^ 00:01:30  - Begin of Recon, discovery of an HTTP API that has a few commands
+HackBack | B9nozi1PrhY ^ 00:06:00  - Using JQ to parse json output, use NetStat/Proc to find GoPhish
+HackBack | B9nozi1PrhY ^ 00:15:00  - Logging into GoPhish with default creds admin:gophish, finding DNS Names
+HackBack | B9nozi1PrhY ^ 00:21:15  - Discovery of Obfuscated JavaScript Deobfuscating it to find a hidden section
+HackBack | B9nozi1PrhY ^ 00:33:20  - Using wfuzz to bruteforce the password for webadmin.php
+HackBack | B9nozi1PrhY ^ 00:37:10  - Finding Code Execution in WebAdmin.php
+HackBack | B9nozi1PrhY ^ 00:44:00  - Creating a Python Script to give a pseudo shell to cat, ls, and upload
+HackBack | B9nozi1PrhY ^ 01:10:45  - Script finished, uploading reGeorg to create a proxy onto the box to bypass FW
+HackBack | B9nozi1PrhY ^ 01:16:20  - Using WinRM to access low privilege shell as Simple User
+HackBack | B9nozi1PrhY ^ 01:25:08  - Exploring /Util/Scripts to find a way to privesc to Hacker
+HackBack | B9nozi1PrhY ^ 01:30:29  - Exploring GetSystem functionality of meterpreter
+HackBack | B9nozi1PrhY ^ 01:37:20  - Starting to create program to steal a token from NamedPipe Clients
+HackBack | B9nozi1PrhY ^ 01:41:00  - Creating XOR Encrypter for payloads in C (There is a bug used instead of %)
+HackBack | B9nozi1PrhY ^ 01:48:20  - Using MSFVenom to generate raw payload to XOR then generate in C Format
+HackBack | B9nozi1PrhY ^ 01:51:38  - Creating the Stager to execute meterpreter, with some fun old AV Evasion tactics
+HackBack | B9nozi1PrhY ^ 02:03:45  - Found the issue, AND'd the payload instead of XOR'd in encrypt.c
+HackBack | B9nozi1PrhY ^ 02:08:30  - Creating the NamedPipe portion of code
+HackBack | B9nozi1PrhY ^ 02:28:30  - Creating the Pipe Impersonation part of the code
+HackBack | B9nozi1PrhY ^ 02:43:16  - Had some weird errors, adding the ability to enable token privileges
+HackBack | B9nozi1PrhY ^ 03:01:00  - Editing the /util/scripts/clean.ini to execute our NamedPipe Creation File
+HackBack | B9nozi1PrhY ^ 03:06:10  - Meterpreter Session Loaded.  Unfortunately it grab the impersonation token, more troubleshooting.
+HackBack | B9nozi1PrhY ^ 03:08:20  - Found the bug that caused us to not pass the token
+HackBack | B9nozi1PrhY ^ 03:09:45  - Re-Explaining all the code
+HackBack | B9nozi1PrhY ^ 03:14:57  - Meterpreter loaded, using incognito to grab our impersonation token for HACKER user
+HackBack | B9nozi1PrhY ^ 03:30:15  - Creating a bat file to run NetCat and upload into /util/scripts/spool which gets executed
+HackBack | B9nozi1PrhY ^ 03:35:50  - Start of looking at UserLogger Service, download it, un-UPX it
+HackBack | B9nozi1PrhY ^ 03:41:30  - Using ProcessMonitor to Dynamically Analyze the UserLogger binary (think of strace on windows)
+HackBack | B9nozi1PrhY ^ 03:49:40  - UserLogger lets us write binaries as SYSTEM with 777 permissions! Lets chain Diagnostic Hub Exploit
+HackBack | B9nozi1PrhY ^ 03:52:00  - Changing CMDLine in FakeDLL and valid_dir in Diaghub_exploit.cpp
+HackBack | B9nozi1PrhY ^ 04:18:05  - Changing from DEBUG mode to RELEASE mode for compiling.  Which fixes it.
+HackBack | B9nozi1PrhY ^ 04:25:15  - Root.txt is hidden behind alternate data streams.
+HackBack | B9nozi1PrhY ^ 04:27:39  - ALTERNATE PATH THAT LETS YOU SKIP NAMEDPIPE STUFF
+
+Sizzle | YVhlfUvsqYc ^ 01:04  - Begin of Recon
+Sizzle | YVhlfUvsqYc ^ 06:45  - Checking the web interfaces
+Sizzle | YVhlfUvsqYc ^ 07:20  - Discovering there is a Certificate Authority
+Sizzle | YVhlfUvsqYc ^ 08:50  - Taking a look at LDAP
+Sizzle | YVhlfUvsqYc ^ 10:55  - Examining SMB to find shares
+Sizzle | YVhlfUvsqYc ^ 12:00  - Searching the Operations and Department Shares
+Sizzle | YVhlfUvsqYc ^ 14:50  - Viewing permissions of a SMB Share with SMBCACLS
+Sizzle | YVhlfUvsqYc ^ 19:10  - Discovering a writeable share, dropping a SCF File to get a hash
+Sizzle | YVhlfUvsqYc ^ 22:04  - Using Hashcat to crack NetNTLMv2
+Sizzle | YVhlfUvsqYc ^ 24:40  - Using SMBMap to identify if this user has access to anything extra
+Sizzle | YVhlfUvsqYc ^ 25:40  - Discovering the CertSRV Directory 
+Sizzle | YVhlfUvsqYc ^ 28:00  - Discovering Powershell Remoting
+Sizzle | YVhlfUvsqYc ^ 30:00  - Error from WinRM (Need SSL)
+Sizzle | YVhlfUvsqYc ^ 31:00  - Using openSSL to generate a private key
+Sizzle | YVhlfUvsqYc ^ 31:52  - Going to /CertSRV to sign our certificate as Amanda
+Sizzle | YVhlfUvsqYc ^ 34:00  - Adding the SSL Authentication to WinrM
+Sizzle | YVhlfUvsqYc ^ 35:15  - Playing with LDAP Again (with the Amanda Creds)
+Sizzle | YVhlfUvsqYc ^ 37:50  - Shell on the box with WinRM as Amanda
+Sizzle | YVhlfUvsqYc ^ 38:15  - Running SharpHound
+Sizzle | YVhlfUvsqYc ^ 40:29  - Applocker is on the box, lets move it in the windows directory 
+Sizzle | YVhlfUvsqYc ^ 42:00  - Trying to get the bloodhound data off the box.
+Sizzle | YVhlfUvsqYc ^ 44:20  - Starting bloodhound 
+Sizzle | YVhlfUvsqYc ^ 45:27  - File didn't copy lets load up Covenant
+Sizzle | YVhlfUvsqYc ^ 49:30  - Covenant is up and running - Create a HTTP Listener
+Sizzle | YVhlfUvsqYc ^ 50:30  - Hosting a Launcher
+Sizzle | YVhlfUvsqYc ^ 52:30  - Getting a grunt
+Sizzle | YVhlfUvsqYc ^ 54:40  - Running SeatBelt
+Sizzle | YVhlfUvsqYc ^ 57:00  - Running SharpHound
+Sizzle | YVhlfUvsqYc ^ 01:01:18  - Running Bloodhound with all Collection Methods
+Sizzle | YVhlfUvsqYc ^ 01:05:15  - Discovering the MRLKY can DCSYNC
+Sizzle | YVhlfUvsqYc ^ 01:07:25  - Cannot kerberoast because of the Double Hop Problem, create token with MakeToken
+Sizzle | YVhlfUvsqYc ^ 01:12:30  - Cracked the Kerberoasted Hash, doing maketoken with mrlky and running DCSYnc
+Sizzle | YVhlfUvsqYc ^ 01:14:40  - Running WMIExec to get Administrator
+Sizzle | YVhlfUvsqYc ^ 01:22:00  - UNINTENDED Method 1: Amanda can write to Clean.bat
+Sizzle | YVhlfUvsqYc ^ 01:24:30  - UNINTENDED Method 2: Forensic artifacts leave MRKLY Hash in C:\windows\system32\file.txt
+
+Ethereal | Bhh5yPHjwUY ^ 00:50  - Begin of Recon, Downloading FTP and inspecting websites
+Ethereal | Bhh5yPHjwUY ^ 10:23  - Recap of what we saw on the recon. Limited pages that provide paths for exploitation, Server Hostname, and FTP
+Ethereal | Bhh5yPHjwUY ^ 11:30  - Sending MD5Hashes to VirusTotal to get file age
+Ethereal | Bhh5yPHjwUY ^ 15:45  - Downloading PasswordBox sourcecode to examine pbox.dat and discover a password manager.
+Ethereal | Bhh5yPHjwUY ^ 21:00  - Use Hydra to try to bruteforce ethereal.htb:8080, find blind command injection in page by running various ping commands but no way to view output.
+Ethereal | Bhh5yPHjwUY ^ 25:45  - Using nslookup to exfil the results of commands executed.
+Ethereal | Bhh5yPHjwUY ^ 33:15  - Creating Python Script to automate exploitaiton of this program.  Using Scapy, BeutifulSoup, and Requests.
+Ethereal | Bhh5yPHjwUY ^ 55:23  - Script working! Now to make the output a bit more pretty using tokens to sepereate spaces
+Ethereal | Bhh5yPHjwUY ^ 01:02:00  - Running commands to get interesting information about the page
+Ethereal | Bhh5yPHjwUY ^ 01:05:20  - Enumerating the Firewall via netsh
+Ethereal | Bhh5yPHjwUY ^ 01:09:10  - Using OpenSSL to get a reverse shell on windows
+Ethereal | Bhh5yPHjwUY ^ 01:17:25  - Reverse shell returned. 
+Ethereal | Bhh5yPHjwUY ^ 01:19:40  - Creating a malicious shortcut via powershell
+Ethereal | Bhh5yPHjwUY ^ 01:22:40  - Using OpenSSL To transfer files
+Ethereal | Bhh5yPHjwUY ^ 01:28:00  - Getting reverse shell as Alan, then using OpenSSL to convert files to base64 to make exfil easier
+Ethereal | Bhh5yPHjwUY ^ 01:32:30  - Creating and signing a malicious MSI with WiX.
+Ethereal | Bhh5yPHjwUY ^ 01:48:15  - First attempt failed, creating a less complicated MSI File by just having it execute our shortcut
+Ethereal | Bhh5yPHjwUY ^ 01:53:00  - Getting reverse shell as SYSTEM - Cannot read EFS Files
+Ethereal | Bhh5yPHjwUY ^ 01:55:20  - Having our MSI not run as SYSTEM by changing impersonation in WiX
+Ethereal | Bhh5yPHjwUY ^ 01:58:30  - Shell as Rupal returned.
+
+Fighter | CW4mI5BkP9E ^ 00:00:55  - Begin of Recon Nmap, Identify OS Version, Check out Page to find hostname is streetfighterclub.htb.
+Fighter | CW4mI5BkP9E ^ 00:02:53  - Using GoBuster and WFUZZ to identify: members.streetfighterclub.htb and members.streetfighterclub.htb/old/login.asp
+Fighter | CW4mI5BkP9E ^ 00:08:45  - Begin poking around the members.streetfighterclub.htb page - Find SQL Injection
+Fighter | CW4mI5BkP9E ^ 00:12:00  - Boolean injection to force the query to return "valid login".  Play with logins to find it always returns to "Service not available"
+Fighter | CW4mI5BkP9E ^ 00:14:25  - Testing Union Injections for easy exfil of data
+Fighter | CW4mI5BkP9E ^ 00:15:50  - Examining Stacked Queries to make running our own SQL Statements easy.  Then bunch of injections to run Xp_CMDShell and get output.
+Fighter | CW4mI5BkP9E ^ 00:19:30  - Some valuable recon/information in debugging our SQL queries. Noticing small things really helps.
+Fighter | CW4mI5BkP9E ^ 00:34:40  - Start of making a program to give us a command shell.
+Fighter | CW4mI5BkP9E ^ 01:09:40  - Explaining the program we just created.  Then fix a small bug.
+Fighter | CW4mI5BkP9E ^ 01:12:45  - Begin of popping the box the intended way.  Finding powershell is blocked but specifying the 32-bit version is not
+Fighter | CW4mI5BkP9E ^ 01:17:10  - Return of 32-bit PowerShell... Identifying we can append data to c:\users\decoder\clean.bat -- That's odd lets try to place a shell in it to see if it is being ran.
+Fighter | CW4mI5BkP9E ^ 01:32:40  - Found the issue! Powershell is encoding in UTF-16 which is confusing cmd prompt.  64-bit Shell as Decoder returned!
+Fighter | CW4mI5BkP9E ^ 01:35:30  - Exploiting Capcom Driver to gain root shell, this post is super helpful: 
+Fighter | CW4mI5BkP9E ^ 01:42:18  - Escalating to System via Capcom Exploit, then copying root.exe and checkdll.dll to our box so we can reverse it.
+Fighter | CW4mI5BkP9E ^ 01:47:25  - Looking at the binaries in Ida64 Free
+Fighter | CW4mI5BkP9E ^ 01:51:14  - Explaining what's happening and then writing a script to bypass the password check.
+Fighter | CW4mI5BkP9E ^ 01:55:35  - Start of unintended way (Juicy Potato)
+Fighter | CW4mI5BkP9E ^ 01:58:10  - Finding a world write-able spot under System32 for AppLocker Bypass, thanks @Bufferov3rride -- Then uploading JuicyPotato
+Fighter | CW4mI5BkP9E ^ 02:06:10  - Start of modifying JuicyPotato to accept uppercase arguments.
+Fighter | CW4mI5BkP9E ^ 02:10:14  - Finding a vulnerable CLSID to get JuicyPotato working
+Fighter | CW4mI5BkP9E ^ 02:28:25  - Running JuicyPotato with a vulnerable CLSID to gain a SYSTEM Shell, then create our own DLL to bypass the check.
+
+Rabbit | 5nnJq_IWJog ^ 01:40  - Begin of Recon (nmap, setting hostname, dns, nmap, ipv6)
+Rabbit | 5nnJq_IWJog ^ 05:45  - Checking websites (80,443,8080)
+Rabbit | 5nnJq_IWJog ^ 08:10  - Attempting to enumerate users of OWA-2010 (Fails)
+Rabbit | 5nnJq_IWJog ^ 14:10  - Checking out Joomla Version (/administrator/manifets/files/joomla.xml)
+Rabbit | 5nnJq_IWJog ^ 15:50  - Using SearchSploit with (Complain Management System)
+Rabbit | 5nnJq_IWJog ^ 19:38  - Register Account, Login, Verify/Play with SQL Union Injection
+Rabbit | 5nnJq_IWJog ^ 23:30  - Enumerating SQL Injection with SQLMap
+Rabbit | 5nnJq_IWJog ^ 29:18  - Going back to MSF/OWA_LOGIN and testing credentials.
+Rabbit | 5nnJq_IWJog ^ 32:15  - Logging into OWA and reading email to find out OpenOFfice, Defender, and Powershell Constain Mode is installed
+Rabbit | 5nnJq_IWJog ^ 36:20  - Creating a malicious OpenOffice macro with LibreOffice + Downloading an Executing a file without Powershell (certutil ftw)
+Rabbit | 5nnJq_IWJog ^ 40:18  - Compiling Merlin (like MSF/Empire)
+Rabbit | 5nnJq_IWJog ^ 48:40  - Sending the email and waiting.
+Rabbit | 5nnJq_IWJog ^ 50:20  - Merlin call back, Switch to Powershell Nishang to get a interactive shell
+Rabbit | 5nnJq_IWJog ^ 54:30  - Running PowerUp to find we are an Administrator
+Rabbit | 5nnJq_IWJog ^ 56:56  - Running JAWS to do some more Windows Enumeration
+Rabbit | 5nnJq_IWJog ^ 01:03:04  - Found an odd scheduled task "System Maintenance"
+Rabbit | 5nnJq_IWJog ^ 01:06:03  - Attempting to write a php shell to HTTPD
+Rabbit | 5nnJq_IWJog ^ 01:12:30  - Frusterated creating a PHP Script... Switch to the SCHTask Privesc
+Rabbit | 5nnJq_IWJog ^ 01:18:20  - Uhh. Testing if echo is somehow breaking .bat/.php files
+Rabbit | 5nnJq_IWJog ^ 01:21:50  - Going back to test PHP to verify it just didn't like echo.
+
+Minion | IbVmpr6IFQU ^ 00:40  - Begin of Recon
+Minion | IbVmpr6IFQU ^ 04:00  - Start of GoBuster
+Minion | IbVmpr6IFQU ^ 05:40  - Finding a SSRF
+Minion | IbVmpr6IFQU ^ 09:00  - Passing arguments to cmd.aspx via SSRF
+Minion | IbVmpr6IFQU ^ 12:05  - Firewall Enumeration 
+Minion | IbVmpr6IFQU ^ 16:35  - Begin of setting up ICMP Reverse Shell
+Minion | IbVmpr6IFQU ^ 22:25  - Begin of sending ICMP Rev Shell to Server (Warning: Lots of Fail)
+Minion | IbVmpr6IFQU ^ 46:31  - Return of ICMP Rev Shell
+Minion | IbVmpr6IFQU ^ 52:20  - PrivEsc form IIS to Decoder
+Minion | IbVmpr6IFQU ^ 01:11:15  - Unzipping via Powershell
+Minion | IbVmpr6IFQU ^ 01:14:05  - Finding Administrator password hidden in NTFS File Stream
+Minion | IbVmpr6IFQU ^ 01:16:30  - Using Net Use to mount C: As Administrator
+Minion | IbVmpr6IFQU ^ 01:19:30  - Using IDA to analyze root.exe and grab the flag (Misses last character of hash)
+Minion | IbVmpr6IFQU ^ 01:24:15  - Using Invoke Command to execute root.exe as admin (Lots of Fail)
+Minion | IbVmpr6IFQU ^ 01:32:52  - Opening up the Firewall then just using RDP to gain access
+
+Helpline | Vs3oSDlzxwA ^ 00:35  - Begin of Recon
+Helpline | Vs3oSDlzxwA ^ 01:42  - Checking the MangeEngine Page
+Helpline | Vs3oSDlzxwA ^ 02:23  - Running Searchsploit to see potential exploits
+Helpline | Vs3oSDlzxwA ^ 03:40  - Enumerating valid usernames via AjaxDomainServlet
+Helpline | Vs3oSDlzxwA ^ 05:40  - Logging in with guest:guest
+Helpline | Vs3oSDlzxwA ^ 07:10  - Running the privilege escalation script to get Administrator access
+Helpline | Vs3oSDlzxwA ^ 08:00  - Searching for information on this exploit
+Helpline | Vs3oSDlzxwA ^ 08:20  - Blog post missing... Searching Archive.org and Google Cache for a mirror
+Helpline | Vs3oSDlzxwA ^ 10:00  - Making curl go through burp to step through the exploit in BurpSuite
+Helpline | Vs3oSDlzxwA ^ 18:00  - Copying the admin cookies into FireFox 
+Helpline | Vs3oSDlzxwA ^ 19:25  - Going to Admin then Custom Triggers to execute code on the server
+Helpline | Vs3oSDlzxwA ^ 21:50  - Getting a reverse shell via Nishang
+Helpline | Vs3oSDlzxwA ^ 22:30  - Using iconv to create UTF-16LE encoded Base64 for use with "-EncodedCommand" option
+Helpline | Vs3oSDlzxwA ^ 25:45  - Reverse Shell as System returned, but EFS Protects the flags
+Helpline | Vs3oSDlzxwA ^ 26:45  - Finding interesting files with get-childitem -recurse . | select FullName
+Helpline | Vs3oSDlzxwA ^ 28:50  - Copying mimikatz over to the box to steal NTLM Hashes
+Helpline | Vs3oSDlzxwA ^ 31:00  - Defender blocked us.  Disable defender with Set-MpPreference -DisableRealtimeMonitoring $true
+Helpline | Vs3oSDlzxwA ^ 32:50  - Using hashes.org to view password of Zachary, checking his groups to see he can view event logs
+Helpline | Vs3oSDlzxwA ^ 33:30  - Doing some powershell goodness to search event logs!
+Helpline | Vs3oSDlzxwA ^ 40:50  - Extracting ProcessCommandLine from the logs (Tolu Password), its a shame Nishang screws with how some commands output to stdout.  This could of been a lot cleaner.
+Helpline | Vs3oSDlzxwA ^ 43:00  - Using Mimikatz to decrypt the EFS Protected file with Tolu's password
+Helpline | Vs3oSDlzxwA ^ 57:25  - Need to read Leo's admin-pass.xml, load meterpreter and migrate into his namespace
+Helpline | Vs3oSDlzxwA ^ 01:00:20  - admin-pass is the output of SecureString, lets decrypt it to get the admin password
+Helpline | Vs3oSDlzxwA ^ 01:02:20  - Using Invoke-Command with the credential object created to execute commands as administrator
+Helpline | Vs3oSDlzxwA ^ 01:03:50  - Cannot read root.txt because of "Double Hop Problem" (how PowerShell Authenticates), using CredSSP Authentication to fix this.
+
+Conceal | 1ae64CdwLHE ^ 01:15  - Begin of recon
+Conceal | 1ae64CdwLHE ^ 02:54  - Checking SNMP with snmpwalk
+Conceal | 1ae64CdwLHE ^ 03:29  - Discovering a Hashed PSK (MD5) in SNMPWalk, searching the internet for a decrypted value
+Conceal | 1ae64CdwLHE ^ 04:18  - Getting more SNMP Information with snmp-check
+Conceal | 1ae64CdwLHE ^ 07:35  - Going over UDP Ports discovered by snmp-check
+Conceal | 1ae64CdwLHE ^ 10:55  - Running ike-scan
+Conceal | 1ae64CdwLHE ^ 11:55  - Examining ike-scan results to build a IPSEC Config
+Conceal | 1ae64CdwLHE ^ 13:50  - Installing Strongswan (IPSEC/VPN Program)
+Conceal | 1ae64CdwLHE ^ 14:19  - Adding the PSK Found earlier to /etc/ipsec.secrets
+Conceal | 1ae64CdwLHE ^ 15:30  - Begin configuring /etc/ipsec.conf
+Conceal | 1ae64CdwLHE ^ 20:08  - Starting and debugging ipsec
+Conceal | 1ae64CdwLHE ^ 21:55  - Explaining why we add TCP to strongswan config
+Conceal | 1ae64CdwLHE ^ 24:00  - Starting IPSEC, then using NMAP through IPSEC.
+Conceal | 1ae64CdwLHE ^ 25:55  - Enumerating SMB Quickly (SMBMap/cme)
+Conceal | 1ae64CdwLHE ^ 26:50  - Enumerating FTP, discovering we can upload files
+Conceal | 1ae64CdwLHE ^ 27:20  - Checking HTTP, hunting for our uploaded file.  Then uploading files that may lead to code execution
+Conceal | 1ae64CdwLHE ^ 29:44  - Grabbing an ASP Webshell from Github/tennc/webshell
+Conceal | 1ae64CdwLHE ^ 32:08  - Webshell has been uploaded
+Conceal | 1ae64CdwLHE ^ 32:30  - Explaining a weird MTU Issue you *may* run into due to the nested VPN's
+Conceal | 1ae64CdwLHE ^ 35:40  - Back to playing with the web shell, getting a reverse shell with Nishang
+Conceal | 1ae64CdwLHE ^ 38:03  - Explaining RLWRAP
+Conceal | 1ae64CdwLHE ^ 38:40  - whoami /all shows SEImpersonation, so we run JuicyPotato to privesc
+Conceal | 1ae64CdwLHE ^ 44:35  - JuicyPotato fails with the default CLSID, changing it up to get it working.
+Conceal | 1ae64CdwLHE ^ 46:30  - Doing the box again with Windows
+Conceal | 1ae64CdwLHE ^ 47:15  - Setting up the IPSEC Connection through Windows Firewall
+Conceal | 1ae64CdwLHE ^ 50:00  - Installing a DotNet C2 (The Covenant)
+Conceal | 1ae64CdwLHE ^ 54:20  - Covenant/Elite open, starting a Listener then a Powershell Launcher
+Conceal | 1ae64CdwLHE ^ 01:00:10  - Grunt activated. Running Seatbelt, then compiling Watson and reflectively running it
+Conceal | 1ae64CdwLHE ^ 01:05:00  - Grabbing the Sandbox Escaper ALPC Privesc
+Conceal | 1ae64CdwLHE ^ 01:08:03  - Being lazy and compiling a CPP Rev Shell in Linux because it wasn't installed on Windows
+Conceal | 1ae64CdwLHE ^ 01:25:35  - Box is reverted, trying the ALPC Exploit again
+
+Reel | ob9SgtFm6_g ^ 00:42  - Begin of Nmap
+Reel | ob9SgtFm6_g ^ 04:23  - Examining the anonymous FTP Directory and discovering email addresses in Meta Data
+Reel | ob9SgtFm6_g ^ 06:50  - Manually enumerating valid email addresses via SMTP
+Reel | ob9SgtFm6_g ^ 10:50  - Creating a "Canary Document" in Word to ping back to our server when a word document is opened
+Reel | ob9SgtFm6_g ^ 13:14  - Generating a malicious RTF Document (CVE-2017-0199)
+Reel | ob9SgtFm6_g ^ 26:28  - Shell Returned.  Enumerating the AppLocker Policy
+Reel | ob9SgtFm6_g ^ 32:53  - Decrypting a PowerShell Secure String to reveal Tom's Password, Testing access with SSH
+Reel | ob9SgtFm6_g ^ 35:22  - Lets forget we had Tom and run Bloodhound from Nico!
+Reel | ob9SgtFm6_g ^ 40:30  - First time opening BloodHound on this box.
+Reel | ob9SgtFm6_g ^ 49:45  - Lets update Bloodhound, looks like some data is missing and there were errors when running it
+Reel | ob9SgtFm6_g ^ 53:25  - Finding a path from Nico to BACKUP_ADMINS and explaining AD Security Objects (GenericWrite, WriteOwner,etc)
+Reel | ob9SgtFm6_g ^ 58:23  - Taking Ownership over Herman then allowing Nico to change his password and examining bloodhound
+Reel | ob9SgtFm6_g ^ 01:01:40  - Adding Herman to the Backup_Admins group
+Reel | ob9SgtFm6_g ^ 01:04:30  - Finding the Administrator Password within backup scripts.
+Reel | ob9SgtFm6_g ^ 01:07:00  - Attempting to run Watson (ends up not working)
+Reel | ob9SgtFm6_g ^ 01:23:22  - Using Metasploit to do the box
+Reel | ob9SgtFm6_g ^ 01:25:42  - Since Watson failed, lets just look at last patch times on the box to get an idea whats vulnerable.
+Reel | ob9SgtFm6_g ^ 01:27:19  - Attempting to do the ALPC Exploit within Metasploit
+Reel | ob9SgtFm6_g ^ 01:31:00  - That failed - Lets just prove the box is vulnerable, by overwriting a DLL
+
+DropZone | QzP5nUEhZeg ^ 01:00  - Start of Recon
+DropZone | QzP5nUEhZeg ^ 02:15  - TFTP Enumeration - Identifying configuration and OS information
+DropZone | QzP5nUEhZeg ^ 06:32  - Finding a path to code execution
+DropZone | QzP5nUEhZeg ^ 07:17  - Examining PSExec Metasploit Module
+DropZone | QzP5nUEhZeg ^ 08:55  - Using irb within metasploit to print a powershell payload
+DropZone | QzP5nUEhZeg ^ 12:30  - Examining PsExec()
+DropZone | QzP5nUEhZeg ^ 15:40  - Examining native_upload
+DropZone | QzP5nUEhZeg ^ 18:10  - Examining mof_upload
+DropZone | QzP5nUEhZeg ^ 20:34  - Using irb within metasploit to print the MOF File
+DropZone | QzP5nUEhZeg ^ 22:35  - Quick explanation of MOF Files
+DropZone | QzP5nUEhZeg ^ 25:05  - Modifying the MOF to run NetCat
+DropZone | QzP5nUEhZeg ^ 27:30  - Uploading nc to the target
+DropZone | QzP5nUEhZeg ^ 28:50  - Uploading the malicious MOF File and getting a shell!
+DropZone | QzP5nUEhZeg ^ 29:50  - Using Streams to view Hidden text within ADS
+DropZone | QzP5nUEhZeg ^ 33:08  - Start of Bonus Content, finging a TFTP Exploit that uses MOF
+DropZone | QzP5nUEhZeg ^ 35:05  - Attempting to use distrinct_ftp_traversal against DropZone
+DropZone | QzP5nUEhZeg ^ 36:30  - Installing pry.byebug in order to allow us to drop to a debug console and step through metasploit modules
+DropZone | QzP5nUEhZeg ^ 40:50  - Testing out pry.byebug
+DropZone | QzP5nUEhZeg ^ 42:30  - Finding why the exploit module didn't work
+DropZone | QzP5nUEhZeg ^ 44:50  - Module still doesn't work, TFTP Stopping mid transfer
+DropZone | QzP5nUEhZeg ^ 49:30  - Whoops, changed the delay on the wrong timeout 
+DropZone | QzP5nUEhZeg ^ 51:00  - Meterpreter Shell returned, showing off the extended API and some WMI Commands.
+
+Tally | l-wzBhc9wFc ^ 01:45  - Start of NMAP
+Tally | l-wzBhc9wFc ^ 04:17  - Begin of Sharepoint/GoBuster (Special Sharepoint List)
+Tally | l-wzBhc9wFc ^ 06:32  - Manually browsing to Sitecontent (Get FTP Creds)
+Tally | l-wzBhc9wFc ^ 10:18  - Mirror FTP + Pillage for information, Find keypass in Tim's directory and crack it.
+Tally | l-wzBhc9wFc ^ 18:22  - Mounting/Mirroring ACCT Share with found Creds and finding hardcoded SQL Creds
+Tally | l-wzBhc9wFc ^ 25:24  - Logging into MSSQL with SQSH, enabling xp_cmdshell and getting a Nishang Rev Shell
+Tally | l-wzBhc9wFc ^ 34:35  - Finding SPBestWarmUp.ps1 Scheduled Task that runs as Administrator
+Tally | l-wzBhc9wFc ^ 40:00  - Begin of RottenPotato without MSF (Decoder's Lonely Potato)
+Tally | l-wzBhc9wFc ^ 45:56  - Using Ebowla Encoding for AV Evasion to create an exe for use with Lonely Potato
+Tally | l-wzBhc9wFc ^ 58:00  - Lonely Potato Running to return a Admin Shell
+Tally | l-wzBhc9wFc ^ 01:04:22  - Finding CVE-2017-0213
+Tally | l-wzBhc9wFc ^ 01:08:33  - Installing Visual Studio 2015 Compiling the exploit
+Tally | l-wzBhc9wFc ^ 01:15:50  - Exploit Compiled, trying to get it to work....
+Tally | l-wzBhc9wFc ^ 01:18:11  - Just noticed the SPBestWarmUp.ps1 executed and gave us a shell!
+Tally | l-wzBhc9wFc ^ 01:28:37  - Found the issue, exploit seems to require interactive process
+Tally | l-wzBhc9wFc ^ 01:30:00  - Begin of Firefox Exploit Cluster (Not recommended to watch lol).  It's a second unreliable way to get user
+
+Mantis | VVZZgqIyD0Q ^ 01:20  - Start of nmap
+Mantis | VVZZgqIyD0Q ^ 03:22  - Poking at a rabbit hole (8080)
+Mantis | VVZZgqIyD0Q ^ 08:08  - GoBuster to find hidden directory
+Mantis | VVZZgqIyD0Q ^ 09:50  - Finding SQL Creds in hidden directory
+Mantis | VVZZgqIyD0Q ^ 13:40  - Using dbeaver to enumerate database
+Mantis | VVZZgqIyD0Q ^ 16:50  - Impacket-PSExec to Admin
+Mantis | VVZZgqIyD0Q ^ 19:00  - Proving James is not an Admin
+Mantis | VVZZgqIyD0Q ^ 20:35  - Using MSF to Enable Remote Desktop to do Incident Response
+Mantis | VVZZgqIyD0Q ^ 27:00  - Start of Remote Desktop Looking at Event Log + Active Directory
+Mantis | VVZZgqIyD0Q ^ 31:00  - Installing Sysmon to get better logs
+Mantis | VVZZgqIyD0Q ^ 36:15  - Looking at Sysmon Logs
+Mantis | VVZZgqIyD0Q ^ 42:20  - Proving the PrivEsc was due to Impacket-PSExec not cleaning up
+Mantis | VVZZgqIyD0Q ^ 48:00  - Using Forensics to get Service Creation Date
+Mantis | VVZZgqIyD0Q ^ 53:30  - Finding a HTB User creating a Git Issue to Impacket (LOL)
+Mantis | VVZZgqIyD0Q ^ 55:10  - Intended Route - Forging a Kerberos Ticket MS14-068
+
+Bastard | lP-E5vmZNC0 ^ 
+
+Arkham | krC5j1Ab44I ^ 00:55  - Begin of Recon 
+Arkham | krC5j1Ab44I ^ 02:20  - Checking the WebPages
+Arkham | krC5j1Ab44I ^ 03:50  - Examining /userSubscribe.faces, to discover potential deserialization
+Arkham | krC5j1Ab44I ^ 05:00  - Exploring javax.faces.ViewState
+Arkham | krC5j1Ab44I ^ 05:50  - Googling around to see what an unencrypted serialized object should look like
+Arkham | krC5j1Ab44I ^ 07:15  - Checking out SMB to discover an openshare
+Arkham | krC5j1Ab44I ^ 09:00  - Downloading appserver.zip from batshare via smbclient
+Arkham | krC5j1Ab44I ^ 11:00  - Cracking a luks encrypted file with dd and hashcat
+Arkham | krC5j1Ab44I ^ 14:00  - Luks cracked, mounting the disk with luksOpen
+Arkham | krC5j1Ab44I ^ 16:20  - Discovery of the secret used to encrypt the java object
+Arkham | krC5j1Ab44I ^ 18:10  - Creating a python script to decrypt the ViewState to verify we have correct crypto settings
+Arkham | krC5j1Ab44I ^ 23:10  - Script completed, lets test the decryption!
+Arkham | krC5j1Ab44I ^ 24:15  - Downloading ysoserial to create a deserialization CommonCollections gadget
+Arkham | krC5j1Ab44I ^ 26:00  - Creating a python script to exploit the deserialization vuln
+Arkham | krC5j1Ab44I ^ 31:00  - Script complete!  We got a ping, testing the MyFaces serialization objects (did not work)
+Arkham | krC5j1Ab44I ^ 33:00  - Modifying the script to run commands other than what ySoSerial provided
+Arkham | krC5j1Ab44I ^ 41:10  - Script updates finished, trying to get a reverse shell via nishang (did not work)
+Arkham | krC5j1Ab44I ^ 42:40  - Trying Invoke-WebRequest, because Net.WebClient did not work.  (testing for constrained mode)
+Arkham | krC5j1Ab44I ^ 45:00  - Downloading netcat to upload to the box
+Arkham | krC5j1Ab44I ^ 46:00  - Netcat returned a powershell reverse shell 
+Arkham | krC5j1Ab44I ^ 47:20  - Discovering Backup.zip, downloading, using readpst to convert it to a plaintext mbox file
+Arkham | krC5j1Ab44I ^ 50:00  - Using evolution to view mbox file and find Batman's password
+Arkham | krC5j1Ab44I ^ 52:45  - Using Powershell's Invoke-Command to execute commands as Batman (like runas)
+Arkham | krC5j1Ab44I ^ 55:40  - Reverse shell as batman returned!  Running a few commands to find out he is localadmin but needs to break out of UAC
+Arkham | krC5j1Ab44I ^ 58:10  - Unintended: Using net use to mount c$ and view the flag
+Arkham | krC5j1Ab44I ^ 59:30  - Checking github hfiref0x/UACME to find a UAC Bypass.  Chose one by a fellow HTB Member
+Arkham | krC5j1Ab44I ^ 01:02:10  - Using GreatSCT/MSBuild to launch Meterpreter
+Arkham | krC5j1Ab44I ^ 01:02:45  - While GreatSCT installs, create a DLL to return a reverse shell
+Arkham | krC5j1Ab44I ^ 01:06:00  - copying the DLL into c:\users\batman\appdata\local\microsoft\windowsapps
+Arkham | krC5j1Ab44I ^ 01:08:30  - Using GreatSCT to generate payloads
+Arkham | krC5j1Ab44I ^ 01:11:50  - Getting a Meterpreter Session then migrating into an interactive process
+Arkham | krC5j1Ab44I ^ 01:17:45  - Running SystemPropertiesAdvanced.exe, which elevates and executes our dll
+
+Querier | d7ACjty4m7U ^ 00:50  - Begin of Reocn
+Querier | d7ACjty4m7U ^ 03:30  - Using SMBMap to enumerate fileshares
+Querier | d7ACjty4m7U ^ 05:45  - Discovering an Excel Macro File
+Querier | d7ACjty4m7U ^ 09:25  - Using olevba to extract macro from the document to discover credentials
+Querier | d7ACjty4m7U ^ 11:15  - Using MSSQLClient.py from Impacket to log into the SQL Server
+Querier | d7ACjty4m7U ^ 12:15  - Doing the SQL CMD:XP_DIRTREE to read a file off a UNC Share to steal the hash with Responder
+Querier | d7ACjty4m7U ^ 13:15  - Cracking the NetNTLMv2 Hash
+Querier | d7ACjty4m7U ^ 14:11  - Explaining the Responder Database file to view previously captured hashes
+Querier | d7ACjty4m7U ^ 16:30  - Logging into the SQL Server with the cracked account, then doing XP_CMDSHELL to run commands
+Querier | d7ACjty4m7U ^ 17:50  - Getting a Nishang Reverse Shell
+Querier | d7ACjty4m7U ^ 22:00  - Running PowerUp, doing Invoke-ServiceAbuse and discovering creds in an old Group Policy Object
+Querier | d7ACjty4m7U ^ 26:30  - Going back to the password disclosed via Group Policy and discovering they are an administrator
+Querier | d7ACjty4m7U ^ 28:00  - Explaining how the PowerUp module decrypted a password out of Group Policy
+Querier | d7ACjty4m7U ^ 29:10  - Getting VIM to highlight the syntax of Powershell
+Querier | d7ACjty4m7U ^ 34:50  - Rooting the box with Invoke-ServiceAbuse
+
+Giddy | J2unwbMQvUo ^ 01:00  - Begin of intro
+Giddy | J2unwbMQvUo ^ 02:17  - Examining port 80 and 443
+Giddy | J2unwbMQvUo ^ 03:15  - Using gobuster to discover directories
+Giddy | J2unwbMQvUo ^ 04:20  - /remote discovered, nothing to do here
+Giddy | J2unwbMQvUo ^ 05:25  - /mvc discovered
+Giddy | J2unwbMQvUo ^ 06:15  - SQL Injection everywhere
+Giddy | J2unwbMQvUo ^ 09:15  - Attempt to perform union injection on search
+Giddy | J2unwbMQvUo ^ 10:15  - Having trouble, send to SQLMap look at other places in the applicaiton
+Giddy | J2unwbMQvUo ^ 12:20  - SQLMap having trouble with search SQL, change to ITEM
+Giddy | J2unwbMQvUo ^ 16:50  - Attempting XP_CMDSHELL (Fails)
+Giddy | J2unwbMQvUo ^ 19:50  - Using XP_DIRTREE to read files off SMBShare
+Giddy | J2unwbMQvUo ^ 23:30  - Use Responder to steal the authentication attempt of XP_DIRTREE
+Giddy | J2unwbMQvUo ^ 25:00  - Cracking the NetNTLMv2 Hash
+Giddy | J2unwbMQvUo ^ 26:00  - Logging into /remote with cracked credentials
+Giddy | J2unwbMQvUo ^ 26:40  - Discovering unifi video is installed, this has a known privesc
+Giddy | J2unwbMQvUo ^ 29:30  - Attempting to use Meterpreter. (Fail: AV)
+Giddy | J2unwbMQvUo ^ 32:15  - Grabbing and compiling a DotNet Reverse Shell
+Giddy | J2unwbMQvUo ^ 35:15  - Actually compiling the reverse shell
+Giddy | J2unwbMQvUo ^ 38:58  - Using xcopy to copy our reverse shell to the victim
+Giddy | J2unwbMQvUo ^ 39:00  - Attempting to find Unifi Service name so we can restart it. End up searching registry due to permission issues.
+Giddy | J2unwbMQvUo ^ 42:10  - Restarting Unifi Service so it executes TaskKill.exe
+Giddy | J2unwbMQvUo ^ 44:25  - Start of Bypassing AppLocker Bypass by copying executable into a directory under Windows
+Giddy | J2unwbMQvUo ^ 45:50  - Escaping powershell constrained mode with PSBypassCLM
+
+SecNotes | PJXb2pK8K84 ^ 01:05  - Begin of recon
+SecNotes | PJXb2pK8K84 ^ 02:45  - Checking out the website
+SecNotes | PJXb2pK8K84 ^ 03:50  - Using wfuzz to enumerate usernames
+SecNotes | PJXb2pK8K84 ^ 05:45  - Logging in with an account we created
+SecNotes | PJXb2pK8K84 ^ 07:23  - Checking out Change Password and noticing it does this poorly
+SecNotes | PJXb2pK8K84 ^ 09:25  - Using the contact form, to see if tyler will follow links
+SecNotes | PJXb2pK8K84 ^ 14:14  - Changing Tyler's password by sending him to the ChangePassword Page
+SecNotes | PJXb2pK8K84 ^ 15:00  - Logged in and find SMB Share with credentials.
+SecNotes | PJXb2pK8K84 ^ 16:15  - Found a webshare but not sure the directory it executes from. Begin hunting for a different webserver.
+SecNotes | PJXb2pK8K84 ^ 17:48  - Port 8808 found via nmap'ing all ports.  Creating a php script to gain code execution
+SecNotes | PJXb2pK8K84 ^ 19:15  - Downloading netcat for windows to use as a Reverse Shell
+SecNotes | PJXb2pK8K84 ^ 21:14  - Playing with Bash on Windows
+SecNotes | PJXb2pK8K84 ^ 22:35  - Finding the administrator password in ~/.bash_history
+SecNotes | PJXb2pK8K84 ^ 23:45  - Alternate way to find the .bash_history file
+SecNotes | PJXb2pK8K84 ^ 25:36  - Unintended way to bypass the CSRF. SQL Injection + bad Static Code analysis
+
+Silo | 2c7SzNo9uoA ^ 01:30  - Begin of recon
+Silo | 2c7SzNo9uoA ^ 03:15  - Begin of installing SQLPlus and ODAT (Oracle Database Attack Tool)
+Silo | 2c7SzNo9uoA ^ 08:45  - Bruteforcing the SID with ODAT
+Silo | 2c7SzNo9uoA ^ 10:15  - Holy crap, this is slow lets also do it with Metasploit
+Silo | 2c7SzNo9uoA ^ 13:00  - Bruteforcing valid logins with ODAT
+Silo | 2c7SzNo9uoA ^ 16:00  - Credentials returned, logging into Oracle with SQLPlus as SysDBA
+Silo | 2c7SzNo9uoA ^ 19:00  - Reading files from disk via Oracle
+Silo | 2c7SzNo9uoA ^ 23:20  - Writing files to disk from Oracle.  Testing it in WebRoot Directory
+Silo | 2c7SzNo9uoA ^ 25:52  - File Written, lets write an ASPX WebShell to the Server
+Silo | 2c7SzNo9uoA ^ 29:10  - WebShell Working!  Lets get a Reverse Shell
+Silo | 2c7SzNo9uoA ^ 31:28  - Reverse Shell Returned
+Silo | 2c7SzNo9uoA ^ 32:24  - Finding a DropBox link, but password doesn't display well.
+Silo | 2c7SzNo9uoA ^ 33:55  - Attempting to copy file via SMB to view UTF8 Text
+Silo | 2c7SzNo9uoA ^ 35:18  - That didn't work, lets transfer the file by encoding it in Base64.
+Silo | 2c7SzNo9uoA ^ 36:55  - Got the password lets download the dump!
+Silo | 2c7SzNo9uoA ^ 39:10  - Begin of Volatility
+Silo | 2c7SzNo9uoA ^ 45:20  - Running the HashDump plugin from volatilty then PassTheHash with Administrator's NTLM!
+Silo | 2c7SzNo9uoA ^ 47:35  - Begin of unintended way, examining odat and uploading an meterpreter exe
+Silo | 2c7SzNo9uoA ^ 50:30  - Using odat externaltable to execute meterpreter and get a system shell!
+Silo | 2c7SzNo9uoA ^ 52:20  - Examining odat verbosity flag to see what commands it runs and try to learn.
+
+Bart | Cz6vQvGGiuc ^ 01:54  - Begin Recon, Windows IIS/OS Mapping and GoBuster
+Bart | Cz6vQvGGiuc ^ 05:20  - Explanation of Virtual Host Routing
+Bart | Cz6vQvGGiuc ^ 09:50  - Developers name exposed in HTML Source, also discover /monitor
+Bart | Cz6vQvGGiuc ^ 11:10  - Enumerating Username in PHP Server Monitor: Challenge Watch Sense to und
+Bart | Cz6vQvGGiuc ^ 16:33  - Discover of Internal-01.bart.htb
+Bart | Cz6vQvGGiuc ^ 19:17  - Harveys Password with Hydra (Note: This is bypassable if you DIRBUST to find /Log/log.php)
+Bart | Cz6vQvGGiuc ^ 29:34  - Finally got Hydra to return the password!
+Bart | Cz6vQvGGiuc ^ 32:20  - Log Poisoning + LFI = Remote Code Execution
+Bart | Cz6vQvGGiuc ^ 37:30  - Return of Reverse Shell
+Bart | Cz6vQvGGiuc ^ 41:30  - Why you should check if you're a 32-bit process on a 64-bit machine
+Bart | Cz6vQvGGiuc ^ 48:35  - Attempting to use b33f/FuzzySecurity Invoke-RunAs
+Bart | Cz6vQvGGiuc ^ 56:00  - Mistake with Invoke-RunAs is probably pointing it to the wrong port. D:
+Bart | Cz6vQvGGiuc ^ 01:03:40  - ARGH!  Lets try to use this account via Empire
+Bart | Cz6vQvGGiuc ^ 01:11:00  - Bring out the big guns, it's Metasploit Time!
+Bart | Cz6vQvGGiuc ^ 01:18:10  - Alright, lets poke a hole in the firewall and connect over SMB!
+Bart | Cz6vQvGGiuc ^ 01:21:17  - Failed to PSExec in MSF
+Bart | Cz6vQvGGiuc ^ 01:21:40  - Found Impacket-PSExec!  And it works!
+Bart | Cz6vQvGGiuc ^ 01:23:45  - Lets go hunt for creds!
+Bart | Cz6vQvGGiuc ^ 01:35:23  - Cracking Salted Hashes with Hashcat (Sha265.Salt)
+
+Chatterbox | _dRrvJNdP-s ^ 01:18  - Begin of Recon
+Chatterbox | _dRrvJNdP-s ^ 04:55  - Start of aChat buffer Overflow: Finding the exploit script with Searchsploit
+Chatterbox | _dRrvJNdP-s ^ 07:24  - Begin of replacing POC's Calc Shellcode with what is generated from MSFVenom
+Chatterbox | _dRrvJNdP-s ^ 09:42  - Correction: Payload Size wrong, should be 3,xxx -- look at "Payload Size" I accidentally highlighted the size of the python file.
+Chatterbox | _dRrvJNdP-s ^ 14:30  - Whoops, erased too much out of POC.  Lets correctly replace the shellcode this time and get a shell.
+Chatterbox | _dRrvJNdP-s ^ 17:50  - Running PowerUp to find AutoLogon Credentials
+Chatterbox | _dRrvJNdP-s ^ 20:05  - Running Code as Administrator
+Chatterbox | _dRrvJNdP-s ^ 24:18  - First Privesc Method: Using Start-Process to execute commands as a different user because Invoke-Command did not work.  
+Chatterbox | _dRrvJNdP-s ^ 27:30  - Alternate way to read root.txt -- Alfred owns root.txt, so he can edit the files access list. Get-ACL to view access list and cacls to modify
+Chatterbox | _dRrvJNdP-s ^ 33:12  - Summary of the box
+Chatterbox | _dRrvJNdP-s ^ 34:37  - Doing the box with Metasaploit, Warning: Lots of fails.
+Chatterbox | _dRrvJNdP-s ^ 43:10  - Using meterpreters PortFwd to bypass ChatterBox's firewall and access port 445
+Chatterbox | _dRrvJNdP-s ^ 51:25  - Doing the box with Empire !
+Chatterbox | _dRrvJNdP-s ^ 58:20  - Using Empire's Run_As module to execute commands as Administrator
+
+Jeeves | EKGBskG8APc ^ 01:19  - Begin of Enumeration
+Jeeves | EKGBskG8APc ^ 04:15  - Avoiding the Rabbit Hole on port 80 (IIS)
+Jeeves | EKGBskG8APc ^ 06:00  - Begin of Jenkins
+Jeeves | EKGBskG8APc ^ 09:00  - Using Jenkins Script Console (Groovy) to gain code execution
+Jeeves | EKGBskG8APc ^ 12:00  - Reverse TCP Shell via Nishang
+Jeeves | EKGBskG8APc ^ 17:00  - Reverse Shell returned.  PowerSplit dev branch to find unintended privesc (Tokens)
+Jeeves | EKGBskG8APc ^ 22:20  - Powersploit's Invoke-AllChecks completes
+Jeeves | EKGBskG8APc ^ 24:20  - Finding Keepass Database using Impack-SMBServer to transfer files
+Jeeves | EKGBskG8APc ^ 27:00  - Cracking the KeePass Database
+Jeeves | EKGBskG8APc ^ 30:20  - Using KeePass2 to open database
+Jeeves | EKGBskG8APc ^ 34:25  - PassTheHash via pth-winexe to gain administrator shell
+Jeeves | EKGBskG8APc ^ 35:20  - Grabbing root.txt that is hidden via Alternate Data Streams (ADS)
+Jeeves | EKGBskG8APc ^ 39:00  - Using RottenPotato to escalate to root via MSF
+Jeeves | EKGBskG8APc ^ 41:00  - Using Unicorn to gain a reverse MSF SHell
+Jeeves | EKGBskG8APc ^ 45:20  - Performing the attack
+Jeeves | EKGBskG8APc ^ 48:00  - Impersonating Token to gain root
+
+Pivoting | HQkDL-xh7es ^ 
+
+Granny | ZfPVGJGkORQ ^ 1:50  - Nmap Results (Discovery of WebDav)
+Granny | ZfPVGJGkORQ ^ 4:35  - DavTest
+Granny | ZfPVGJGkORQ ^ 6:22  - HTTP PUT Upload Files
+Granny | ZfPVGJGkORQ ^ 7:00  - MSFVenom Generate aspx payload
+Granny | ZfPVGJGkORQ ^ 13:00  - User Shell Returned
+Granny | ZfPVGJGkORQ ^ 16:23  - Get Admin Shell (ms14-070)
+Granny | ZfPVGJGkORQ ^ 17:14  - Beginning of Pivot Fail.  Socks Proxy
+Granny | ZfPVGJGkORQ ^ 29:35  - Shell on Grandpa (CVE-2017-7269)
+Granny | ZfPVGJGkORQ ^ 32:45  - Using portfwd to access ports not exposed to routable interfaces
+Granny | ZfPVGJGkORQ ^ 34:45  - Cracking LM Hash Explanation
+Granny | ZfPVGJGkORQ ^ 38:30  - Cracking LM Hashes via Hashcat
+Granny | ZfPVGJGkORQ ^ 41:30  - Grandpa acts cranky.  Revert. 
+Granny | ZfPVGJGkORQ ^ 42:30  - Expected behavior when exploiting via CVE-2017-7269.  None of that auto system weirdness 
+Granny | ZfPVGJGkORQ ^ 45:50  - Using Hashcat to crack NTLM using LM Hashes
+Granny | ZfPVGJGkORQ ^ 48:50  - Finally log into SMB using the portfwd from 
+Granny | ZfPVGJGkORQ ^ 49:07  - Random pivot attempt failure.
+
+Granny | ZfPVGJGkORQ ^ 1:50  - Nmap Results (Discovery of WebDav)
+Granny | ZfPVGJGkORQ ^ 4:35  - DavTest
+Granny | ZfPVGJGkORQ ^ 6:22  - HTTP PUT Upload Files
+Granny | ZfPVGJGkORQ ^ 7:00  - MSFVenom Generate aspx payload
+Granny | ZfPVGJGkORQ ^ 13:00  - User Shell Returned
+Granny | ZfPVGJGkORQ ^ 16:23  - Get Admin Shell (ms14-070)
+Granny | ZfPVGJGkORQ ^ 17:14  - Beginning of Pivot Fail.  Socks Proxy
+Granny | ZfPVGJGkORQ ^ 29:35  - Shell on Grandpa (CVE-2017-7269)
+Granny | ZfPVGJGkORQ ^ 32:45  - Using portfwd to access ports not exposed to routable interfaces
+Granny | ZfPVGJGkORQ ^ 34:45  - Cracking LM Hash Explanation
+Granny | ZfPVGJGkORQ ^ 38:30  - Cracking LM Hashes via Hashcat
+Granny | ZfPVGJGkORQ ^ 41:30  - Grandpa acts cranky.  Revert. 
+Granny | ZfPVGJGkORQ ^ 42:30  - Expected behavior when exploiting via CVE-2017-7269.  None of that auto system weirdness 
+Granny | ZfPVGJGkORQ ^ 45:50  - Using Hashcat to crack NTLM using LM Hashes
+Granny | ZfPVGJGkORQ ^ 48:50  - Finally log into SMB using the portfwd from 
+Granny | ZfPVGJGkORQ ^ 49:07  - Random pivot attempt failure.
+
+Devel | 2LNyAbroZUk ^ 01:02  - Going over NMAP
+Devel | 2LNyAbroZUk ^ 02:00  - Anonymous FTP + File Upload
+Devel | 2LNyAbroZUk ^ 04:30  - MSFVenom 
+Devel | 2LNyAbroZUk ^ 07:20  - Metasploit
+Devel | 2LNyAbroZUk ^ 10:00  - Exploit Suggestor
+Devel | 2LNyAbroZUk ^ 11:30  - Getting Root
+
+Arctic | e9lVyFH7-4o ^ 00:00  - Intro
+Arctic | e9lVyFH7-4o ^ 00:12  - Enumerate with nmap
+Arctic | e9lVyFH7-4o ^ 00:40  - Going to the webpage
+Arctic | e9lVyFH7-4o ^ 01:50  - Using SearchSploit to find ColdFusion Exploits
+Arctic | e9lVyFH7-4o ^ 02:40  - Attempt to exploit through MSF. Debug why it failed.
+Arctic | e9lVyFH7-4o ^ 03:50  - Setting up a Burp Redirect listener
+Arctic | e9lVyFH7-4o ^ 04:55  - Examining request send by MSF Exploit
+Arctic | e9lVyFH7-4o ^ 06:35  - Getting a reverse shell
+Arctic | e9lVyFH7-4o ^ 07:50  - Using Unicorn to create a Powershell Meterpreter Loa
+Arctic | e9lVyFH7-4o ^ 11:35  - Reverseshell returned
+Arctic | e9lVyFH7-4o ^ 12:10  - Using the MSF post module local_exploit_suggestor
+Arctic | e9lVyFH7-4o ^ 15:29  - Privesc via MS10-092
+
+Bastion | 2j3FNp5pjQ4 ^ 01:33  - Begin of recon
+Bastion | 2j3FNp5pjQ4 ^ 02:30  - Using SMBClient to view open shares, discover /Backups
+Bastion | 2j3FNp5pjQ4 ^ 03:00  - Mount the SMB Share 
+Bastion | 2j3FNp5pjQ4 ^ 03:40  - Playing with SMBMap which is a bit more automated but write files!
+Bastion | 2j3FNp5pjQ4 ^ 05:22  - Checking out files in the /Backups share
+Bastion | 2j3FNp5pjQ4 ^ 06:30  - Using 7zip to view files in a VHD file
+Bastion | 2j3FNp5pjQ4 ^ 07:50  - Installing libguestfs-tools in order to use guestmount
+Bastion | 2j3FNp5pjQ4 ^ 09:25  - Mounting the VHD with guestmount
+Bastion | 2j3FNp5pjQ4 ^ 11:00  - Extracting local passwords from SAM and SYSTEM with secretsdump
+Bastion | 2j3FNp5pjQ4 ^ 13:30  - Cracking the hash and then using SSH to login to the box
+Bastion | 2j3FNp5pjQ4 ^ 14:30  - Viewing local adminstrators and seeing administrators is not actually disabled (backup indicated it was)
+Bastion | 2j3FNp5pjQ4 ^ 16:30  - Running JAWS
+Bastion | 2j3FNp5pjQ4 ^ 19:30  - Discovering mRemoteNG installed
+Bastion | 2j3FNp5pjQ4 ^ 20:30  - Looks like there is a way to decrypt passwords stored in mRemoteNG
+Bastion | 2j3FNp5pjQ4 ^ 21:40  - Installing mRemoteNG-Decrypt then decrypting the passwords in the config
+Bastion | 2j3FNp5pjQ4 ^ 24:30  - Using PSEXEC or SSH to remote in as administrator
+
+Netmon | ZxvgniJXbOo ^ 01:00  - Begin of Recon
+Netmon | ZxvgniJXbOo ^ 03:50  - Searching for good files to view via FTP
+Netmon | ZxvgniJXbOo ^ 09:00  - Nothing really found, searching for where PRTG creation file is
+Netmon | ZxvgniJXbOo ^ 14:34  - Backup configuration found!
+Netmon | ZxvgniJXbOo ^ 16:20  - Logging in by incrementing the password from 2018 to 2019
+Netmon | ZxvgniJXbOo ^ 17:55  - Searching for CVE's
+Netmon | ZxvgniJXbOo ^ 19:45  - Searching for where to send notification emails like CVE Said
+Netmon | ZxvgniJXbOo ^ 20:30  - Testing for Command Injection via Cmd
+Netmon | ZxvgniJXbOo ^ 22:20  - Testing for Command Injection via Powershell
+Netmon | ZxvgniJXbOo ^ 23:00  - Getting a reverse shell
+Netmon | ZxvgniJXbOo ^ 26:55  - Encoding powershell in Base64 to eliminate potential bad characters
+Netmon | ZxvgniJXbOo ^ 29:10  - Getting a reverse shell
+
+Access | Rr6Oxrj2IjU ^ 00:58  - Begin of recon: ftp, telnet, IIS 7.5
+Access | Rr6Oxrj2IjU ^ 03:00  - Downloading all files off an FTP Server with WGET
+Access | Rr6Oxrj2IjU ^ 05:30  - Examining the "Access Control.zip" file.
+Access | Rr6Oxrj2IjU ^ 06:30  - Cracking a zip file with John
+Access | Rr6Oxrj2IjU ^ 07:45  - Creating a wordlist for cracking the zip (strings of the mdb file)
+Access | Rr6Oxrj2IjU ^ 10:00  - Exploring the MDB Files (Access Database) with MDBTools (mdb-sql and mdb-tables)
+Access | Rr6Oxrj2IjU ^ 12:30  - Grabbing the same password we cracked by checking the auth_user table
+Access | Rr6Oxrj2IjU ^ 13:35  - Converting the PST File (Outlook Email) to PlainText via readpst
+Access | Rr6Oxrj2IjU ^ 15:00  - Logging into telnet with the credentials from the email
+Access | Rr6Oxrj2IjU ^ 15:45  - Switching to a Nishang Shell to execute powershell
+Access | Rr6Oxrj2IjU ^ 18:15  - Running JAWS (Just Another Windows Scanner)
+Access | Rr6Oxrj2IjU ^ 23:34  - Discovering Stored Credentials on the box for ACCESS\Administrator 
+Access | Rr6Oxrj2IjU ^ 25:11  - Examining the Shortcut on PUBLIC\DESKTOP which shows us how the "Stored Credential" is used.
+Access | Rr6Oxrj2IjU ^ 25:58  - Using powershell to view information of a Shortcut
+Access | Rr6Oxrj2IjU ^ 27:25  - Using the Stored Credential via runas /savecred
+Access | Rr6Oxrj2IjU ^ 30:31  - Creating Base64 (UTF-16LE) on linux to use in as a Powershell EncodedCommand
+Access | Rr6Oxrj2IjU ^ 31:54  - Box done, Administrator returned.
+Access | Rr6Oxrj2IjU ^ 54:20 )
+Access | Rr6Oxrj2IjU ^ 32:38  - Begin of decrypting the Stored Credential, uploading Mimikatz
+Access | Rr6Oxrj2IjU ^ 33:40  - Using powershell to download files
+Access | Rr6Oxrj2IjU ^ 36:36  - Discovering that I was trying to save mimikatz to a directory i cannot write to :(
+Access | Rr6Oxrj2IjU ^ 37:15  - Testing Applocker methods to bypass the Software Restriction Policy (Give up on this one)
+Access | Rr6Oxrj2IjU ^ 38:50  - Trying to get Meterpreter shell via Unicorn (Fails, unknown reason)
+Access | Rr6Oxrj2IjU ^ 41:28  - Getting a Empire Agent running
+Access | Rr6Oxrj2IjU ^ 43:35  - Empire Agent Returned, Injecting meterpreter shellcode.
+Access | Rr6Oxrj2IjU ^ 45:46  - Attempting to use Mimikatz from within Meterpreter to decrypt dpapi::creds
+Access | Rr6Oxrj2IjU ^ 46:52  - Explaining Mimikatz Arguments when in "non-interactive" mode
+Access | Rr6Oxrj2IjU ^ 54:20  - Grabbing needed files to decrypt DPAPI::CREDS offline
+Access | Rr6Oxrj2IjU ^ 56:09  - Switing to Windows to run Mimikatz
+Access | Rr6Oxrj2IjU ^ 01:02:32  - Decrypting the Creds stored in DPAPI
+
+Active | jUc1J31DNdw ^ 01:10  - Begin of recon 
+Active | jUc1J31DNdw ^ 03:00  - Poking at DNS - Nothing really important.
+Active | jUc1J31DNdw ^ 04:00  - Examining what NMAP Scripts are ran. 
+Active | jUc1J31DNdw ^ 06:35  - Lets just try out smbclient to list shares available
+Active | jUc1J31DNdw ^ 07:25  - Using SMBMap to show the same thing, a great recon tool!
+Active | jUc1J31DNdw ^ 08:30  - Pillaging the Replication Share with SMBMap
+Active | jUc1J31DNdw ^ 09:20  - Discovering Groups.xml and then decrypting passwords from it
+Active | jUc1J31DNdw ^ 13:10  - Dumping Active Directory users from linux with Impacket GetADUsers
+Active | jUc1J31DNdw ^ 16:28  - Using SMBMap with our user credentials to look for more shares
+Active | jUc1J31DNdw ^ 18:25  - Switching to Windows to run BloodHound against the domain 
+Active | jUc1J31DNdw ^ 26:00  - Analyzing BloodHound Output to discover Kerberostable user
+Active | jUc1J31DNdw ^ 27:25  - Performing Kerberoast attack from linux with Impacket GetUsersSPNs
+Active | jUc1J31DNdw ^ 29:00  - Cracking tgs 23 with Hashcat
+Active | jUc1J31DNdw ^ 30:00  - Getting root on the box via PSEXEC
+
+Jerry | PJeBIey8gc4 ^ 00:45  - Introduction, nmap
+Jerry | PJeBIey8gc4 ^ 01:30  - Clicking around in Tomcat
+Jerry | PJeBIey8gc4 ^ 02:20  - Playing around with HTTP Authentication
+Jerry | PJeBIey8gc4 ^ 05:45  - Bruteforcing tomcat default creds with Hydra and seclists
+Jerry | PJeBIey8gc4 ^ 08:20  - Sending hydra through a proxy to examine what is happening
+Jerry | PJeBIey8gc4 ^ 12:50  - Logging into tomcat and using msfvenom + metasploit to upload a malicious war file
+Jerry | PJeBIey8gc4 ^ 22:42  - Begin of doing this box without MSF
+Jerry | PJeBIey8gc4 ^ 23:45  - Downloading a cmd jsp shell and making a malicious war file
+Jerry | PJeBIey8gc4 ^ 26:25  - WebShell returned
+Jerry | PJeBIey8gc4 ^ 28:00  - Begin of installing SilentTrinity
+Jerry | PJeBIey8gc4 ^ 30:55  - SilentyTrinity Started, starting listener and generating a payload
+Jerry | PJeBIey8gc4 ^ 33:00  - Pasting the payload into the webshell
+Jerry | PJeBIey8gc4 ^ 34:00  - Debugging SSL Handshake errors
+Jerry | PJeBIey8gc4 ^ 37:00  - Starting SilentTrinity back up, how to use modules
+Jerry | PJeBIey8gc4 ^ 39:10  - Start of Execute-Assembly, compiling Watson
+Jerry | PJeBIey8gc4 ^ 43:10  - Running Watson
+Jerry | PJeBIey8gc4 ^ 43:30  - Start of Seatbelt and debugging why some dotNet code may not run (versioning issues)
+
+Bounty | 7ur4om1K98Y ^ 00:38  - Begin of recon
+Bounty | 7ur4om1K98Y ^ 01:48  - Gobuster, using -x aspx to find aspx pages
+Bounty | 7ur4om1K98Y ^ 03:16  - Playing with a file upload form, seeing what can be uploaded
+Bounty | 7ur4om1K98Y ^ 05:15  - Using Burp Intruder to automate checking file extensions
+Bounty | 7ur4om1K98Y ^ 07:00  - Finding a way to execute code from file upload in ASPX (web.config)
+Bounty | 7ur4om1K98Y ^ 10:55  - Executing code via web.config file upload
+Bounty | 7ur4om1K98Y ^ 13:08  - Installing Merlin to be our C2
+Bounty | 7ur4om1K98Y ^ 15:25  - Compiling the Merlin Windows Agent
+Bounty | 7ur4om1K98Y ^ 18:37  - Modifying web.config to upload and execute merlin
+Bounty | 7ur4om1K98Y ^ 21:14  - Merlin Shell returned!
+Bounty | 7ur4om1K98Y ^ 24:18  - Checking for SEImpersonatePrivilege Token then doing Juicy Potato
+Bounty | 7ur4om1K98Y ^ 27:44  - Getting Admin via Juicy Potato
+Bounty | 7ur4om1K98Y ^ 29:44  - Box completed
+Bounty | 7ur4om1K98Y ^ 30:00  - Start of doing this box again, with Metasploit! Creating a payload with Unicorn
+Bounty | 7ur4om1K98Y ^ 33:00  - Having troubles getting the server call back to us, trying Ping to see if the exploit is still working
+Bounty | 7ur4om1K98Y ^ 34:17  - Reverted box.  Have to update our payload with some updated VIEWSTATE parameters
+Bounty | 7ur4om1K98Y ^ 36:45  - Metasploit Session Returned!  Checking local_exploit_suggester
+Bounty | 7ur4om1K98Y ^ 40:01  - Comparing local_exploit_suggester on x32 and x64 meterpreter sessions
+Bounty | 7ur4om1K98Y ^ 40:30  - Getting Admin via MS10-092
+Bounty | 7ur4om1K98Y ^ 42:05  - Attempting to pivot through the Firewall using Meterpreter and doing Eternal Blue! (Fails, think I screwed up listening host #PivotProblems
+Bounty | 7ur4om1K98Y ^ 47:20  - Creating a Python Script to find valid extensions that handles CSRF Checks if they had existed
+
+Blue | YRsfX6DW10E ^ 00:38  - Start of Recon
+Blue | YRsfX6DW10E ^ 01:20  - Finding NMAP Scripts (Probably a stupid way)
+Blue | YRsfX6DW10E ^ 02:00  - Running Safe Scripts - Not -sC, which is default.
+Blue | YRsfX6DW10E ^ 02:52  - Listing NMAP Script Categories (Prob a really stupid way)
+Blue | YRsfX6DW10E ^ 03:18  - Really Cool Grep (Only show matching -oP)
+Blue | YRsfX6DW10E ^ 04:40  - Nmap Safe Script Output
+Blue | YRsfX6DW10E ^ 06:30  - Exploiting MS17-010 with MSF
+Blue | YRsfX6DW10E ^ 07:40  - Setting up Dev Branch of Empire
+Blue | YRsfX6DW10E ^ 09:07  - Starting a Listener
+Blue | YRsfX6DW10E ^ 10:55  - Getting a PowerShell Oneliner to launch payload
+Blue | YRsfX6DW10E ^ 12:16  - Invoke-Expression (IEX) to Execute Launcher
+Blue | YRsfX6DW10E ^ 13:25  - Interacting with a single agent
+Blue | YRsfX6DW10E ^ 13:40  - Using Modules - PowerUp Invoke-AllChecks
+Blue | YRsfX6DW10E ^ 14:40  - Fixing weird issue with PS Module
+Blue | YRsfX6DW10E ^ 16:15  - Invoke-AllChecks finished
+Blue | YRsfX6DW10E ^ 17:15  - Loading PS Modules into Memory
+Blue | YRsfX6DW10E ^ 17:40  - Executing funcitons out of above module
+Blue | YRsfX6DW10E ^ 18:20  - Why I don't pass to MSF via InjectShellcode
+Blue | YRsfX6DW10E ^ 22:45  - How I pass from Empire to MSF (Unicorn + IEX)
+Blue | YRsfX6DW10E ^ 25:53  - Just running Powershell CMDs from Empire (Shell)
+
+Optimum | kWTnVBIpNsE ^ 1:38  - Go to HTTPFileServer
+Optimum | kWTnVBIpNsE ^ 2:56  - Explanation of Vulnerability
+Optimum | kWTnVBIpNsE ^ 4:49  - Testing the Exploit
+Optimum | kWTnVBIpNsE ^ 6:25  - Getting rev tcp shell with Nishang
+Optimum | kWTnVBIpNsE ^ 11:54  - Shell returned
+Optimum | kWTnVBIpNsE ^ 13:15  - Finding exploits with Sherlock
+Optimum | kWTnVBIpNsE ^ 15:15  - Using Empire Module without Empire for Privesc
+Optimum | kWTnVBIpNsE ^ 21:00  - Start of doing the box with Metasploit
+Optimum | kWTnVBIpNsE ^ 22:36  - Reverse Shell Returned (x32)
+Optimum | kWTnVBIpNsE ^ 24:45  - MSF Error during PrivEsc
+Optimum | kWTnVBIpNsE ^ 25:35  - Reverse Shell Returned (x64)
+Optimum | kWTnVBIpNsE ^ 26:19  - Same PrivEsc as earlier, different result
+Optimum | kWTnVBIpNsE ^ 28:47  - Examining how Rejetto MSF Module works with Burp
+
+CronOS | CYeVUmOar3I ^ 
+
+Nineveh | K9DKULxSBK4 ^ 00:00  - Intro
+Nineveh | K9DKULxSBK4 ^ 01:58  - Begin Recon (NMAP)
+Nineveh | K9DKULxSBK4 ^ 04:19  - GoBuster HTTP + HTTPS
+Nineveh | K9DKULxSBK4 ^ 06:35  - Accessing Pages 
+Nineveh | K9DKULxSBK4 ^ 07:05  - Using Hydra against HTTP + HTTPS Web Forms
+Nineveh | K9DKULxSBK4 ^ 11:30  - Logging into HTTP and hunting for vulns
+Nineveh | K9DKULxSBK4 ^ 17:00  - Second Hydra attempt against HTTPS
+Nineveh | K9DKULxSBK4 ^ 17:57  - Logging into HTTPS (phpLiteAdmin)
+Nineveh | K9DKULxSBK4 ^ 20:17  - Chaining Exploits to get Code Execution
+Nineveh | K9DKULxSBK4 ^ 26:38  - Reverse Shell Returned
+Nineveh | K9DKULxSBK4 ^ 28:00  - LinEnum.sh Script Review
+Nineveh | K9DKULxSBK4 ^ 31:30  - Watching for new Processes
+Nineveh | K9DKULxSBK4 ^ 37:00  - Found the error in script :)
+Nineveh | K9DKULxSBK4 ^ 39:30  - Getting reverse root shell
+Nineveh | K9DKULxSBK4 ^ 41:51  - Intended Route to get User
+Nineveh | K9DKULxSBK4 ^ 46:12  - Reviewing Knockd configuration
+Nineveh | K9DKULxSBK4 ^ 49:33  - Doing the PortKnock
+
+SolidState | _QapCUx55Xk ^ 
+
+Kotarak | 38e-sxPWiuY ^ 01:38  - Start of nmap
+Kotarak | 38e-sxPWiuY ^ 03:40  - Accessing port 60000
+Kotarak | 38e-sxPWiuY ^ 06:20  - Manually enumerating ports on localhost via SSRF
+Kotarak | 38e-sxPWiuY ^ 07:00  - Using wfuzz to portscan localhost via SSRF
+Kotarak | 38e-sxPWiuY ^ 10:00  - Tomcat creds exposed Uploading tomcat reverse shell
+Kotarak | 38e-sxPWiuY ^ 13:40  - Return of shell
+Kotarak | 38e-sxPWiuY ^ 14:20  - Extracting NTDS + SYSTEM Hive
+Kotarak | 38e-sxPWiuY ^ 20:20  - Using HashKiller to crack the hashes
+Kotarak | 38e-sxPWiuY ^ 21:30  - Escalating to Atanas Identifying wget vulnerability
+Kotarak | 38e-sxPWiuY ^ 27:10  - Starting exploit
+Kotarak | 38e-sxPWiuY ^ 33:22  - Exploit failed, light debugging
+Kotarak | 38e-sxPWiuY ^ 35:40  - Issue found, not listening all interfaces
+Kotarak | 38e-sxPWiuY ^ 39:35  - Root shell returned.
+Kotarak | 38e-sxPWiuY ^ 40:10  - Unintentional Root Method (Edited Footage, IP Change)
+
+Tartarsauce | 9MeBiP637ZA ^ 01:10  - Begin of recon
+Tartarsauce | 9MeBiP637ZA ^ 03:00  - Discovery of Wordpress and fixing broken links with burp
+Tartarsauce | 9MeBiP637ZA ^ 06:50  - Start of WPScan
+Tartarsauce | 9MeBiP637ZA ^ 07:14  - Start of poking at Monstra, (Rabbit Hole)
+Tartarsauce | 9MeBiP637ZA ^ 13:05  - Back to looking at WPScan, Find Gwolle Plugin is vulnerable to RFI Exploits
+Tartarsauce | 9MeBiP637ZA ^ 16:30  - Reverse shell returned as www-data
+Tartarsauce | 9MeBiP637ZA ^ 18:08  - Confirming monstra was read-only
+Tartarsauce | 9MeBiP637ZA ^ 18:50  - Running LinEnum.sh to see www-data can run tar via sudo
+Tartarsauce | 9MeBiP637ZA ^ 20:30  - Use GTFOBins to find a way to execute code with Tar
+Tartarsauce | 9MeBiP637ZA ^ 22:00  - Begin of Onuma user, use LinEnum again to see SystemD Timer of a custom script
+Tartarsauce | 9MeBiP637ZA ^ 24:10  - Examining backuperer script
+Tartarsauce | 9MeBiP637ZA ^ 26:00  - Hunting for vulnerabilities in Backuperer
+Tartarsauce | 9MeBiP637ZA ^ 32:15  - Playing with If/Then exit codes in Bash.  Tuns out exit(0/1) evaluate as True, 2 is false
+Tartarsauce | 9MeBiP637ZA ^ 34:20  - Begin of exploiting the backuperer service by exploiting intregrity check
+Tartarsauce | 9MeBiP637ZA ^ 36:40  - Creating our 32-bit setuid binary
+Tartarsauce | 9MeBiP637ZA ^ 39:16  - Replacing backup tar, with our malicious one.  (File Owner of Shell is wrong)
+Tartarsauce | 9MeBiP637ZA ^ 40:54  - Explaning file owners are embedded within Tar, creating tar on our local box so we can have the SetUID File owned by root
+Tartarsauce | 9MeBiP637ZA ^ 42:30  - Exploiting the Backuperer Service via SetUID!
+Tartarsauce | 9MeBiP637ZA ^ 45:00  - Unintended Exploit: Using SymLinks to read files via backuperer service
+
+Blue | YRsfX6DW10E ^ 00:38  - Start of Recon
+Blue | YRsfX6DW10E ^ 01:20  - Finding NMAP Scripts (Probably a stupid way)
+Blue | YRsfX6DW10E ^ 02:00  - Running Safe Scripts - Not -sC, which is default.
+Blue | YRsfX6DW10E ^ 02:52  - Listing NMAP Script Categories (Prob a really stupid way)
+Blue | YRsfX6DW10E ^ 03:18  - Really Cool Grep (Only show matching -oP)
+Blue | YRsfX6DW10E ^ 04:40  - Nmap Safe Script Output
+Blue | YRsfX6DW10E ^ 06:30  - Exploiting MS17-010 with MSF
+Blue | YRsfX6DW10E ^ 07:40  - Setting up Dev Branch of Empire
+Blue | YRsfX6DW10E ^ 09:07  - Starting a Listener
+Blue | YRsfX6DW10E ^ 10:55  - Getting a PowerShell Oneliner to launch payload
+Blue | YRsfX6DW10E ^ 12:16  - Invoke-Expression (IEX) to Execute Launcher
+Blue | YRsfX6DW10E ^ 13:25  - Interacting with a single agent
+Blue | YRsfX6DW10E ^ 13:40  - Using Modules - PowerUp Invoke-AllChecks
+Blue | YRsfX6DW10E ^ 14:40  - Fixing weird issue with PS Module
+Blue | YRsfX6DW10E ^ 16:15  - Invoke-AllChecks finished
+Blue | YRsfX6DW10E ^ 17:15  - Loading PS Modules into Memory
+Blue | YRsfX6DW10E ^ 17:40  - Executing funcitons out of above module
+Blue | YRsfX6DW10E ^ 18:20  - Why I don't pass to MSF via InjectShellcode
+Blue | YRsfX6DW10E ^ 22:45  - How I pass from Empire to MSF (Unicorn + IEX)
+Blue | YRsfX6DW10E ^ 25:53  - Just running Powershell CMDs from Empire (Shell)
+
+Devel | 2LNyAbroZUk ^ 01:02  - Going over NMAP
+Devel | 2LNyAbroZUk ^ 02:00  - Anonymous FTP + File Upload
+Devel | 2LNyAbroZUk ^ 04:30  - MSFVenom 
+Devel | 2LNyAbroZUk ^ 07:20  - Metasploit
+Devel | 2LNyAbroZUk ^ 10:00  - Exploit Suggestor
+Devel | 2LNyAbroZUk ^ 11:30  - Getting Root
+
+Optimum | kWTnVBIpNsE ^ 1:38  - Go to HTTPFileServer
+Optimum | kWTnVBIpNsE ^ 2:56  - Explanation of Vulnerability
+Optimum | kWTnVBIpNsE ^ 4:49  - Testing the Exploit
+Optimum | kWTnVBIpNsE ^ 6:25  - Getting rev tcp shell with Nishang
+Optimum | kWTnVBIpNsE ^ 11:54  - Shell returned
+Optimum | kWTnVBIpNsE ^ 13:15  - Finding exploits with Sherlock
+Optimum | kWTnVBIpNsE ^ 15:15  - Using Empire Module without Empire for Privesc
+Optimum | kWTnVBIpNsE ^ 21:00  - Start of doing the box with Metasploit
+Optimum | kWTnVBIpNsE ^ 22:36  - Reverse Shell Returned (x32)
+Optimum | kWTnVBIpNsE ^ 24:45  - MSF Error during PrivEsc
+Optimum | kWTnVBIpNsE ^ 25:35  - Reverse Shell Returned (x64)
+Optimum | kWTnVBIpNsE ^ 26:19  - Same PrivEsc as earlier, different result
+Optimum | kWTnVBIpNsE ^ 28:47  - Examining how Rejetto MSF Module works with Burp
+
+Bastard | lP-E5vmZNC0 ^ 
+
+Silo | 2c7SzNo9uoA ^ 01:30  - Begin of recon
+Silo | 2c7SzNo9uoA ^ 03:15  - Begin of installing SQLPlus and ODAT (Oracle Database Attack Tool)
+Silo | 2c7SzNo9uoA ^ 08:45  - Bruteforcing the SID with ODAT
+Silo | 2c7SzNo9uoA ^ 10:15  - Holy crap, this is slow lets also do it with Metasploit
+Silo | 2c7SzNo9uoA ^ 13:00  - Bruteforcing valid logins with ODAT
+Silo | 2c7SzNo9uoA ^ 16:00  - Credentials returned, logging into Oracle with SQLPlus as SysDBA
+Silo | 2c7SzNo9uoA ^ 19:00  - Reading files from disk via Oracle
+Silo | 2c7SzNo9uoA ^ 23:20  - Writing files to disk from Oracle.  Testing it in WebRoot Directory
+Silo | 2c7SzNo9uoA ^ 25:52  - File Written, lets write an ASPX WebShell to the Server
+Silo | 2c7SzNo9uoA ^ 29:10  - WebShell Working!  Lets get a Reverse Shell
+Silo | 2c7SzNo9uoA ^ 31:28  - Reverse Shell Returned
+Silo | 2c7SzNo9uoA ^ 32:24  - Finding a DropBox link, but password doesn't display well.
+Silo | 2c7SzNo9uoA ^ 33:55  - Attempting to copy file via SMB to view UTF8 Text
+Silo | 2c7SzNo9uoA ^ 35:18  - That didn't work, lets transfer the file by encoding it in Base64.
+Silo | 2c7SzNo9uoA ^ 36:55  - Got the password lets download the dump!
+Silo | 2c7SzNo9uoA ^ 39:10  - Begin of Volatility
+Silo | 2c7SzNo9uoA ^ 45:20  - Running the HashDump plugin from volatilty then PassTheHash with Administrator's NTLM!
+Silo | 2c7SzNo9uoA ^ 47:35  - Begin of unintended way, examining odat and uploading an meterpreter exe
+Silo | 2c7SzNo9uoA ^ 50:30  - Using odat externaltable to execute meterpreter and get a system shell!
+Silo | 2c7SzNo9uoA ^ 52:20  - Examining odat verbosity flag to see what commands it runs and try to learn.
+
+Bashed | 2DqdPcbYcy8 ^ 
+
+Bounty | 7ur4om1K98Y ^ 00:38  - Begin of recon
+Bounty | 7ur4om1K98Y ^ 01:48  - Gobuster, using -x aspx to find aspx pages
+Bounty | 7ur4om1K98Y ^ 03:16  - Playing with a file upload form, seeing what can be uploaded
+Bounty | 7ur4om1K98Y ^ 05:15  - Using Burp Intruder to automate checking file extensions
+Bounty | 7ur4om1K98Y ^ 07:00  - Finding a way to execute code from file upload in ASPX (web.config)
+Bounty | 7ur4om1K98Y ^ 10:55  - Executing code via web.config file upload
+Bounty | 7ur4om1K98Y ^ 13:08  - Installing Merlin to be our C2
+Bounty | 7ur4om1K98Y ^ 15:25  - Compiling the Merlin Windows Agent
+Bounty | 7ur4om1K98Y ^ 18:37  - Modifying web.config to upload and execute merlin
+Bounty | 7ur4om1K98Y ^ 21:14  - Merlin Shell returned!
+Bounty | 7ur4om1K98Y ^ 24:18  - Checking for SEImpersonatePrivilege Token then doing Juicy Potato
+Bounty | 7ur4om1K98Y ^ 27:44  - Getting Admin via Juicy Potato
+Bounty | 7ur4om1K98Y ^ 29:44  - Box completed
+Bounty | 7ur4om1K98Y ^ 30:00  - Start of doing this box again, with Metasploit! Creating a payload with Unicorn
+Bounty | 7ur4om1K98Y ^ 33:00  - Having troubles getting the server call back to us, trying Ping to see if the exploit is still working
+Bounty | 7ur4om1K98Y ^ 34:17  - Reverted box.  Have to update our payload with some updated VIEWSTATE parameters
+Bounty | 7ur4om1K98Y ^ 36:45  - Metasploit Session Returned!  Checking local_exploit_suggester
+Bounty | 7ur4om1K98Y ^ 40:01  - Comparing local_exploit_suggester on x32 and x64 meterpreter sessions
+Bounty | 7ur4om1K98Y ^ 40:30  - Getting Admin via MS10-092
+Bounty | 7ur4om1K98Y ^ 42:05  - Attempting to pivot through the Firewall using Meterpreter and doing Eternal Blue! (Fails, think I screwed up listening host #PivotProblems
+Bounty | 7ur4om1K98Y ^ 47:20  - Creating a Python Script to find valid extensions that handles CSRF Checks if they had existed
+
+Jerry | PJeBIey8gc4 ^ 00:45  - Introduction, nmap
+Jerry | PJeBIey8gc4 ^ 01:30  - Clicking around in Tomcat
+Jerry | PJeBIey8gc4 ^ 02:20  - Playing around with HTTP Authentication
+Jerry | PJeBIey8gc4 ^ 05:45  - Bruteforcing tomcat default creds with Hydra and seclists
+Jerry | PJeBIey8gc4 ^ 08:20  - Sending hydra through a proxy to examine what is happening
+Jerry | PJeBIey8gc4 ^ 12:50  - Logging into tomcat and using msfvenom + metasploit to upload a malicious war file
+Jerry | PJeBIey8gc4 ^ 22:42  - Begin of doing this box without MSF
+Jerry | PJeBIey8gc4 ^ 23:45  - Downloading a cmd jsp shell and making a malicious war file
+Jerry | PJeBIey8gc4 ^ 26:25  - WebShell returned
+Jerry | PJeBIey8gc4 ^ 28:00  - Begin of installing SilentTrinity
+Jerry | PJeBIey8gc4 ^ 30:55  - SilentyTrinity Started, starting listener and generating a payload
+Jerry | PJeBIey8gc4 ^ 33:00  - Pasting the payload into the webshell
+Jerry | PJeBIey8gc4 ^ 34:00  - Debugging SSL Handshake errors
+Jerry | PJeBIey8gc4 ^ 37:00  - Starting SilentTrinity back up, how to use modules
+Jerry | PJeBIey8gc4 ^ 39:10  - Start of Execute-Assembly, compiling Watson
+Jerry | PJeBIey8gc4 ^ 43:10  - Running Watson
+Jerry | PJeBIey8gc4 ^ 43:30  - Start of Seatbelt and debugging why some dotNet code may not run (versioning issues)
+
+Jeeves | EKGBskG8APc ^ 01:19  - Begin of Enumeration
+Jeeves | EKGBskG8APc ^ 04:15  - Avoiding the Rabbit Hole on port 80 (IIS)
+Jeeves | EKGBskG8APc ^ 06:00  - Begin of Jenkins
+Jeeves | EKGBskG8APc ^ 09:00  - Using Jenkins Script Console (Groovy) to gain code execution
+Jeeves | EKGBskG8APc ^ 12:00  - Reverse TCP Shell via Nishang
+Jeeves | EKGBskG8APc ^ 17:00  - Reverse Shell returned.  PowerSplit dev branch to find unintended privesc (Tokens)
+Jeeves | EKGBskG8APc ^ 22:20  - Powersploit's Invoke-AllChecks completes
+Jeeves | EKGBskG8APc ^ 24:20  - Finding Keepass Database using Impack-SMBServer to transfer files
+Jeeves | EKGBskG8APc ^ 27:00  - Cracking the KeePass Database
+Jeeves | EKGBskG8APc ^ 30:20  - Using KeePass2 to open database
+Jeeves | EKGBskG8APc ^ 34:25  - PassTheHash via pth-winexe to gain administrator shell
+Jeeves | EKGBskG8APc ^ 35:20  - Grabbing root.txt that is hidden via Alternate Data Streams (ADS)
+Jeeves | EKGBskG8APc ^ 39:00  - Using RottenPotato to escalate to root via MSF
+Jeeves | EKGBskG8APc ^ 41:00  - Using Unicorn to gain a reverse MSF SHell
+Jeeves | EKGBskG8APc ^ 45:20  - Performing the attack
+Jeeves | EKGBskG8APc ^ 48:00  - Impersonating Token to gain root
+
+Bart | Cz6vQvGGiuc ^ 01:54  - Begin Recon, Windows IIS/OS Mapping and GoBuster
+Bart | Cz6vQvGGiuc ^ 05:20  - Explanation of Virtual Host Routing
+Bart | Cz6vQvGGiuc ^ 09:50  - Developers name exposed in HTML Source, also discover /monitor
+Bart | Cz6vQvGGiuc ^ 11:10  - Enumerating Username in PHP Server Monitor: Challenge Watch Sense to und
+Bart | Cz6vQvGGiuc ^ 16:33  - Discover of Internal-01.bart.htb
+Bart | Cz6vQvGGiuc ^ 19:17  - Harveys Password with Hydra (Note: This is bypassable if you DIRBUST to find /Log/log.php)
+Bart | Cz6vQvGGiuc ^ 29:34  - Finally got Hydra to return the password!
+Bart | Cz6vQvGGiuc ^ 32:20  - Log Poisoning + LFI = Remote Code Execution
+Bart | Cz6vQvGGiuc ^ 37:30  - Return of Reverse Shell
+Bart | Cz6vQvGGiuc ^ 41:30  - Why you should check if you're a 32-bit process on a 64-bit machine
+Bart | Cz6vQvGGiuc ^ 48:35  - Attempting to use b33f/FuzzySecurity Invoke-RunAs
+Bart | Cz6vQvGGiuc ^ 56:00  - Mistake with Invoke-RunAs is probably pointing it to the wrong port. D:
+Bart | Cz6vQvGGiuc ^ 01:03:40  - ARGH!  Lets try to use this account via Empire
+Bart | Cz6vQvGGiuc ^ 01:11:00  - Bring out the big guns, it's Metasploit Time!
+Bart | Cz6vQvGGiuc ^ 01:18:10  - Alright, lets poke a hole in the firewall and connect over SMB!
+Bart | Cz6vQvGGiuc ^ 01:21:17  - Failed to PSExec in MSF
+Bart | Cz6vQvGGiuc ^ 01:21:40  - Found Impacket-PSExec!  And it works!
+Bart | Cz6vQvGGiuc ^ 01:23:45  - Lets go hunt for creds!
+Bart | Cz6vQvGGiuc ^ 01:35:23  - Cracking Salted Hashes with Hashcat (Sha265.Salt)
+
+Tally | l-wzBhc9wFc ^ 01:45  - Start of NMAP
+Tally | l-wzBhc9wFc ^ 04:17  - Begin of Sharepoint/GoBuster (Special Sharepoint List)
+Tally | l-wzBhc9wFc ^ 06:32  - Manually browsing to Sitecontent (Get FTP Creds)
+Tally | l-wzBhc9wFc ^ 10:18  - Mirror FTP + Pillage for information, Find keypass in Tim's directory and crack it.
+Tally | l-wzBhc9wFc ^ 18:22  - Mounting/Mirroring ACCT Share with found Creds and finding hardcoded SQL Creds
+Tally | l-wzBhc9wFc ^ 25:24  - Logging into MSSQL with SQSH, enabling xp_cmdshell and getting a Nishang Rev Shell
+Tally | l-wzBhc9wFc ^ 34:35  - Finding SPBestWarmUp.ps1 Scheduled Task that runs as Administrator
+Tally | l-wzBhc9wFc ^ 40:00  - Begin of RottenPotato without MSF (Decoder's Lonely Potato)
+Tally | l-wzBhc9wFc ^ 45:56  - Using Ebowla Encoding for AV Evasion to create an exe for use with Lonely Potato
+Tally | l-wzBhc9wFc ^ 58:00  - Lonely Potato Running to return a Admin Shell
+Tally | l-wzBhc9wFc ^ 01:04:22  - Finding CVE-2017-0213
+Tally | l-wzBhc9wFc ^ 01:08:33  - Installing Visual Studio 2015, Compiling the exploit
+Tally | l-wzBhc9wFc ^ 01:15:50  - Exploit Compiled, trying to get it to work....
+Tally | l-wzBhc9wFc ^ 01:18:11  - Just noticed the SPBestWarmUp.ps1 executed and gave us a shell!
+Tally | l-wzBhc9wFc ^ 01:28:37  - Found the issue, exploit seems to require interactive process
+Tally | l-wzBhc9wFc ^ 01:30:00  - Begin of Firefox Exploit Cluster (Not recommended to watch lol).  It's a second unreliable way to get user
+
+Active | jUc1J31DNdw ^ 01:10  - Begin of recon 
+Active | jUc1J31DNdw ^ 03:00  - Poking at DNS - Nothing really important.
+Active | jUc1J31DNdw ^ 04:00  - Examining what NMAP Scripts are ran. 
+Active | jUc1J31DNdw ^ 06:35  - Lets just try out smbclient to list shares available
+Active | jUc1J31DNdw ^ 07:25  - Using SMBMap to show the same thing, a great recon tool!
+Active | jUc1J31DNdw ^ 08:30  - Pillaging the Replication Share with SMBMap
+Active | jUc1J31DNdw ^ 09:20  - Discovering Groups.xml and then decrypting passwords from it
+Active | jUc1J31DNdw ^ 13:10  - Dumping Active Directory users from linux with Impacket GetADUsers
+Active | jUc1J31DNdw ^ 16:28  - Using SMBMap with our user credentials to look for more shares
+Active | jUc1J31DNdw ^ 18:25  - Switching to Windows to run BloodHound against the domain 
+Active | jUc1J31DNdw ^ 26:00  - Analyzing BloodHound Output to discover Kerberostable user
+Active | jUc1J31DNdw ^ 27:25  - Performing Kerberoast attack from linux with Impacket GetUsersSPNs
+Active | jUc1J31DNdw ^ 29:00  - Cracking tgs 23 with Hashcat
+Active | jUc1J31DNdw ^ 30:00  - Getting root on the box via PSEXEC
+
+Jail | 80-73OYcrrk ^ 00:52  - Recon - NMAP
+Jail | 80-73OYcrrk ^ 04:05  - Recon - Getting Linux Distro
+Jail | 80-73OYcrrk ^ 04:35  - Recon - GoBuster
+Jail | 80-73OYcrrk ^ 05:40  - Analyzing Jail.c source
+Jail | 80-73OYcrrk ^ 09:45  - Begin Binary Exploitation
+Jail | 80-73OYcrrk ^ 15:10  - Verify Buffer Overflow
+Jail | 80-73OYcrrk ^ 17:35  - Create Exploit Skeleton
+Jail | 80-73OYcrrk ^ 20:50  - Finding EIP Overwrite
+Jail | 80-73OYcrrk ^ 23:02  - Adding Reverse TCP Shellcode
+Jail | 80-73OYcrrk ^ 30:15  - Switching to "Socket Re-Use" Shellcode
+Jail | 80-73OYcrrk ^ 32:20  - Shell Returned
+Jail | 80-73OYcrrk ^ 34:00  - NFSv3 Privesc Begin
+Jail | 80-73OYcrrk ^ 40:15  - Begin incorrectly playing with SetUID
+Jail | 80-73OYcrrk ^ 43:10  - SELinux Escape
+Jail | 80-73OYcrrk ^ 45:25  - Using SELinux Escape to copy SSH Key
+Jail | 80-73OYcrrk ^ 48:55  - Logging in as Frank
+Jail | 80-73OYcrrk ^ 50:00  - Privesc to adm (sudo rvim)
+Jail | 80-73OYcrrk ^ 51:44  - Begin of finding a way to root
+Jail | 80-73OYcrrk ^ 55:58  - Begin cracking rar file 
+Jail | 80-73OYcrrk ^ 57:18  - Using Hashcat to generate custom wordlist
+
+Falafel | CUbWpteTfio ^ 01:15  - Begin of Recon
+Falafel | CUbWpteTfio ^ 04:25  - Bruteforcing valid users
+Falafel | CUbWpteTfio ^ 11:15  - Manually finding SQL Injection
+Falafel | CUbWpteTfio ^ 13:13  - Using --string with SQLMap to aid Boolean Detection
+Falafel | CUbWpteTfio ^ 15:41  - PHP Type Confusion ( == vs === with 0e12345) [Type Juggling]
+Falafel | CUbWpteTfio ^ 18:35  - Attempting Wget Exploit with FTP Redirection (failed)
+Falafel | CUbWpteTfio ^ 26:39  - Exploiting wget's maximum file length
+Falafel | CUbWpteTfio ^ 33:30  - Reverse Shell Returned
+Falafel | CUbWpteTfio ^ 36:19  - Linux Priv Checking Enum
+Falafel | CUbWpteTfio ^ 41:00  - Checking web crap for passwords
+Falafel | CUbWpteTfio ^ 44:00  - Grabbing the screenshot of tty
+Falafel | CUbWpteTfio ^ 49:00  - Privesc via Yossi being in Disk Group (debugfs)
+Falafel | CUbWpteTfio ^ 50:15  - Grabbing ssh root key off /dev/sda1
+Falafel | CUbWpteTfio ^ 52:15  - Attempting RationLove (Fails, apparently machine got patched so notes were wrong /troll)
+Falafel | CUbWpteTfio ^ 01:07:42  - Manually exploiting the SQL Injection! with Python
+
+DevOops | tQ34Ntkr7H4 ^ 00:54  - Start of Recon
+DevOops | tQ34Ntkr7H4 ^ 03:10  - Start of GoBuster
+DevOops | tQ34Ntkr7H4 ^ 04:00  - Looking at /upload, testing with a normal XML File
+DevOops | tQ34Ntkr7H4 ^ 06:15  - Valid XML File created, begin of looking for XML Entity Injection XXE
+DevOops | tQ34Ntkr7H4 ^ 08:20  - XXE Returns a a local file off the server
+DevOops | tQ34Ntkr7H4 ^ 09:30  - Grabbing the source code to the webserver to find newpost function.
+DevOops | tQ34Ntkr7H4 ^ 11:35  - Discovery of vulnerability due to user data being passed to pickle
+DevOops | tQ34Ntkr7H4 ^ 12:44  - Creating the script to exploit pickle
+DevOops | tQ34Ntkr7H4 ^ 16:38  - Reverse shell returns!
+DevOops | tQ34Ntkr7H4 ^ 19:55  - Poking around at Source Code
+DevOops | tQ34Ntkr7H4 ^ 20:15  - Discover of an SSH Key within deployment stuff.
+DevOops | tQ34Ntkr7H4 ^ 21:15  - Trying SSH Key for other users on the box to see if it is valid
+DevOops | tQ34Ntkr7H4 ^ 22:57  - Hunting for git filers, the boxes name is "Gitter" and we have an SSH Key that goes nowhere.  
+DevOops | tQ34Ntkr7H4 ^ 23:00  - Discovery ~roosa/work is the same as ~roosa/deploy but there's a .git repo in this one!
+DevOops | tQ34Ntkr7H4 ^ 23:45  - Examining Git Log to see the SSH Key has changed!
+DevOops | tQ34Ntkr7H4 ^ 25:20  - SSH'ing with the old key, to see it's root's key.
+DevOops | tQ34Ntkr7H4 ^ 25:58  - The webserver could read Roosa's SSH Key.  Could bypass the entire pickle portion
+DevOops | tQ34Ntkr7H4 ^ 26:20  - Start of "Extra Practice"
+DevOops | tQ34Ntkr7H4 ^ 27:40  - Creating a Python Script to automate the LFI With XXE
+DevOops | tQ34Ntkr7H4 ^ 35:50  - Script completed, lets improve it to try to download an exposed git repo
+
+Hawk | UGd9JE1ZXUI ^ 01:00  - Begin nmap, discover FTP, Drupal, H2, and its Ubuntu Beaver
+Hawk | UGd9JE1ZXUI ^ 03:50  - Checking FTP Server for hidden files
+Hawk | UGd9JE1ZXUI ^ 04:30  - Examining encrypted file, discovering encrypted with OpenSSL and likely a block cipher
+Hawk | UGd9JE1ZXUI ^ 08:20  - Creating a bunch of files varying in length to narrow likely ciphers down.
+Hawk | UGd9JE1ZXUI ^ 14:35  - Encrypting all of the above files and checking their file sizes
+Hawk | UGd9JE1ZXUI ^ 22:45  - Decrypting file, obtaining a password
+Hawk | UGd9JE1ZXUI ^ 24:25  - Begin looking at Drupal, running Droopescan
+Hawk | UGd9JE1ZXUI ^ 25:12  - Manually examining Drupal, finding a way to enumerate usernames
+Hawk | UGd9JE1ZXUI ^ 25:50  - Placing invalid emails in create account, is a semi-silent way to enumerate usernames
+Hawk | UGd9JE1ZXUI ^ 28:15  - Logging into Drupal with Admin.  
+Hawk | UGd9JE1ZXUI ^ 29:25  - Gaining code execution by enabling PHP Plugin, then previewing a page with php code
+Hawk | UGd9JE1ZXUI ^ 32:30  - Reverse Shell Returned
+Hawk | UGd9JE1ZXUI ^ 33:25  - Running LinEnum.sh - Discover H2 (Database) runs as root
+Hawk | UGd9JE1ZXUI ^ 37:00  - Hunting for passwords in Drupal Configuration
+Hawk | UGd9JE1ZXUI ^ 39:25  - Finding database connection settings.  SSHing with daniel and the database password (not needed)
+Hawk | UGd9JE1ZXUI ^ 40:10  - Doing Local (Daniel) and Reverse (www) SSH Tunnels.  To access services on Hawk’s Loopback.  Only need to do one of those, just showing its possible without daniel
+Hawk | UGd9JE1ZXUI ^ 44:30  - Accessing Hawk’s H2 Service (8082) via the loopback address
+Hawk | UGd9JE1ZXUI ^ 50:00  - Finding the H2 Database Code Execution through Alias Commands, then hunting for a way to login to H2 Console.
+Hawk | UGd9JE1ZXUI ^ 51:45  - Logging into H2 by using a non-existent database, then testing code execution
+Hawk | UGd9JE1ZXUI ^ 52:50  - Playing with an awesome Reverse Shell Generator (RSG), then accidentally breaking the service.
+Hawk | UGd9JE1ZXUI ^ 59:50  - Reverted box, cleaning up environment then getting reverse shell
+Hawk | UGd9JE1ZXUI ^ 01:02:45  - Discovering could have logged into the database with Drupal Database Creds.
+
+Nibbles | s_0GcRGv6Ds ^ 00:18  - Start of Recon
+Nibbles | s_0GcRGv6Ds ^ 01:15  - Finding hidden directory via Source
+Nibbles | s_0GcRGv6Ds ^ 02:15  - Downloading NibbleBlog to help us with finding version information
+Nibbles | s_0GcRGv6Ds ^ 03:59  - Identifying what vresion of NibblesBlog is running
+Nibbles | s_0GcRGv6Ds ^ 04:42  - Using SearchSploit to find vulnerabilities
+Nibbles | s_0GcRGv6Ds ^ 05:36  - Examining the Exploit
+Nibbles | s_0GcRGv6Ds ^ 06:08  - Explanation of exploit
+Nibbles | s_0GcRGv6Ds ^ 07:25  - Attempting to find valid usernames for NibblesBlog
+Nibbles | s_0GcRGv6Ds ^ 09:13  - Finding usernames in /content/private
+Nibbles | s_0GcRGv6Ds ^ 10:15  - Using Hydra to attempt to bruteforce
+Nibbles | s_0GcRGv6Ds ^ 14:08  - Oh crap. Hydra not good idea we're blocked...
+Nibbles | s_0GcRGv6Ds ^ 15:40  - Using SSH Proxies to hit nibbles from another box (Falafel)
+Nibbles | s_0GcRGv6Ds ^ 18:20  - Guessing the password
+Nibbles | s_0GcRGv6Ds ^ 20:10  - Logged in, lets attempt our exploit!
+Nibbles | s_0GcRGv6Ds ^ 22:46  - Code Execution achieved.  Lets get a reverse shell
+Nibbles | s_0GcRGv6Ds ^ 24:53  - Reverse shell returned.
+Nibbles | s_0GcRGv6Ds ^ 26:00  - Running sudo -l examine sudoer, then finding out why sudo took forever to return
+Nibbles | s_0GcRGv6Ds ^ 26:50  - Privesc via bad sudo rules
+Nibbles | s_0GcRGv6Ds ^ 32:10  - Alternative PrivEsc via RationalLove
+
+Conceal | 1ae64CdwLHE ^ 01:15  - Begin of recon
+Conceal | 1ae64CdwLHE ^ 02:54  - Checking SNMP with snmpwalk
+Conceal | 1ae64CdwLHE ^ 03:29  - Discovering a Hashed PSK (MD5) in SNMPWalk, searching the internet for a decrypted value
+Conceal | 1ae64CdwLHE ^ 04:18  - Getting more SNMP Information with snmp-check
+Conceal | 1ae64CdwLHE ^ 07:35  - Going over UDP Ports discovered by snmp-check
+Conceal | 1ae64CdwLHE ^ 10:55  - Running ike-scan
+Conceal | 1ae64CdwLHE ^ 11:55  - Examining ike-scan results to build a IPSEC Config
+Conceal | 1ae64CdwLHE ^ 13:50  - Installing Strongswan (IPSEC/VPN Program)
+Conceal | 1ae64CdwLHE ^ 14:19  - Adding the PSK Found earlier to /etc/ipsec.secrets
+Conceal | 1ae64CdwLHE ^ 15:30  - Begin configuring /etc/ipsec.conf
+Conceal | 1ae64CdwLHE ^ 20:08  - Starting and debugging ipsec
+Conceal | 1ae64CdwLHE ^ 21:55  - Explaining why we add TCP to strongswan config
+Conceal | 1ae64CdwLHE ^ 24:00  - Starting IPSEC, then using NMAP through IPSEC.
+Conceal | 1ae64CdwLHE ^ 25:55  - Enumerating SMB Quickly (SMBMap/cme)
+Conceal | 1ae64CdwLHE ^ 26:50  - Enumerating FTP, discovering we can upload files
+Conceal | 1ae64CdwLHE ^ 27:20  - Checking HTTP, hunting for our uploaded file.  Then uploading files that may lead to code execution
+Conceal | 1ae64CdwLHE ^ 29:44  - Grabbing an ASP Webshell from Github/tennc/webshell
+Conceal | 1ae64CdwLHE ^ 32:08  - Webshell has been uploaded
+Conceal | 1ae64CdwLHE ^ 32:30  - Explaining a weird MTU Issue you *may* run into due to the nested VPN's
+Conceal | 1ae64CdwLHE ^ 35:40  - Back to playing with the web shell, getting a reverse shell with Nishang
+Conceal | 1ae64CdwLHE ^ 38:03  - Explaining RLWRAP
+Conceal | 1ae64CdwLHE ^ 38:40  - whoami /all shows SEImpersonation, so we run JuicyPotato to privesc
+Conceal | 1ae64CdwLHE ^ 44:35  - JuicyPotato fails with the default CLSID, changing it up to get it working.
+Conceal | 1ae64CdwLHE ^ 46:30  - Doing the box again with Windows
+Conceal | 1ae64CdwLHE ^ 47:15  - Setting up the IPSEC Connection through Windows Firewall
+Conceal | 1ae64CdwLHE ^ 50:00  - Installing a DotNet C2 (The Covenant)
+Conceal | 1ae64CdwLHE ^ 54:20  - Covenant/Elite open, starting a Listener then a Powershell Launcher
+Conceal | 1ae64CdwLHE ^ 01:00:10  - Grunt activated. Running Seatbelt, then compiling Watson and reflectively running it
+Conceal | 1ae64CdwLHE ^ 01:05:00  - Grabbing the Sandbox Escaper ALPC Privesc
+Conceal | 1ae64CdwLHE ^ 01:08:03  - Being lazy and compiling a CPP Rev Shell in Linux because it wasn't installed on Windows
+Conceal | 1ae64CdwLHE ^ 01:25:35  - Box is reverted, trying the ALPC Exploit again
+
+Irked | OGFTM_qvtVI ^ 31:35 .  Sorry, was an extremely busy week and didn't get to verify everything was good.
+Irked | OGFTM_qvtVI ^ 00:39  - Begin on Recon
+Irked | OGFTM_qvtVI ^ 01:39  - Starting a full nmap scan 
+Irked | OGFTM_qvtVI ^ 04:15  - Discovery of IRC
+Irked | OGFTM_qvtVI ^ 04:35  - Manually looking at IRC
+Irked | OGFTM_qvtVI ^ 06:00  - Looking at the IRC to understand how to connect to an IRC Server
+Irked | OGFTM_qvtVI ^ 07:00  - Pulling the IRC Version and discovering the exploit
+Irked | OGFTM_qvtVI ^ 08:50  - Going into the history of the IRC Backdoor
+Irked | OGFTM_qvtVI ^ 09:45  - Manually exploiting the IRC Server
+Irked | OGFTM_qvtVI ^ 13:10  - Shell returned on the server
+Irked | OGFTM_qvtVI ^ 14:30  - Discovery of .backup which gives a steg password
+Irked | OGFTM_qvtVI ^ 16:45  - Logging in with djmardov
+Irked | OGFTM_qvtVI ^ 21:20  - Discovery of SetUID enabled custom binary, viewuser
+Irked | OGFTM_qvtVI ^ 23:25  - Using ltrace to see what the binary does, executes the file /tmp/listusers
+Irked | OGFTM_qvtVI ^ 23:50  - Getting a root shell
+Irked | OGFTM_qvtVI ^ 25:50  - Testing exploiting the binary with "who", fails due to no setuid
+Irked | OGFTM_qvtVI ^ 27:50  - Looking at the binary within Ghidra
+
+Netmon | ZxvgniJXbOo ^ 01:00  - Begin of Recon
+Netmon | ZxvgniJXbOo ^ 03:50  - Searching for good files to view via FTP
+Netmon | ZxvgniJXbOo ^ 09:00  - Nothing really found, searching for where PRTG creation file is
+Netmon | ZxvgniJXbOo ^ 14:34  - Backup configuration found!
+Netmon | ZxvgniJXbOo ^ 16:20  - Logging in by incrementing the password from 2018 to 2019
+Netmon | ZxvgniJXbOo ^ 17:55  - Searching for CVE's
+Netmon | ZxvgniJXbOo ^ 19:45  - Searching for where to send notification emails like CVE Said
+Netmon | ZxvgniJXbOo ^ 20:30  - Testing for Command Injection via Cmd
+Netmon | ZxvgniJXbOo ^ 22:20  - Testing for Command Injection via Powershell
+Netmon | ZxvgniJXbOo ^ 23:00  - Getting a reverse shell
+Netmon | ZxvgniJXbOo ^ 26:55  - Encoding powershell in Base64 to eliminate potential bad characters
+Netmon | ZxvgniJXbOo ^ 29:10  - Getting a reverse shell
+
+FriendZone | Zf8p49IzEEA ^ 00:45  - Begin of Recon
+FriendZone | Zf8p49IzEEA ^ 04:10  - Running SMBMap to identify and crawl file shares
+FriendZone | Zf8p49IzEEA ^ 05:00  - Downloading creds.txt from an smb share and checking FTP/SMB
+FriendZone | Zf8p49IzEEA ^ 06:50  - Checking the webpage and grabbing potential DNS Names for the box
+FriendZone | Zf8p49IzEEA ^ 10:40  - Using dig to perform a DNS Zone Transfer to obtain additional host names
+FriendZone | Zf8p49IzEEA ^ 12:00  - Adding all hostnames to /etc/hosts
+FriendZone | Zf8p49IzEEA ^ 12:55  - Running Aquatone to take screenshots of all the pages for quick examination
+FriendZone | Zf8p49IzEEA ^ 15:15  - Testing Uploads.Friendzone.red
+FriendZone | Zf8p49IzEEA ^ 16:30  - Testing admin.friendzone.red
+FriendZone | Zf8p49IzEEA ^ 17:00  - Testing administrator1.friendzone.red, logging in with creds found from SMB
+FriendZone | Zf8p49IzEEA ^ 18:35  - Found an LFI in the Dashboard.PHP script (PageName Variable)
+FriendZone | Zf8p49IzEEA ^ 20:15  - Using PHP Wrappers with the LFI To obtain PHP Script Source
+FriendZone | Zf8p49IzEEA ^ 23:00  - Revisiting recon to find ways to upload files, end up using SMBClient
+FriendZone | Zf8p49IzEEA ^ 25:10  - Gaining code execution through the LFI Exploit and SMB File Share
+FriendZone | Zf8p49IzEEA ^ 27:30  - Reverse Shell Returned
+FriendZone | Zf8p49IzEEA ^ 28:50  - Exploring /var/www/html to see if any troll directories had useful files in them, find creds to Friend user
+FriendZone | Zf8p49IzEEA ^ 31:20  - Running PSPY to identify cron jobs we don't have permission to see
+FriendZone | Zf8p49IzEEA ^ 33:15  - Running LinEnum.sh to enumerate the box and discover the Python OS Library is writeable
+FriendZone | Zf8p49IzEEA ^ 38:20  - Fixing our reverse shell by setting ROWS and COLUMNS of our terminal so we can use Vi
+FriendZone | Zf8p49IzEEA ^ 40:45  - Placing a reverse shell in the Python OS library
+
+LaCasaDePapel | OSRCEOQQJ4E ^ 01:05  - Start of nmap
+LaCasaDePapel | OSRCEOQQJ4E ^ 02:50  - Attempting to execute an VSFTPD Backdoor via MSF
+LaCasaDePapel | OSRCEOQQJ4E ^ 03:40  - Discovering the backdoor opened 6200, discovering a weird shell
+LaCasaDePapel | OSRCEOQQJ4E ^ 04:50  - Lets figure out what just happened
+LaCasaDePapel | OSRCEOQQJ4E ^ 06:50  - Triggering the backdoor without Metasploit
+LaCasaDePapel | OSRCEOQQJ4E ^ 09:05  - Exploring the Psy PHP Shell opened up by the backdoor
+LaCasaDePapel | OSRCEOQQJ4E ^ 10:20  - Several functions for executing bash aren't working, checking disable_functions
+LaCasaDePapel | OSRCEOQQJ4E ^ 11:40  - Attempting to bypass disabled_functions (does not work)
+LaCasaDePapel | OSRCEOQQJ4E ^ 12:50  - Using ScanDir() and File_Get_Contents(), to explore the filesystem
+LaCasaDePapel | OSRCEOQQJ4E ^ 14:50  - Identifying we are probably running as the Dali User (Unintended Path)
+LaCasaDePapel | OSRCEOQQJ4E ^ 17:00  - Downloading CA.KEY, which is a private key to a webserver
+LaCasaDePapel | OSRCEOQQJ4E ^ 21:40  - Using the CA.KEY to generate client certificates to access the HTTPS Page
+LaCasaDePapel | OSRCEOQQJ4E ^ 30:25  - Weird it didn't work, lets just verify all our certificates are good
+LaCasaDePapel | OSRCEOQQJ4E ^ 32:28  - This time it worked! We connected to the server
+LaCasaDePapel | OSRCEOQQJ4E ^ 33:20  - Failing to add the certificate to BurpSuite
+LaCasaDePapel | OSRCEOQQJ4E ^ 33:50  - Discovering File Traversal by editing the PATH variable
+LaCasaDePapel | OSRCEOQQJ4E ^ 36:38  - Discovering the LFI just puts the path as Base64 Encoded
+LaCasaDePapel | OSRCEOQQJ4E ^ 37:15  - Using the LFI to download the SSH Private Key
+LaCasaDePapel | OSRCEOQQJ4E ^ 38:45  - Testing SSH Key against users on the box to gain access!
+LaCasaDePapel | OSRCEOQQJ4E ^ 39:13  - UNINTENDED: Skipping the HTTPS Certificate - Generating SSH Keys to upload via PHP Shell
+LaCasaDePapel | OSRCEOQQJ4E ^ 40:30  - UNINTENDED: Using file_put_contents() to append our public key to authorized_keys
+LaCasaDePapel | OSRCEOQQJ4E ^ 41:30  - UNINTENDED: Using SSH to tunnel through Dali (SOCKS Proxy)
+LaCasaDePapel | OSRCEOQQJ4E ^ 42:30  - UNINTENDED: Scanning ports on Dali that are listening on LocalHost
+LaCasaDePapel | OSRCEOQQJ4E ^ 43:08  - UNINTENDED: Port 8000 is open, and its one step after the Reverse_Proxy that performs SSL Authentication!
+LaCasaDePapel | OSRCEOQQJ4E ^ 45:35  - Running PSPY and LinEnum
+LaCasaDePapel | OSRCEOQQJ4E ^ 50:20  - Using PSPY to view FileSystem Events which will show the cron
+LaCasaDePapel | OSRCEOQQJ4E ^ 52:30  - Taking control of ~/memcached.ini because we own the folder!
+LaCasaDePapel | OSRCEOQQJ4E ^ 54:45  - Exploiting the cron that utilizes memcached.ini to get a root shell
+LaCasaDePapel | OSRCEOQQJ4E ^ 55:55  - Exploring how the SSL Authentication is working
+
+LightWeight | yQgtDoCDAYk ^ 00:45  - Begin of recon, Nmap
+LightWeight | yQgtDoCDAYk ^ 01:30  - Taking the CentOS Apache Version to find major version
+LightWeight | yQgtDoCDAYk ^ 03:20  - Running GoBuster with a Common-PHP-Files wordlist.
+LightWeight | yQgtDoCDAYk ^ 06:00  - Enumerating Ldap with ldapsearch
+LightWeight | yQgtDoCDAYk ^ 07:30  - Discovery of Password Hashes within ldap information
+LightWeight | yQgtDoCDAYk ^ 10:55  - Attempting to crack the hashes. (does not crack)
+LightWeight | yQgtDoCDAYk ^ 12:30  - Back to the web page
+LightWeight | yQgtDoCDAYk ^ 13:15  - Page says to login with ip@Lightweight with the password of your ip
+LightWeight | yQgtDoCDAYk ^ 15:35  - Running LinEnum
+LightWeight | yQgtDoCDAYk ^ 20:15  - Discovery of Extended Capabilities set on tcpdump
+LightWeight | yQgtDoCDAYk ^ 20:50  - Performing a packet capture over SSH without touching disk
+LightWeight | yQgtDoCDAYk ^ 23:45  - Examining the pcap created, don't see anything on ens33
+LightWeight | yQgtDoCDAYk ^ 24:20  - Performing a packet capture through SSH and piping live results to WireShark
+LightWeight | yQgtDoCDAYk ^ 26:00  - Discovery of LDAP Traffic, ldapuser2 password passed in clear-text
+LightWeight | yQgtDoCDAYk ^ 28:15  - Using bash to exfil a file over the network (backup.7z)
+LightWeight | yQgtDoCDAYk ^ 29:25  - Using 7z2john and hashcat to crack a 7zip file
+LightWeight | yQgtDoCDAYk ^ 32:05  - Examining extracted files to discover a new credential (ldapuser1)
+LightWeight | yQgtDoCDAYk ^ 33:30  - The openssl binary in ldapuser1 has an empty capability (which is all)
+LightWeight | yQgtDoCDAYk ^ 35:00  - Using GTFOBins to see what we can do with openssl
+LightWeight | yQgtDoCDAYk ^ 37:11  - Reading /etc/shadow with openssl
+LightWeight | yQgtDoCDAYk ^ 37:35  - Adding an entry into /etc/sudoers to allow us to escalate to root
+
+Sense | d2nVDoVr0jE ^ 01:20  - Star of Recon
+Sense | d2nVDoVr0jE ^ 03:40  - GoBuster
+Sense | d2nVDoVr0jE ^ 04:45  - Getting banned and Pivoting to verify
+Sense | d2nVDoVr0jE ^ 10:20  - Logging into PFSense
+Sense | d2nVDoVr0jE ^ 16:50  - Manually Exploiting PFsense 
+Sense | d2nVDoVr0jE ^ 38:30  - Using Metasploit to exploit
+Sense | d2nVDoVr0jE ^ 42:00  - Creating a Bruteforce Script in Python ( CSRF )
+
+Node | sW10TlZF62w ^ 00:45  - Begin of NMAP
+Node | sW10TlZF62w ^ 03:00  - GoBuster (Fails)
+Node | sW10TlZF62w ^ 08:15  - Screw GoBuster, BurpSpider FTW
+Node | sW10TlZF62w ^ 09:12  - Examing Routes File to find more pages
+Node | sW10TlZF62w ^ 10:10  - Finding Credentials and downloading backup
+Node | sW10TlZF62w ^ 14:45  - Cracking the zip with fcrackzip
+Node | sW10TlZF62w ^ 16:45  - Finding more credentials (SSH) within MongoSource
+Node | sW10TlZF62w ^ 21:50  - Privesc to Tom User
+Node | sW10TlZF62w ^ 35:04  - Analyzing Backup Binary File
+Node | sW10TlZF62w ^ 36:49  - Using strace to find binary password
+Node | sW10TlZF62w ^ 40:25  - Finding blacklisted characters/words
+Node | sW10TlZF62w ^ 50:00  - Unintended method one, abusing CWD
+Node | sW10TlZF62w ^ 52:20  - Unintended method two, wildcards to bypass blacklist
+Node | sW10TlZF62w ^ 54:45  - Unintended method three, command injection via new line
+Node | sW10TlZF62w ^ 59:15  - Intended root Buffer Overflow ASLR Brute Force
+
+Valentine | XYXNvemgJUo ^ 00:25  - Start of Recon, identifying end of life OS from nmap
+Valentine | XYXNvemgJUo ^ 03:20  - Running vulnerability scripts in nmap to discover heartbleed
+Valentine | XYXNvemgJUo ^ 04:16  - Going to the HTTP Page to see what it looks like
+Valentine | XYXNvemgJUo ^ 06:30  - Begin of Heartbleed - Grabbing Python Module
+Valentine | XYXNvemgJUo ^ 07:13  - Explaining Heartbleed -- XKCD ftw
+Valentine | XYXNvemgJUo ^ 10:15  - Explaining and running the exploit
+Valentine | XYXNvemgJUo ^ 13:40  - Exporting large chunks of memory by running in a loop
+Valentine | XYXNvemgJUo ^ 14:10  - Finding an encrypted SSH Key on the server
+Valentine | XYXNvemgJUo ^ 15:35  - Examining heartbleed output to discover SSH Key Password
+Valentine | XYXNvemgJUo ^ 17:45  - SSH as low priv user returned
+Valentine | XYXNvemgJUo ^ 21:55  - Finding a writable tmux socket to hijack session and find a root shell
+Valentine | XYXNvemgJUo ^ 23:50  - Alternative Privesc, DirtyC0w
+
+Poison | rs4zEwONzzk ^ 00:56  - Start of recon, use Bootstrap XSL Script to make nmap pretty
+Poison | rs4zEwONzzk ^ 03:10  - Looking at nmap in web browser 
+Poison | rs4zEwONzzk ^ 03:52  - Navigating to the web page, and testing all the pages.
+Poison | rs4zEwONzzk ^ 06:25  - Testing for LFI
+Poison | rs4zEwONzzk ^ 07:00  - Using PHP  Filters to view the contents of php file through LFI (Local File Inclusion)
+Poison | rs4zEwONzzk ^ 08:40  - Testing for RFI (Remote File Inclusion) [not vuln]
+Poison | rs4zEwONzzk ^ 10:00  - Code Execution via LFI + phpinfo()
+Poison | rs4zEwONzzk ^ 14:45  - Modifying the PHP-LFI Script code to get it working
+Poison | rs4zEwONzzk ^ 17:10  - Debugging the script to see why tmp_name couldn't be found
+Poison | rs4zEwONzzk ^ 20:12  - Shell returned!
+Poison | rs4zEwONzzk ^ 21:25  - Looking at pwdbackup.txt and decoding 13 times to get password.
+Poison | rs4zEwONzzk ^ 23:37  - SSH into the box (Do not privesc right away!)
+Poison | rs4zEwONzzk ^ 24:29  - Getting shell via Log Poisoning
+Poison | rs4zEwONzzk ^ 26:39  - Whoops.  Broke the exploit, because of bad PHP Code... We'll come back to this! 
+Poison | rs4zEwONzzk ^ 28:47  - Begin of PrivEsc, grabbing secret.zip off
+Poison | rs4zEwONzzk ^ 32:38  - Searching for processes running as root, find VNC
+Poison | rs4zEwONzzk ^ 33:49  - Setting up SSH Tunnels without exiting SSH Session.
+Poison | rs4zEwONzzk ^ 37:43  - Something weird happend... Setting up SSH Tunnels manually.
+Poison | rs4zEwONzzk ^ 40:10  - PrivEsc: VNC through the SSH Tunnel, passing the encrypted VNC Password
+Poison | rs4zEwONzzk ^ 41:40  - Decrypting the VNC Password because we can.
+Poison | rs4zEwONzzk ^ 42:50  - Examining the log file to see why our Log Poison Failed, then doing the Log Poison
+
+Sunday | xUrq29OTSuM ^ 00:48  - Begin of NMAP Discovery of Finger
+Sunday | xUrq29OTSuM ^ 03:36  - Enumerating Finger with Finger-User-Enum
+Sunday | xUrq29OTSuM ^ 05:00  - Nmap'ing all port quickly by lowering max-retries
+Sunday | xUrq29OTSuM ^ 08:40  - Adding an old Key Exchange Alogorithm to SSH
+Sunday | xUrq29OTSuM ^ 09:30  - Showing Hydra doesn't work, then using Patator
+Sunday | xUrq29OTSuM ^ 11:19  - Using find to count lines in all wordlist files
+Sunday | xUrq29OTSuM ^ 14:07  - Logged in with sunny:sunday
+Sunday | xUrq29OTSuM ^ 14:45  - Grabbing /backup/shadow.backup and cracking sha256crypt with Hashcat
+Sunday | xUrq29OTSuM ^ 16:46  - Just noticed this box is oooooold, try to privesc with sudo and ShellShock (Fail)
+Sunday | xUrq29OTSuM ^ 18:53  - Privesc by overwriting the /root/troll binary
+Sunday | xUrq29OTSuM ^ 23:30  - Using wget to exfil files quickly
+Sunday | xUrq29OTSuM ^ 24:50  - Viewing what wget --post-file looks like
+Sunday | xUrq29OTSuM ^ 25:50  - Creating a PHP Script to accept uploaded files
+Sunday | xUrq29OTSuM ^ 27:30  - Hardening our upload location to prevent executing PHP Files and/or reading what was uploaded
+Sunday | xUrq29OTSuM ^ 29:10  - Starting a php webserver with php -S (ip):(port) -t .
+Sunday | xUrq29OTSuM ^ 31:10  - Replacing the root password by changing the shadow file
+Sunday | xUrq29OTSuM ^ 33:30  - Demoing a way to create directories and upload files!
+
+Brainfuck | o5x1yg3JnYI ^ 0:20  - Recon
+Brainfuck | o5x1yg3JnYI ^ 3:40  - Start of WP Hacking
+Brainfuck | o5x1yg3JnYI ^ 10:30  - Logged into WP
+Brainfuck | o5x1yg3JnYI ^ 15:00  - Login to SuperSecretForum
+Brainfuck | o5x1yg3JnYI ^ 25:00  - Cracking the SSH Key
+Brainfuck | o5x1yg3JnYI ^ 27:15  - Begin of getting root.txt (RSA Cracking)
+
+</div>															    
+<div class="center">
+	<h1>Keyword Search</h1>
+
+<form id="myForm">
+  <input type="search" id="mySearch"><br /><br />
+  <div class="center"><input class="button" value="Search" onkeypress="javascript:search();" onclick="javascript:search();"></div><br />
+</form>
+</div>
+</body>
+<h2>
+<center>
+<p>Please consider supporting me on <a href="https://patreon.com/ippsec">Patreon</a></p>
+<p>Thanks to <a href="https://twitter.com/shell_ock">@Shell_ock</a> for a large portion of the code</p>
+</center>
+</h2>
+</html>

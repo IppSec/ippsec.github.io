@@ -56,7 +56,12 @@ function hidediv(x){
 	document.getElementById(x).style.display="none";
 	go();
 }
-
+function handleKeyPress(e){
+	if(e.keyCode === 13){
+		e.preventDefault();
+		search();
+	}
+}
 function search(){
 	param = document.getElementById('mySearch').value.toLowerCase();
 	lols = "\<script> alert  prompt '  \" "
@@ -2369,7 +2374,7 @@ Popcorn | ylBjVicempc ^ Note: Video may contain slight errors, most notably in t
 	<h1>Keyword Search</h1>
 
 <form id="myForm">
-  <input type="search" id="mySearch"><br /><br />
+  <input type="search" id="mySearch" onkeypress="javascript:handleKeyPress(event)"><br /><br />
   <div class="center"><input class="button" value="Search" onkeypress="javascript:search();" onclick="javascript:search();"></div><br />
 </form>
 </div>

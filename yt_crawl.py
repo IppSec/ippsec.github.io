@@ -70,5 +70,7 @@ for video in output:
         if "HackTheBox" in video[2] or "VulnHub" in video[2]:
             title = video[2].split()[2]
         if line != "":
+            if not re.search('[\d]*:[\d]', line):
+                line = '00:01 - ' + line
             print(f'{title} | {video[1]} ^ {line}')
 

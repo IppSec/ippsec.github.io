@@ -7,6 +7,7 @@ $(document).ready(() => {
 	$searchValue = $('input#search').first();
 	$form = $('form#searchForm');
 	$resultsTable = $('tbody#results').first();
+	$noResults = $('div.noResults');
 
 	controls = {
 		displayResults: function(){
@@ -17,15 +18,20 @@ $(document).ready(() => {
 			$results.hide();
 			$query.show();
 		},
-		doSearch: function(regex){
+		doSearch: function(match){
 			results = [];
+			regex = match.toLowerCase();
 			window.dataset.forEach((e) => {
-				if (e.line.toLowerCase().match(regex)) results.push(e);
+				if (e.line.toLowerCase().match(regex) || e.machine.toLowerCase().match(regex)) results.push(e);
 			});
 			return results;
 		},
 		updateResults: function($loc, results){
 			$loc.empty();
+			$noResults.hide();
+			if (results.length == 0) {
+				$noResults.show();
+			}
 
 			results.forEach((r) => {
 				//Not the fastest but it makes for easier to read code :>
@@ -44,6 +50,7 @@ $(document).ready(() => {
 
 	$.getJSON('./dataset.json', (data) => {
 		window.dataset = data;
+		controls.updateResults($resultsTable, window.dataset);
 	});
 
 	$form.submit((event) => {

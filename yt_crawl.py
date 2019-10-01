@@ -3,7 +3,33 @@ import re
 import json
 #import pdb, jsontree # When Debugging
 
-api_key = '' # ADD YOUR YOUTUBE API KEY HERE
+class SearchEntry:
+    #JSON serializey stuff
+    class Timestamp:
+        minutes = 0
+        seconds = 1
+    machine = ""
+    videoId = ""
+    timestamp = Timestamp()
+    line = ""
+
+    def __init__(self, machine, video, minutes, seconds, line):
+        self.machine, self.videoId, self.timestamp.minutes, self.timestamp.seconds, self.line = machine, video, minutes, seconds, line
+
+    def AsJsonSerializable(self):
+        return {
+            "machine": self.machine,
+            "videoId": self.videoId,
+            "timestamp": {
+                "minutes": int(self.timestamp.minutes),
+                "seconds": int(self.timestamp.seconds)
+            },
+            "line": self.line
+        }
+
+
+api_key = ''  # ADD YOUR YOUTUBE API KEY HERE !!
+                                                     # Dont commit to git :>
 api_url = 'https://www.googleapis.com/youtube/v3/'
 channel_id = 'UCa6eh7gCkpPo5XXUDfygQQA'
 
@@ -62,15 +88,34 @@ def GetVideosInPlaylist():
             description = video.get('snippet').get('description')
             output.append([date,vId,title,description])
     return output
-            
+
+videos = []
+print("Grabbing video list")
 output = GetVideosInPlaylist()
+print("Sorting data")
 for video in output:
     description = video[3].split('\n')
     for line in description:
         if "HackTheBox" in video[2] or "VulnHub" in video[2]:
             title = video[2].split()[2]
         if line != "":
-            if not re.search('[\d]*:[\d]', line):
+            if not re.search('$[\d]*:[\d]', line):
                 line = '00:01 - ' + line
-            print(f'{title} | {video[1]} ^ {line}')
+
+            temp = line.split(" - ")
+            timestamp = temp[0].split(":")
+            seconds = timestamp[1]
+            minutes = timestamp[0]
+            line = " - ".join(temp[1::])
+
+            entry = SearchEntry(title, video[1], minutes, seconds, line).AsJsonSerializable()
+            videos.append(entry)
+            #print(f'{title} | {video[1]} ^ {line}')
+
+print("Serializing dataset")            
+dataset = json.dumps(videos)
+print("Writing Dataset dataset...")
+with open("dataset.json","w") as ds:
+    ds.write(dataset)
+print("Done! Now commit to git")            
 

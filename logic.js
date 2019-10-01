@@ -17,10 +17,11 @@ $(document).ready(() => {
 			$results.hide();
 			$query.show();
 		},
-		doSearch: function(regex){
+		doSearch: function(match){
 			results = [];
+			regex = match.toLowerCase();
 			window.dataset.forEach((e) => {
-				if (e.line.toLowerCase().match(regex)) results.push(e);
+				if (e.line.toLowerCase().match(regex) || e.machine.toLowerCase().match(regex)) results.push(e);
 			});
 			return results;
 		},

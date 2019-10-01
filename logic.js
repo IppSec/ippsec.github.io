@@ -44,6 +44,7 @@ $(document).ready(() => {
 
 	$.getJSON('./dataset.json', (data) => {
 		window.dataset = data;
+		controls.updateResults($resultsTable, window.dataset);
 	});
 
 	$form.submit((event) => {

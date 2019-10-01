@@ -7,6 +7,7 @@ $(document).ready(() => {
 	$searchValue = $('input#search').first();
 	$form = $('form#searchForm');
 	$resultsTable = $('tbody#results').first();
+	$noResults = $('div.noResults');
 
 	controls = {
 		displayResults: function(){
@@ -27,6 +28,10 @@ $(document).ready(() => {
 		},
 		updateResults: function($loc, results){
 			$loc.empty();
+			$noResults.hide();
+			if (results.length == 0) {
+				$noResults.show();
+			}
 
 			results.forEach((r) => {
 				//Not the fastest but it makes for easier to read code :>

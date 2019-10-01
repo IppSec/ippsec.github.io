@@ -10,15 +10,16 @@
 			<h1>Keyword Search</h1>
 
 			<form id="searchForm" action="#">
-				<input type="input" id="search"><br /><br />
-				<div class="center"><input type="submit" class="button" value="Search"></div><br />
+				<input type="input" id="search">
 			</form>
 			<h2>Please consider supporting me on <a href="https://patreon.com/ippsec">Patreon</a></h2>
 			<p>Thanks to <a href="https://twitter.com/shell_ock">@Shell_ock</a> and <a href="https://twitter.com/hexf_me">@HexF_me</a> for a large portion of the code</p>
 		</div>
 		<div id="results">
 			<h1>Results</h1>
-			<button onclick="window.controls.hideResults()" class="button">New Search</button>
+			<div class="noResults">
+				<h3>No Results Found</h3>
+			</div>
 			<table>
 				<thead>
 					<tr>

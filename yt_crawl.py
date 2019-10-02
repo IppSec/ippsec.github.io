@@ -93,7 +93,7 @@ def GetVideosInPlaylist(api_key):
     return output
 
 
-def run(api_key, datasetOutputLocation="dataset.json"):
+def run(api_key, gitCommit, datasetOutputLocation="dataset.json"):
     videos = []
     print("Grabbing video list")
     output = GetVideosInPlaylist(api_key)
@@ -132,7 +132,14 @@ def run(api_key, datasetOutputLocation="dataset.json"):
     print("Writing Dataset dataset...")
     with open(datasetOutputLocation, "w") as ds:
         ds.write(dataset)
-    print("Done! Now commit to git")
+
+    if gitCommit:
+        gitDescription = "Updated dataset"
+        print(f"Commiting to git, with commit description {gitDescription}")
+        from subprocess import call
+        call(["git", "commit", "-m", gitDescription, datasetOutputLocation])
+    else:
+        print("Done! Now commit to git")
 
 
 def parser():
@@ -141,8 +148,11 @@ def parser():
     parser.add_argument('api_key', help="Your API key from the Youtube API")
     parser.add_argument('--output_file', '-o',
                         help="The output path", default="dataset.json")
+    parser.add_argument(
+        '--git-commit', '-g', help="Automatically commit the dataset file to git (uses git cli)", default=False, type=bool)
     args = parser.parse_args()
-    print(args.api_key)
+    print(f"Got API key {args.api_key}")
+
     run(args.api_key, args.output_file)
 
 

@@ -1,64 +1,102 @@
 //No nesting doesn't work in CSS, its a SASS/SCSS thing
+
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
+
+$colors-background: black;
+$colors-text: white;
+$colors-links: #c328fa;
+$colors-accent-1: #60a8f0;
+$colors-accent-2: #fa8840;
+$colors-accent-3: #fa5e3d;
+$colors-accent-4: #aa4cd9;
+$colors-accent-5: #4cd977;
+
 body {
-	background: #000;
-	color: white;
+	background: $colors-background;
+	color: $colors-text;
+	margin: 0;
+
+	font-family: 'Source Code Pro', monospace;
+
+	&.color-no-search {
+		background: $colors-accent-2;
+	}
+
+	&.color-no-results {
+		background: $colors-accent-3;
+	}
+
+	&.color-results-found {
+		background: $colors-accent-5;
+	}
+
+	h1 {
+		font-size: 10vh;
+		margin: 0.25vh;
+	}
 
 	.center {
-		margin: auto;
-		width: 50%;
+		a {
+			color: $colors-links;
+			text-decoration: none;
+		}
+
 		text-align: center;
-		vertical-align: middle;
-
-		a:link {
-			color: orange;
-		}
-
-		a:visited {
-			color: orange;
-		}
-
-		a:hover {
-			color: hotpink;
-		}
-
-		a:active {
-			color: yellow;
-		}
+		margin-left: auto;
+		margin-right: auto;
 
 		.button {
-			background-color: #60a9f0;
+			background-color: $colors-accent-1;
 			border: none;
-			color: white;
+			color: $colors-text;
 			padding: 15px 32px;
 			text-align: center;
 			text-decoration: none;
 			display: inline-block;
 			font-size: 16px;
 			transition-duration: 0.4s;
+		}
 
-			&:hover {
-				background-color: orange;
+		.header {
+			padding-bottom: 2vh;
+
+			a {
+				color: $colors-links;
 			}
 		}
 
 		#query {
 			input {
-				#search {
-					width: 20em;
-					height: 2em;
-					font-size: 20px;
+				&#search {
+					width: 100vw;
+					height: 10vh;
+					font-size: 4vh;
 					font-family: serif;
 					text-align: center;
+					margin: 0;
 				}
 			}
-		}
 
-		#results {
-			table {
-				border: 0;
-				tbody {
-					tr:nth-child(odd) {
-						background-color: rgba(255, 255, 255, 0.1);
+			#results {
+				table {
+					border: 0;
+					margin-left: 10vw;
+					margin-right: 10vw;
+					width: 80vw;
+
+					thead {
+						font-size: 150%;
+					}
+
+					tbody {
+						td {
+							padding-left: 5px;
+							padding-right: 5px;
+						}
+
+						tr:nth-child(odd) {
+							background-color: rgba(255, 255, 255, 0.2);
+						}
 					}
 				}
 			}

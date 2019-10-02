@@ -6,40 +6,56 @@
 </head>
 <body>		
 	<div class="center">
-		<div id="query">
-			<h1>Keyword Search</h1>
-
-			<form id="searchForm" action="#">
-				<input type="input" id="search">
-			</form>
-			<h2>Please consider supporting me on <a href="https://patreon.com/ippsec">Patreon</a></h2>
-			<p>Thanks to <a href="https://twitter.com/shell_ock">@Shell_ock</a> and <a href="https://twitter.com/hexf_me">@HexF_me</a> for a large portion of the code</p>
-		</div>
-		<div id="results">
-			<h1>Results</h1>
-			<div class="noResults">
-				<h3>No Results Found</h3>
+		<h1>IPPSEC</h1>
+		<div class="header">
+			<div class="social">
+				<a href="#patreon">Twitter</a>
+				&bullet;
+				<a href="#patreon">Patreon</a>
+				&bullet;
+				<a href="#patreon">Youtube</a>
 			</div>
-			<table>
-				<thead>
-					<tr>
-						<td>
-							Machine
-						</td>
-						<td>
-							Description
-						</td>
-						<td>
-							Link
-						</td>
-					</tr>
-				</thead>
-				<tbody id="results">
-					
-				</tbody>
-			</table>
 		</div>
+		<div id="query">
+			<form id="searchForm" action="#">
+				<input type="input" id="search" placeholder="ENTER SEARCH TERM" autocomplete="false">
+			</form>
+
+			<div id="results">
+				<br>
+				<div class="noResults">
+					<h2>No Results Found</h2>
+				</div>
+				<table id="results">
+					<thead>
+						<tr>
+							<td>
+								Machine
+							</td>
+							<td>
+								Description
+							</td>
+							<td>
+								Link
+							</td>
+						</tr>
+					</thead>
+					<tbody id="results">
+			
+					</tbody>
+				</table>
+			</div>
+
+			<h3>Please consider supporting me on <a href="https://patreon.com/ippsec">Patreon</a></h3>
+			<p>Thanks to <a href="https://twitter.com/shell_ock">@Shell_ock</a> and <a
+					href="https://twitter.com/hexf_me">@HexF_me</a> for a large portion of the code</p>
+		</div>
+		
+		
+
 	</div>
+
+	
 
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

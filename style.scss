@@ -1,5 +1,3 @@
-//No nesting doesn't work in CSS, its a SASS/SCSS thing
-
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
 @import 'colors.scss';
 
@@ -7,7 +5,7 @@
 	$name: colorani-#{unique-id()};
 
 	animation-name: $name;
-	animation-duration: 1s;
+	animation-duration: 0.5s;
 
 	@keyframes #{$name} {
 		from {
@@ -20,6 +18,7 @@
 	}
 
 	animation-fill-mode: forwards;
+	animation-timing-function: ease-in-out;
 }
 
 body {
@@ -85,7 +84,7 @@ body {
 				}
 			}
 
-			#query {
+			.query {
 				input {
 					width: 100vw;
 					height: 10vh;
@@ -99,28 +98,38 @@ body {
 				}
 			}
 
-			#results {
-				table {
-					border: 0;
-					margin-left: 10vw;
-					margin-right: 10vw;
-					width: 80vw;
+			.results {
+				.results-table {
+					transition: max-height 0.3s linear;
+					max-height: 300vh;
+					overflow: hidden;
 
-					thead {
-						font-size: 150%;
+					&.hide {
+						max-height: 0;
 					}
 
-					tbody {
-						td {
-							padding-left: 5px;
-							padding-right: 5px;
+					table.results {
+						border: 0;
+						margin-left: 10vw;
+						margin-right: 10vw;
+						width: 80vw;
+
+						thead {
+							font-size: 150%;
 						}
 
-						tr {
-							max-width: 10vw;
+						tbody {
+							td {
+								padding-left: 5px;
+								padding-right: 5px;
+							}
 
-							&:nth-child(odd) {
-								background-color: rgba(255, 255, 255, 0.2);
+							tr {
+								max-width: 10vw;
+
+								&:nth-child(odd) {
+									background-color: rgba(255, 255, 255, 0.2);
+								}
 							}
 						}
 					}

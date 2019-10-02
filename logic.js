@@ -5,9 +5,11 @@ var controls = {
 	oldColor: '',
 	displayResults: function(){
 		$results.show();
+		$resultsTableHideable.removeClass('hide');
 	},
 	hideResults: function(){
 		$results.hide();
+		$resultsTableHideable.addClass('hide');
 	},
 	doSearch: function(match, dataset){
 		results = [];
@@ -22,18 +24,18 @@ var controls = {
 		if (results.length == 0) {
 			$noResults.show();
 			$noResults.text('No Results Found');
-			$resultsTableHideable.hide();
+			$resultsTableHideable.addClass('hide');
 		}
 		else if (results.length > 150) {
 			$noResults.show();
-			$resultsTableHideable.hide();
+			$resultsTableHideable.addClass('hide');
 			$noResults.text('Error: ' + results.length + ' results were found, try being more specific');
 			this.setColor($colorUpdate, 'too-many-results');
 		}
 		else {
 			$loc.empty();
 			$noResults.hide();
-			$resultsTableHideable.show();
+			$resultsTableHideable.removeClass('hide');
 
 			results.forEach((r) => {
 				//Not the fastest but it makes for easier to read code :>
@@ -67,12 +69,12 @@ var controls = {
 window.controls = controls;
 
 $(document).ready(() => {
-	$results = $('div#results');
-	$query = $('#query');
-	$searchValue = $('input#search').first();
-	$form = $('form#searchForm');
-	$resultsTableHideable = $('table#results');
-	$resultsTable = $('tbody#results').first();
+	$results = $('div.results');
+	$query = $('.query');
+	$searchValue = $('input.search').first();
+	$form = $('form.searchForm');
+	$resultsTableHideable = $('.results-table');
+	$resultsTable = $('tbody.results').first();
 	$noResults = $('div.noResults');
 	$colorUpdate = $('body');
 

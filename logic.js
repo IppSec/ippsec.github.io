@@ -8,6 +8,7 @@ $(document).ready(() => {
 	$form = $('form#searchForm');
 	$resultsTable = $('tbody#results').first();
 	$noResults = $('div.noResults');
+	$noResultsText = $('#noResultsText').first();
 
 	controls = {
 		displayResults: function(){
@@ -38,26 +39,30 @@ $(document).ready(() => {
 			} else if (results.length == 0) {
 				$noResults.show();
 				$results.hide();
-			} else {
+				$noResultsText.text("No Results Found");
+			} else if (results.length > 500) {
+				$noResults.show();
+				$results.hide();
+				$noResultsText.text("Error: " + results.length + " results found, try being more specific");
+			} else { 
 				$noResults.hide();
 				$results.show();
+				results.forEach((r) => {
+					//Not the fastest but it makes for easier to read code :>
+
+					timeInSeconds = r.timestamp.minutes * 60 + r.timestamp.seconds;
+					el = searchResultFormat
+						.replace('$machine', r.machine)
+						.replace('$line', r.line)
+						.replace('$link', linkTemplate.replace('$video', r.videoId).replace('$time', timeInSeconds));
+
+					$loc.append(el);
+				});
 			}
-
-
-			results.forEach((r) => {
-				//Not the fastest but it makes for easier to read code :>
-
-				timeInSeconds = r.timestamp.minutes * 60 + r.timestamp.seconds;
-				el = searchResultFormat
-					.replace('$machine', r.machine)
-					.replace('$line', r.line)
-					.replace('$link', linkTemplate.replace('$video', r.videoId).replace('$time', timeInSeconds));
-
-				$loc.append(el);
-			});
-		}
+			}
 	};
 	window.controls = controls;
+	
 
 	$.getJSON('./dataset.json', (data) => {
 		window.dataset = data;

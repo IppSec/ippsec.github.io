@@ -1,6 +1,7 @@
 import requests
 import re
 import json
+import argparse
 # import pdb, jsontree # When Debugging
 
 
@@ -29,13 +30,11 @@ class SearchEntry:
         }
 
 
-# ADD YOUR YOUTUBE API KEY HERE !!
-api_key = ''    # Dont commit to git :>
 api_url = 'https://www.googleapis.com/youtube/v3/'
 channel_id = 'UCa6eh7gCkpPo5XXUDfygQQA'
 
 
-def GetUploadPlaylist():
+def GetUploadPlaylist(api_key):
     # YouTube API will only return a list of videos in a playlist, not channel.
     # This will get the playlist that contains all videos.
     data = {'id': channel_id,
@@ -49,13 +48,13 @@ def GetUploadPlaylist():
     return upload_id
 
 
-def GetTotalVideosInPlaylist():
+def GetTotalVideosInPlaylist(api_key):
     # Get the total number of videos, so our playlist crawler knows how many videos to grab.
     # Probably is not needed, had created this before investigating how YouTube returns pages
     # in a query.
     data = {
         'key': api_key,
-        'playlistId': GetUploadPlaylist(),
+        'playlistId': GetUploadPlaylist(api_key),
         'part': 'snippet',
         'maxResults': '2'}
     r = requests.get(f'{api_url}playlistItems', params=data)
@@ -64,20 +63,20 @@ def GetTotalVideosInPlaylist():
     return total_videos
 
 
-def GetVideosInPlaylist():
+def GetVideosInPlaylist(api_key):
     # Gets all the videos in a playlist, hardcoded to the Uploaded Playlist
     # https://www.googleapis.com/youtube/v3/playlistItems?playlistId={"uploads" Id}&key={API key}&part=snippet&maxResults=50
     output = []
     next_page_token = ''
     page = 1
-    total_videos = GetTotalVideosInPlaylist()
+    total_videos = GetTotalVideosInPlaylist(api_key)
     # This logic probably can be replaced by doing checks against the nextPageToken.
     while total_videos > 0:
         page += 1
         total_videos = total_videos - 50
         data = {
             'key': api_key,
-            'playlistId': GetUploadPlaylist(),
+            'playlistId': GetUploadPlaylist(api_key),
             'part': 'snippet',
             'maxResults': '50'}
         if next_page_token:
@@ -94,42 +93,58 @@ def GetVideosInPlaylist():
     return output
 
 
-videos = []
-print("Grabbing video list")
-output = GetVideosInPlaylist()
-print("Sorting data")
-for video in output:
-    description = video[3].split('\n')
-    for line in description:
-        if "HackTheBox" in video[2] or "VulnHub" in video[2]:
-            title = video[2].split()[2]
-        if line != "":
-            if not re.search('^\w[\d]*:[\d]', line):
-                line = '00:01 - ' + line
+def run(api_key, datasetOutputLocation="dataset.json"):
+    videos = []
+    print("Grabbing video list")
+    output = GetVideosInPlaylist(api_key)
+    print("Sorting data")
+    for video in output:
+        description = video[3].split('\n')
+        for line in description:
+            if "HackTheBox" in video[2] or "VulnHub" in video[2]:
+                title = video[2].split()[2]
+            if line != "":
+                if not re.search('^\w[\d]*:[\d]', line):
+                    line = '00:01 - ' + line
 
-            temp = line.split("-")
+                temp = line.split("-")
 
-            timestamp = temp[0].strip().split(":")
+                timestamp = temp[0].strip().split(":")
 
-            seconds = timestamp[-1]
-            hours = 0
-            try:
-                hours = int(timestamp[-3])
-            except:
-                pass
-            minutes = int(timestamp[-2]) + int(hours * 60)
+                seconds = timestamp[-1]
+                hours = 0
+                try:
+                    hours = int(timestamp[-3])
+                except:
+                    pass
+                minutes = int(timestamp[-2]) + int(hours * 60)
 
-            newline = "-".join(temp[1::])
+                newline = "-".join(temp[1::])
 
-            entry = SearchEntry(
-                title, video[1], minutes, seconds, newline).AsJsonSerializable()
+                entry = SearchEntry(
+                    title, video[1], minutes, seconds, newline).AsJsonSerializable()
 
-            videos.append(entry)
-            #print(f'{title} | {video[1]} ^ {line}')
+                videos.append(entry)
+                #print(f'{title} | {video[1]} ^ {line}')
 
-print("Serializing dataset")
-dataset = json.dumps(videos)
-print("Writing Dataset dataset...")
-with open("dataset.json", "w") as ds:
-    ds.write(dataset)
-print("Done! Now commit to git")
+    print("Serializing dataset")
+    dataset = json.dumps(videos)
+    print("Writing Dataset dataset...")
+    with open(datasetOutputLocation, "w") as ds:
+        ds.write(dataset)
+    print("Done! Now commit to git")
+
+
+def parser():
+    parser = argparse.ArgumentParser(
+        description="Generate the dataset for the web app")
+    parser.add_argument('api_key', help="Your API key from the Youtube API")
+    parser.add_argument('--output_file', '-o',
+                        help="The output path", default="dataset.json")
+    args = parser.parse_args()
+    print(args.api_key)
+    run(args.api_key, args.output_file)
+
+
+if __name__ == "__main__":
+    parser()

@@ -3,8 +3,8 @@
 
         // More Complex
         {
-            "format": "compressed",
-            "extensionName": ".min.css",
+            "format": "expanded",
+            "extensionName": ".css",
             "savePath": "~"
         }
     ]

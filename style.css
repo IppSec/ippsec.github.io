@@ -1,0 +1,590 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap");
+body {
+  background: black;
+  color: white;
+}
+
+body.color-no-search {
+  background: #60a8f0;
+}
+
+body.color-fade-from-no-search-to-no-search {
+  -webkit-animation-name: colorani-u24776538;
+          animation-name: colorani-u24776538;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-u24776538 {
+  from {
+    background: #60a8f0;
+  }
+  to {
+    background: #60a8f0;
+  }
+}
+
+@keyframes colorani-u24776538 {
+  from {
+    background: #60a8f0;
+  }
+  to {
+    background: #60a8f0;
+  }
+}
+
+body.color-fade-from-no-search-to-no-results {
+  -webkit-animation-name: colorani-uff016f74;
+          animation-name: colorani-uff016f74;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-uff016f74 {
+  from {
+    background: #60a8f0;
+  }
+  to {
+    background: #fa5e3d;
+  }
+}
+
+@keyframes colorani-uff016f74 {
+  from {
+    background: #60a8f0;
+  }
+  to {
+    background: #fa5e3d;
+  }
+}
+
+body.color-fade-from-no-search-to-results-found {
+  -webkit-animation-name: colorani-u056c57d3;
+          animation-name: colorani-u056c57d3;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-u056c57d3 {
+  from {
+    background: #60a8f0;
+  }
+  to {
+    background: #4cd977;
+  }
+}
+
+@keyframes colorani-u056c57d3 {
+  from {
+    background: #60a8f0;
+  }
+  to {
+    background: #4cd977;
+  }
+}
+
+body.color-fade-from-no-search-to-too-many-results {
+  -webkit-animation-name: colorani-u491bb8eb;
+          animation-name: colorani-u491bb8eb;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-u491bb8eb {
+  from {
+    background: #60a8f0;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
+@keyframes colorani-u491bb8eb {
+  from {
+    background: #60a8f0;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
+body.color-no-results {
+  background: #fa5e3d;
+}
+
+body.color-fade-from-no-results-to-no-search {
+  -webkit-animation-name: colorani-ue0dbd608;
+          animation-name: colorani-ue0dbd608;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-ue0dbd608 {
+  from {
+    background: #fa5e3d;
+  }
+  to {
+    background: #60a8f0;
+  }
+}
+
+@keyframes colorani-ue0dbd608 {
+  from {
+    background: #fa5e3d;
+  }
+  to {
+    background: #60a8f0;
+  }
+}
+
+body.color-fade-from-no-results-to-no-results {
+  -webkit-animation-name: colorani-ua26a984d;
+          animation-name: colorani-ua26a984d;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-ua26a984d {
+  from {
+    background: #fa5e3d;
+  }
+  to {
+    background: #fa5e3d;
+  }
+}
+
+@keyframes colorani-ua26a984d {
+  from {
+    background: #fa5e3d;
+  }
+  to {
+    background: #fa5e3d;
+  }
+}
+
+body.color-fade-from-no-results-to-results-found {
+  -webkit-animation-name: colorani-u3b199bdb;
+          animation-name: colorani-u3b199bdb;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-u3b199bdb {
+  from {
+    background: #fa5e3d;
+  }
+  to {
+    background: #4cd977;
+  }
+}
+
+@keyframes colorani-u3b199bdb {
+  from {
+    background: #fa5e3d;
+  }
+  to {
+    background: #4cd977;
+  }
+}
+
+body.color-fade-from-no-results-to-too-many-results {
+  -webkit-animation-name: colorani-ua077107e;
+          animation-name: colorani-ua077107e;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-ua077107e {
+  from {
+    background: #fa5e3d;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
+@keyframes colorani-ua077107e {
+  from {
+    background: #fa5e3d;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
+body.color-results-found {
+  background: #4cd977;
+}
+
+body.color-fade-from-results-found-to-no-search {
+  -webkit-animation-name: colorani-uc51280fa;
+          animation-name: colorani-uc51280fa;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-uc51280fa {
+  from {
+    background: #4cd977;
+  }
+  to {
+    background: #60a8f0;
+  }
+}
+
+@keyframes colorani-uc51280fa {
+  from {
+    background: #4cd977;
+  }
+  to {
+    background: #60a8f0;
+  }
+}
+
+body.color-fade-from-results-found-to-no-results {
+  -webkit-animation-name: colorani-u22999a06;
+          animation-name: colorani-u22999a06;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-u22999a06 {
+  from {
+    background: #4cd977;
+  }
+  to {
+    background: #fa5e3d;
+  }
+}
+
+@keyframes colorani-u22999a06 {
+  from {
+    background: #4cd977;
+  }
+  to {
+    background: #fa5e3d;
+  }
+}
+
+body.color-fade-from-results-found-to-results-found {
+  -webkit-animation-name: colorani-ub9a667fb;
+          animation-name: colorani-ub9a667fb;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-ub9a667fb {
+  from {
+    background: #4cd977;
+  }
+  to {
+    background: #4cd977;
+  }
+}
+
+@keyframes colorani-ub9a667fb {
+  from {
+    background: #4cd977;
+  }
+  to {
+    background: #4cd977;
+  }
+}
+
+body.color-fade-from-results-found-to-too-many-results {
+  -webkit-animation-name: colorani-udfa2a29a;
+          animation-name: colorani-udfa2a29a;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-udfa2a29a {
+  from {
+    background: #4cd977;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
+@keyframes colorani-udfa2a29a {
+  from {
+    background: #4cd977;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
+body.color-too-many-results {
+  background: #fa8840;
+}
+
+body.color-fade-from-too-many-results-to-no-search {
+  -webkit-animation-name: colorani-u3dc2a443;
+          animation-name: colorani-u3dc2a443;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-u3dc2a443 {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #60a8f0;
+  }
+}
+
+@keyframes colorani-u3dc2a443 {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #60a8f0;
+  }
+}
+
+body.color-fade-from-too-many-results-to-no-results {
+  -webkit-animation-name: colorani-uec74006a;
+          animation-name: colorani-uec74006a;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-uec74006a {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #fa5e3d;
+  }
+}
+
+@keyframes colorani-uec74006a {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #fa5e3d;
+  }
+}
+
+body.color-fade-from-too-many-results-to-results-found {
+  -webkit-animation-name: colorani-u05f355d7;
+          animation-name: colorani-u05f355d7;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-u05f355d7 {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #4cd977;
+  }
+}
+
+@keyframes colorani-u05f355d7 {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #4cd977;
+  }
+}
+
+body.color-fade-from-too-many-results-to-too-many-results {
+  -webkit-animation-name: colorani-uf4c82223;
+          animation-name: colorani-uf4c82223;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes colorani-uf4c82223 {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
+@keyframes colorani-uf4c82223 {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
+body .container a {
+  color: #c328fa;
+}
+
+body .container .search .header a {
+  color: #c328fa;
+}
+
+body .container .search .results .results-table table.results tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+body .container .footer {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+body {
+  margin: 0;
+  font-family: 'Source Code Pro', monospace;
+}
+
+body h1 {
+  font-size: 10vh;
+  margin: 0.25vh;
+}
+
+body .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body .container a {
+  text-decoration: none;
+}
+
+body .container .search {
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+body .container .search .header {
+  padding-bottom: 2vh;
+}
+
+body .container .search .query input {
+  width: 100vw;
+  height: 10vh;
+  font-size: 4vh;
+  font-family: serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Source Code Pro', monospace;
+}
+
+body .container .search .results .results-table {
+  -webkit-transition: max-height 0.3s linear;
+  transition: max-height 0.3s linear;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+body .container .search .results .results-table.hide {
+  max-height: 0;
+}
+
+body .container .search .results .results-table table.results {
+  border: 0;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  width: 80vw;
+}
+
+body .container .search .results .results-table table.results thead {
+  font-size: 150%;
+}
+
+body .container .search .results .results-table table.results tbody td {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+body .container .search .results .results-table table.results tbody tr {
+  max-width: 10vw;
+}
+
+body .container .footer {
+  margin-bottom: 1vh;
+  font-size: 1.5vh;
+}
+/*# sourceMappingURL=style.css.map */

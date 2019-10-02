@@ -10,16 +10,256 @@ body.color-no-search {
   background: #fa8840;
 }
 
+body.color-fade-from-no-search-to-no-search {
+  animation-name: colorani-u45756c35;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-u45756c35 {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
+body.color-fade-from-no-search-to-no-results {
+  animation-name: colorani-uf51163bb;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-uf51163bb {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #fa5e3d;
+  }
+}
+
+body.color-fade-from-no-search-to-results-found {
+  animation-name: colorani-u055737c6;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-u055737c6 {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #4cd977;
+  }
+}
+
+body.color-fade-from-no-search-to-too-many-results {
+  animation-name: colorani-u9b1c3dfc;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-u9b1c3dfc {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
 body.color-no-results {
   background: #fa5e3d;
+}
+
+body.color-fade-from-no-results-to-no-search {
+  animation-name: colorani-u04987e3a;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-u04987e3a {
+  from {
+    background: #fa5e3d;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
+body.color-fade-from-no-results-to-no-results {
+  animation-name: colorani-u4c1b185f;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-u4c1b185f {
+  from {
+    background: #fa5e3d;
+  }
+  to {
+    background: #fa5e3d;
+  }
+}
+
+body.color-fade-from-no-results-to-results-found {
+  animation-name: colorani-u6acd68d9;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-u6acd68d9 {
+  from {
+    background: #fa5e3d;
+  }
+  to {
+    background: #4cd977;
+  }
+}
+
+body.color-fade-from-no-results-to-too-many-results {
+  animation-name: colorani-ud18082ee;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-ud18082ee {
+  from {
+    background: #fa5e3d;
+  }
+  to {
+    background: #fa8840;
+  }
 }
 
 body.color-results-found {
   background: #4cd977;
 }
 
+body.color-fade-from-results-found-to-no-search {
+  animation-name: colorani-u10eb467a;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-u10eb467a {
+  from {
+    background: #4cd977;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
+body.color-fade-from-results-found-to-no-results {
+  animation-name: colorani-u0dac68cf;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-u0dac68cf {
+  from {
+    background: #4cd977;
+  }
+  to {
+    background: #fa5e3d;
+  }
+}
+
+body.color-fade-from-results-found-to-results-found {
+  animation-name: colorani-u9823ef99;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-u9823ef99 {
+  from {
+    background: #4cd977;
+  }
+  to {
+    background: #4cd977;
+  }
+}
+
+body.color-fade-from-results-found-to-too-many-results {
+  animation-name: colorani-ue958fd1f;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-ue958fd1f {
+  from {
+    background: #4cd977;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
 body.color-too-many-results {
   background: #fa8840;
+}
+
+body.color-fade-from-too-many-results-to-no-search {
+  animation-name: colorani-ud375fc00;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-ud375fc00 {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #fa8840;
+  }
+}
+
+body.color-fade-from-too-many-results-to-no-results {
+  animation-name: colorani-u573b7f59;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-u573b7f59 {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #fa5e3d;
+  }
+}
+
+body.color-fade-from-too-many-results-to-results-found {
+  animation-name: colorani-u2132359a;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-u2132359a {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #4cd977;
+  }
+}
+
+body.color-fade-from-too-many-results-to-too-many-results {
+  animation-name: colorani-u08112ed3;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorani-u08112ed3 {
+  from {
+    background: #fa8840;
+  }
+  to {
+    background: #fa8840;
+  }
 }
 
 body h1 {
@@ -28,17 +268,10 @@ body h1 {
 }
 
 body .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   min-height: 100vh;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -58,8 +291,7 @@ body .container .button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  -webkit-transition-duration: 0.4s;
-          transition-duration: 0.4s;
+  transition-duration: 0.4s;
 }
 
 body .container .search {
@@ -115,4 +347,3 @@ body .container .footer {
   background-color: rgba(255, 255, 255, 0.05);
   margin-bottom: 1vh;
 }
-/*# sourceMappingURL=style.css.map */

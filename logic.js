@@ -2,6 +2,7 @@ var searchResultFormat = '<tr><td>$machine</td><td>$line</td><td><a href="$link"
 var linkTemplate = 'https://youtube.com/watch?v=$video&start=$time';
 
 var controls = {
+	oldColor: '',
 	displayResults: function(){
 		$results.show();
 	},
@@ -48,12 +49,19 @@ var controls = {
 		}
 	},
 	setColor: function($loc, indicator){
+		if (this.oldColor == indicator) return;
 		var colorTestRegex = /^color-/i;
+
 		$loc[0].classList.forEach((cls) => {
 			//we cant use class so we use cls instead :>
 			if (cls.match(colorTestRegex)) $loc.removeClass(cls);
 		});
 		$loc.addClass('color-' + indicator);
+		if (this.oldColor != '') {
+			var fc = 'color-fade-from-' + this.oldColor + '-to-' + indicator;
+			$loc.addClass(fc);
+		}
+		this.oldColor = indicator;
 	}
 };
 window.controls = controls;
@@ -82,8 +90,8 @@ $(document).ready(() => {
 			oldSearchValue = val;
 
 			currentSet = window.controls.doSearch(val, currentSet);
-
-			window.controls.setColor($colorUpdate, currentSet.length == 0 ? 'no-results' : 'results-found');
+			if (currentSet.length < 150)
+				window.controls.setColor($colorUpdate, currentSet.length == 0 ? 'no-results' : 'results-found');
 
 			window.controls.updateResults($resultsTable, currentSet);
 		}

@@ -60,18 +60,6 @@ body {
 		margin-left: auto;
 		margin-right: auto;
 
-		.button {
-			background-color: $colors-accent-1;
-			border: none;
-			color: $colors-text;
-			padding: 15px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			transition-duration: 0.4s;
-		}
-
 		.search {
 			overflow: auto;
 			overflow-x: hidden;
@@ -140,6 +128,7 @@ body {
 		.footer {
 			background-color: rgba(255, 255, 255, 0.05);
 			margin-bottom: 1vh;
+			font-size: 1.5vh;
 		}
 	}
 }

@@ -35,7 +35,12 @@ body {
 		margin: 0.25vh;
 	}
 
-	.center {
+	.container {
+		display: flex;
+		min-height: 100vh;
+		flex-direction: column;
+		justify-content: space-between;
+
 		a {
 			color: $colors-links;
 			text-decoration: none;
@@ -57,23 +62,27 @@ body {
 			transition-duration: 0.4s;
 		}
 
-		.header {
-			padding-bottom: 2vh;
+		.search {
+			overflow: auto;
+			overflow-x: hidden;
+			.header {
+				padding-bottom: 2vh;
 
-			a {
-				color: $colors-links;
+				a {
+					color: $colors-links;
+				}
 			}
-		}
 
-		#query {
-			input {
-				&#search {
+			#query {
+				input {
 					width: 100vw;
 					height: 10vh;
 					font-size: 4vh;
 					font-family: serif;
 					text-align: center;
 					margin: 0;
+					padding: 0;
+					border: 0;
 				}
 			}
 
@@ -100,6 +109,10 @@ body {
 					}
 				}
 			}
+		}
+		.footer {
+			background-color: rgba(255, 255, 255, 0.05);
+			margin-bottom: 1vh;
 		}
 	}
 }

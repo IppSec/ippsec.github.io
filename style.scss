@@ -1,44 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
-@import 'colors.scss';
+@import 'themes/light.scss';
 
-@mixin colorFade($fromColor, $toColor) {
-	$name: colorani-#{unique-id()};
-
-	animation-name: $name;
-	animation-duration: 0.5s;
-
-	@keyframes #{$name} {
-		from {
-			background: $fromColor;
-		}
-
-		to {
-			background: $toColor;
-		}
-	}
-
-	animation-fill-mode: forwards;
-	animation-timing-function: ease-in-out;
-}
+@import 'themes/base.scss';
 
 body {
-	background: $colors-background;
-	color: $colors-text;
 	margin: 0;
-
 	font-family: 'Source Code Pro', monospace;
-
-	@each $state, $color in $x-color-states {
-		&.color-#{$state} {
-			background: $color;
-		}
-
-		@each $stateNew, $colorNew in $x-color-states {
-			&.color-fade-from-#{$state}-to-#{$stateNew} {
-				@include colorFade($color, $colorNew);
-			}
-		}
-	}
 
 	h1 {
 		font-size: 10vh;
@@ -52,7 +19,6 @@ body {
 		justify-content: space-between;
 
 		a {
-			color: $colors-links;
 			text-decoration: none;
 		}
 
@@ -66,10 +32,6 @@ body {
 
 			.header {
 				padding-bottom: 2vh;
-
-				a {
-					color: $colors-links;
-				}
 			}
 
 			.query {
@@ -114,10 +76,6 @@ body {
 
 							tr {
 								max-width: 10vw;
-
-								&:nth-child(odd) {
-									background-color: rgba(255, 255, 255, 0.2);
-								}
 							}
 						}
 					}
@@ -126,7 +84,6 @@ body {
 		}
 
 		.footer {
-			background-color: rgba(255, 255, 255, 0.05);
 			margin-bottom: 1vh;
 			font-size: 1.5vh;
 		}

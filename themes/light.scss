@@ -7,8 +7,8 @@ $colors-accent-3: #fa5e3d;
 $colors-accent-4: #aa4cd9;
 $colors-accent-5: #4cd977;
 
-$x-color-states: (
-	"no-search": $colors-accent-2,
+$colors-states: (
+	"no-search": $colors-accent-1,
 	"no-results": $colors-accent-3,
 	"results-found": $colors-accent-5,
 	"too-many-results": $colors-accent-2

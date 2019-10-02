@@ -11,12 +11,13 @@ $(document).ready(() => {
 
 	controls = {
 		displayResults: function(){
-			$query.hide();
+			$noResults.hide();
 			$results.show();
 		},
 		hideResults: function(){
 			$results.hide();
 			$query.show();
+			$noResults.show();
 		},
 		doSearch: function(match){
 			results = [];
@@ -28,10 +29,20 @@ $(document).ready(() => {
 		},
 		updateResults: function($loc, results){
 			$loc.empty();
-			$noResults.hide();
-			if (results.length == 0) {
+			$searchLength = $('input:input#search').val().length;
+			console.log($searchLength);
+			console.log(results.length);
+			if ($searchLength == 0) {
+				$noResults.hide();
+				$results.hide();
+			} else if (results.length == 0) {
 				$noResults.show();
+				$results.hide();
+			} else {
+				$noResults.hide();
+				$results.show();
 			}
+
 
 			results.forEach((r) => {
 				//Not the fastest but it makes for easier to read code :>

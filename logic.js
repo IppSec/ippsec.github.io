@@ -18,25 +18,34 @@ var controls = {
 		return results;
 	},
 	updateResults: function($loc, results){
-		$loc.empty();
-		$noResults.hide();
-		$resultsTableHideable.show();
 		if (results.length == 0) {
 			$noResults.show();
+			$noResults.text('No Results Found');
 			$resultsTableHideable.hide();
 		}
+		else if (results.length > 150) {
+			$noResults.show();
+			$resultsTableHideable.hide();
+			$noResults.text('Error: ' + results.length + ' results were found, try being more specific');
+			this.setColor($colorUpdate, 'too-many-results');
+		}
+		else {
+			$loc.empty();
+			$noResults.hide();
+			$resultsTableHideable.show();
 
-		results.forEach((r) => {
-			//Not the fastest but it makes for easier to read code :>
+			results.forEach((r) => {
+				//Not the fastest but it makes for easier to read code :>
 
-			timeInSeconds = r.timestamp.minutes * 60 + r.timestamp.seconds;
-			el = searchResultFormat
-				.replace('$machine', r.machine)
-				.replace('$line', r.line)
-				.replace('$link', linkTemplate.replace('$video', r.videoId).replace('$time', timeInSeconds));
+				timeInSeconds = r.timestamp.minutes * 60 + r.timestamp.seconds;
+				el = searchResultFormat
+					.replace('$machine', r.machine)
+					.replace('$line', r.line)
+					.replace('$link', linkTemplate.replace('$video', r.videoId).replace('$time', timeInSeconds));
 
-			$loc.append(el);
-		});
+				$loc.append(el);
+			});
+		}
 	},
 	setColor: function($loc, indicator){
 		var colorTestRegex = /^color-/i;

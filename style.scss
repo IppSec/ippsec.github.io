@@ -101,7 +101,7 @@ body {
 			.results {
 				.results-table {
 					transition: max-height 0.3s linear;
-					max-height: 300vh;
+					max-height: 100%;
 					overflow: hidden;
 
 					&.hide {

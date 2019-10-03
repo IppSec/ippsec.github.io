@@ -1,0 +1,68 @@
+@mixin colorFade($fromColor, $toColor) {
+	$name: colorani-#{unique-id()};
+
+	animation-name: $name;
+	animation-duration: 0.5s;
+
+	@keyframes #{$name} {
+		from {
+			background: $fromColor;
+		}
+
+		to {
+			background: $toColor;
+		}
+	}
+
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-in-out;
+}
+
+body {
+	background: $colors-background;
+	color: $colors-text;
+
+	@each $state, $color in $color-states {
+		&.color-#{$state} {
+			background: $color;
+		}
+
+		@each $stateNew, $colorNew in $color-states {
+			&.color-fade-from-#{$state}-to-#{$stateNew} {
+				@include colorFade($color, $colorNew);
+			}
+		}
+	}
+
+	.container {
+		a {
+			color: $colors-links;
+		}
+
+		.search {
+			.header {
+				a {
+					color: $colors-links;
+				}
+			}
+
+			.results {
+				.results-table {
+					table.results {
+						tbody {
+							tr {
+								&:nth-child(odd) {
+									background-color: rgba(255, 255, 255, 0.2);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.footer {
+			background-color: rgba(255, 255, 255, 0.05);
+		}
+	}
+}

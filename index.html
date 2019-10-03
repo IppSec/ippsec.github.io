@@ -5,40 +5,72 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>		
-	<div class="center">
-		<div id="query">
-			<h1>Keyword Search</h1>
+	<div class="container">
+		
+		<div class="search">
+			<div class="header">
+				<h1>IPPSEC</h1>
+				<div class="social">
+					<a href="https://twitter.com/ippsec">Twitter</a>
+					&bullet;
+					<a href="https://www.patreon.com/ippsec">Patreon</a>
+					&bullet;
+					<a href="https://www.youtube.com/channel/UCa6eh7gCkpPo5XXUDfygQQA">Youtube</a>
+				</div>
+			</div>
+		
+			<div class="query">
+				<form class="searchForm" action="#">
+					<input type="input" class="search" placeholder="ENTER SEARCH TERM" autocomplete="false">
+				</form>
 
-			<form id="searchForm" action="#">
-				<input type="input" id="search">
-			</form>
-		</div>
-		<div class="noResults" style="display: none;">
-			<h3 id="noResultsText">No Results Found</h3>
-		</div>
-		<div id="results" style="display: none;">
-			<table>
-				<thead>
-					<tr>
-						<td>
-							Machine
-						</td>
-						<td>
-							Description
-						</td>
-						<td>
-							Link
-						</td>
-					</tr>
-				</thead>
-				<tbody id="results">
+			</div>
+
+			<div class="results">
+				<br>
+				<div class="noResults">
+					<h2>No Results Found</h2>
+				</div>
+				<div class="results-table">
 					
-				</tbody>
-			</table>
+					<table class="results">
+						<thead>
+							<tr>
+								<td>
+									Machine
+								</td>
+								<td>
+									Description
+								</td>
+								<td>
+									Link
+								</td>
+							</tr>
+						</thead>
+						<tbody class="results">
+				
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="subfooter">
+				<h3>Please consider supporting me on <a href="https://patreon.com/ippsec">Patreon</a></h3>
+				<p>Thanks to <a href="https://twitter.com/shell_ock">@Shell_ock</a> and <a
+						href="https://twitter.com/hexf_me">@HexF_me</a> for a large portion of the code</p>
+			</div>
 		</div>
-		<h2>Please consider supporting me on <a href="https://patreon.com/ippsec">Patreon</a></h2>
-		<p>This site wouldln't be possible without the help of:<br /> <a href="https://twitter.com/shell_ock">@Shell_ock</a> and <a href="https://twitter.com/hexf_me">@HexF_me</a></p>
+		
+		<div class="footer">
+			&copy; ippSec and contributors 2019
+			<br>
+			Design by HexF
+			<br>
+			Found a bug? File it or fix it <a href="https://github.com/IppSec/ippsec.github.io/issues">here</a>
+		</div>
 	</div>
+
+	
 
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

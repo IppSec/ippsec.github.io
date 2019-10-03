@@ -1,89 +1,118 @@
-var searchResultFormat = '<tr><td>$machine</td><td>$line</td><td><a href="$link">Open Link</a></td></tr>';
+var searchResultFormat = '<tr><td>$machine</td><td>$line</td><td><a href="$link">YouTube</a></td></tr>';
 var linkTemplate = 'https://youtube.com/watch?v=$video&start=$time';
 
-$(document).ready(() => {
-	$results = $('div#results');
-	$query = $('#query');
-	$searchValue = $('input#search').first();
-	$form = $('form#searchForm');
-	$resultsTable = $('tbody#results').first();
-	$noResults = $('div.noResults');
-	$noResultsText = $('#noResultsText').first();
+var controls = {
+	oldColor: '',
+	displayResults: function(){
+		$results.show();
+		$resultsTableHideable.removeClass('hide');
+	},
+	hideResults: function(){
+		$results.hide();
+		$resultsTableHideable.addClass('hide');
+	},
+	doSearch: function(match, dataset){
+		results = [];
 
-	controls = {
-		displayResults: function(){
-			$noResults.hide();
-			$results.show();
-		},
-		hideResults: function(){
-			$results.hide();
-			$query.show();
+		regex = match.toLowerCase();
+		dataset.forEach((e) => {
+			if (e.line.toLowerCase().match(regex) || e.machine.toLowerCase().match(regex)) results.push(e);
+		});
+		return results;
+	},
+	updateResults: function($loc, results){
+		if (results.length == 0) {
 			$noResults.show();
-		},
-		doSearch: function(match){
-			results = [];
-			regex = match.toLowerCase();
-			window.dataset.forEach((e) => {
-				if (e.line.toLowerCase().match(regex) || e.machine.toLowerCase().match(regex)) results.push(e);
-			});
-			return results;
-		},
-		updateResults: function($loc, results){
+			$noResults.text('No Results Found');
+			$resultsTableHideable.addClass('hide');
+		}
+		else if (results.length > 150) {
+			$noResults.show();
+			$resultsTableHideable.addClass('hide');
+			$noResults.text('Error: ' + results.length + ' results were found, try being more specific');
+			this.setColor($colorUpdate, 'too-many-results');
+		}
+		else {
 			$loc.empty();
-			$searchLength = $('input:input#search').val().length;
-			console.log($searchLength);
-			console.log(results.length);
-			if ($searchLength == 0) {
-				$noResults.hide();
-				$results.hide();
-			} else if (results.length == 0) {
-				$noResults.show();
-				$results.hide();
-				$noResultsText.text("No Results Found");
-			} else if (results.length > 500) {
-				$noResults.show();
-				$results.hide();
-				$noResultsText.text("Error: " + results.length + " results found, try being more specific");
-			} else { 
-				$noResults.hide();
-				$results.show();
-				results.forEach((r) => {
-					//Not the fastest but it makes for easier to read code :>
+			$noResults.hide();
+			$resultsTableHideable.removeClass('hide');
 
-					timeInSeconds = r.timestamp.minutes * 60 + r.timestamp.seconds;
-					el = searchResultFormat
-						.replace('$machine', r.machine)
-						.replace('$line', r.line)
-						.replace('$link', linkTemplate.replace('$video', r.videoId).replace('$time', timeInSeconds));
+			results.forEach((r) => {
+				//Not the fastest but it makes for easier to read code :>
 
-					$loc.append(el);
-				});
-			}
-			}
-	};
-	window.controls = controls;
-	
+				timeInSeconds = r.timestamp.minutes * 60 + r.timestamp.seconds;
+				el = searchResultFormat
+					.replace('$machine', r.machine)
+					.replace('$line', r.line)
+					.replace('$link', linkTemplate.replace('$video', r.videoId).replace('$time', timeInSeconds));
+
+				$loc.append(el);
+			});
+		}
+	},
+	setColor: function($loc, indicator){
+		if (this.oldColor == indicator) return;
+		var colorTestRegex = /^color-/i;
+
+		$loc[0].classList.forEach((cls) => {
+			//we cant use class so we use cls instead :>
+			if (cls.match(colorTestRegex)) $loc.removeClass(cls);
+		});
+		$loc.addClass('color-' + indicator);
+		if (this.oldColor != '') {
+			var fc = 'color-fade-from-' + this.oldColor + '-to-' + indicator;
+			$loc.addClass(fc);
+		}
+		this.oldColor = indicator;
+	}
+};
+window.controls = controls;
+
+$(document).ready(() => {
+	$results = $('div.results');
+	$query = $('.query');
+	$searchValue = $('input.search').first();
+	$form = $('form.searchForm');
+	$resultsTableHideable = $('.results-table');
+	$resultsTable = $('tbody.results').first();
+	$noResults = $('div.noResults');
+	$colorUpdate = $('body');
+
+	controls.setColor($colorUpdate, 'no-search');
+	controls.hideResults();
+	var currentSet = [];
+	var oldSearchValue = '';
+
+	function doSearch(event){
+		var val = $searchValue.val();
+
+		if (val != '') {
+			controls.displayResults();
+			if (val.length < oldSearchValue.length) currentSet = window.dataset;
+			oldSearchValue = val;
+
+			currentSet = window.controls.doSearch(val, currentSet);
+			if (currentSet.length < 150)
+				window.controls.setColor($colorUpdate, currentSet.length == 0 ? 'no-results' : 'results-found');
+
+			window.controls.updateResults($resultsTable, currentSet);
+		}
+		else {
+			controls.hideResults();
+			window.controls.setColor($colorUpdate, 'no-search');
+		}
+
+		if (event.type == 'submit') event.preventDefault();
+	}
 
 	$.getJSON('./dataset.json', (data) => {
 		window.dataset = data;
-		controls.updateResults($resultsTable, window.dataset);
+		currentSet = window.dataset;
+		window.controls.updateResults($resultsTable, window.dataset);
+		doSearch({ type: 'none' });
 	});
 
-	$form.submit((event) => {
-		controls.displayResults();
-		//Dont send the form
-		if ($resultsTable.children().length == 0) {
-			val = $searchValue.val();
-			found = controls.doSearch(val);
-			controls.updateResults($resultsTable, found);
-		}
+	$form.submit(doSearch);
 
-		event.preventDefault();
-	});
-
-	$searchValue.on('input', function(){
-		val = $searchValue.val();
-		found = controls.doSearch(val);
-		controls.updateResults($resultsTable, found);
-	});
+	$searchValue.on('input', doSearch);
 });

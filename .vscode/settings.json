@@ -1,0 +1,15 @@
+{
+    "liveSassCompile.settings.formats": [
+
+        // More Complex
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "~"
+        }
+    ],
+    "liveSassCompile.settings.generateMap": false,
+    "liveSassCompile.settings.includeItems": [
+        "./style.scss"
+    ]
+}

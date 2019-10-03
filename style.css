@@ -82,7 +82,7 @@ body.color-fade-from-no-search-to-results-found {
     background: #60a8f0;
   }
   to {
-    background: #4cd977;
+    background: #108000;
   }
 }
 
@@ -91,7 +91,7 @@ body.color-fade-from-no-search-to-results-found {
     background: #60a8f0;
   }
   to {
-    background: #4cd977;
+    background: #108000;
   }
 }
 
@@ -202,7 +202,7 @@ body.color-fade-from-no-results-to-results-found {
     background: #fa5e3d;
   }
   to {
-    background: #4cd977;
+    background: #108000;
   }
 }
 
@@ -211,7 +211,7 @@ body.color-fade-from-no-results-to-results-found {
     background: #fa5e3d;
   }
   to {
-    background: #4cd977;
+    background: #108000;
   }
 }
 
@@ -245,7 +245,7 @@ body.color-fade-from-no-results-to-too-many-results {
 }
 
 body.color-results-found {
-  background: #4cd977;
+  background: #108000;
 }
 
 body.color-fade-from-results-found-to-no-search {
@@ -261,7 +261,7 @@ body.color-fade-from-results-found-to-no-search {
 
 @-webkit-keyframes colorani-u6ec4bef6 {
   from {
-    background: #4cd977;
+    background: #108000;
   }
   to {
     background: #60a8f0;
@@ -270,7 +270,7 @@ body.color-fade-from-results-found-to-no-search {
 
 @keyframes colorani-u6ec4bef6 {
   from {
-    background: #4cd977;
+    background: #108000;
   }
   to {
     background: #60a8f0;
@@ -290,7 +290,7 @@ body.color-fade-from-results-found-to-no-results {
 
 @-webkit-keyframes colorani-ufbb2880e {
   from {
-    background: #4cd977;
+    background: #108000;
   }
   to {
     background: #fa5e3d;
@@ -299,7 +299,7 @@ body.color-fade-from-results-found-to-no-results {
 
 @keyframes colorani-ufbb2880e {
   from {
-    background: #4cd977;
+    background: #108000;
   }
   to {
     background: #fa5e3d;
@@ -319,19 +319,19 @@ body.color-fade-from-results-found-to-results-found {
 
 @-webkit-keyframes colorani-uaed7ad0c {
   from {
-    background: #4cd977;
+    background: #108000;
   }
   to {
-    background: #4cd977;
+    background: #108000;
   }
 }
 
 @keyframes colorani-uaed7ad0c {
   from {
-    background: #4cd977;
+    background: #108000;
   }
   to {
-    background: #4cd977;
+    background: #108000;
   }
 }
 
@@ -348,7 +348,7 @@ body.color-fade-from-results-found-to-too-many-results {
 
 @-webkit-keyframes colorani-u0c948802 {
   from {
-    background: #4cd977;
+    background: #108000;
   }
   to {
     background: #fa8840;
@@ -357,7 +357,7 @@ body.color-fade-from-results-found-to-too-many-results {
 
 @keyframes colorani-u0c948802 {
   from {
-    background: #4cd977;
+    background: #108000;
   }
   to {
     background: #fa8840;
@@ -442,7 +442,7 @@ body.color-fade-from-too-many-results-to-results-found {
     background: #fa8840;
   }
   to {
-    background: #4cd977;
+    background: #108000;
   }
 }
 
@@ -451,7 +451,7 @@ body.color-fade-from-too-many-results-to-results-found {
     background: #fa8840;
   }
   to {
-    background: #4cd977;
+    background: #108000;
   }
 }
 
@@ -485,11 +485,11 @@ body.color-fade-from-too-many-results-to-too-many-results {
 }
 
 body .container a {
-  color: #c328fa;
+  color: #f2ff00;
 }
 
 body .container .search .header a {
-  color: #c328fa;
+  color: #f2ff00;
 }
 
 body .container .search .results .results-table table.results tbody tr:nth-child(odd) {
@@ -571,7 +571,7 @@ body .container .search .results .results-table table.results {
 }
 
 body .container .search .results .results-table table.results thead {
-  font-size: 150%;
+  font-size: 250%;
 }
 
 body .container .search .results .results-table table.results tbody td {
@@ -580,6 +580,7 @@ body .container .search .results .results-table table.results tbody td {
 }
 
 body .container .search .results .results-table table.results tbody tr {
+  font-size: 125%;
   max-width: 10vw;
 }
 

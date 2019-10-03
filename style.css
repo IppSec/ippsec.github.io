@@ -4,492 +4,33 @@ body {
   color: white;
 }
 
+body.fade {
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+
 body.color-no-search {
   background: #60a8f0;
-}
-
-body.color-fade-from-no-search-to-no-search {
-  -webkit-animation-name: colorani-u40e622bf;
-          animation-name: colorani-u40e622bf;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-u40e622bf {
-  from {
-    background: #60a8f0;
-  }
-  to {
-    background: #60a8f0;
-  }
-}
-
-@keyframes colorani-u40e622bf {
-  from {
-    background: #60a8f0;
-  }
-  to {
-    background: #60a8f0;
-  }
-}
-
-body.color-fade-from-no-search-to-no-results {
-  -webkit-animation-name: colorani-u712fd859;
-          animation-name: colorani-u712fd859;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-u712fd859 {
-  from {
-    background: #60a8f0;
-  }
-  to {
-    background: #fa5e3d;
-  }
-}
-
-@keyframes colorani-u712fd859 {
-  from {
-    background: #60a8f0;
-  }
-  to {
-    background: #fa5e3d;
-  }
-}
-
-body.color-fade-from-no-search-to-results-found {
-  -webkit-animation-name: colorani-u6991e277;
-          animation-name: colorani-u6991e277;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-u6991e277 {
-  from {
-    background: #60a8f0;
-  }
-  to {
-    background: #108000;
-  }
-}
-
-@keyframes colorani-u6991e277 {
-  from {
-    background: #60a8f0;
-  }
-  to {
-    background: #108000;
-  }
-}
-
-body.color-fade-from-no-search-to-too-many-results {
-  -webkit-animation-name: colorani-u2691ce9e;
-          animation-name: colorani-u2691ce9e;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-u2691ce9e {
-  from {
-    background: #60a8f0;
-  }
-  to {
-    background: #fa8840;
-  }
-}
-
-@keyframes colorani-u2691ce9e {
-  from {
-    background: #60a8f0;
-  }
-  to {
-    background: #fa8840;
-  }
 }
 
 body.color-no-results {
   background: #fa5e3d;
 }
 
-body.color-fade-from-no-results-to-no-search {
-  -webkit-animation-name: colorani-u587a387a;
-          animation-name: colorani-u587a387a;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-u587a387a {
-  from {
-    background: #fa5e3d;
-  }
-  to {
-    background: #60a8f0;
-  }
-}
-
-@keyframes colorani-u587a387a {
-  from {
-    background: #fa5e3d;
-  }
-  to {
-    background: #60a8f0;
-  }
-}
-
-body.color-fade-from-no-results-to-no-results {
-  -webkit-animation-name: colorani-ucfc1308e;
-          animation-name: colorani-ucfc1308e;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-ucfc1308e {
-  from {
-    background: #fa5e3d;
-  }
-  to {
-    background: #fa5e3d;
-  }
-}
-
-@keyframes colorani-ucfc1308e {
-  from {
-    background: #fa5e3d;
-  }
-  to {
-    background: #fa5e3d;
-  }
-}
-
-body.color-fade-from-no-results-to-results-found {
-  -webkit-animation-name: colorani-u47c66f2d;
-          animation-name: colorani-u47c66f2d;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-u47c66f2d {
-  from {
-    background: #fa5e3d;
-  }
-  to {
-    background: #108000;
-  }
-}
-
-@keyframes colorani-u47c66f2d {
-  from {
-    background: #fa5e3d;
-  }
-  to {
-    background: #108000;
-  }
-}
-
-body.color-fade-from-no-results-to-too-many-results {
-  -webkit-animation-name: colorani-uaa4df68d;
-          animation-name: colorani-uaa4df68d;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-uaa4df68d {
-  from {
-    background: #fa5e3d;
-  }
-  to {
-    background: #fa8840;
-  }
-}
-
-@keyframes colorani-uaa4df68d {
-  from {
-    background: #fa5e3d;
-  }
-  to {
-    background: #fa8840;
-  }
-}
-
 body.color-results-found {
-  background: #108000;
-}
-
-body.color-fade-from-results-found-to-no-search {
-  -webkit-animation-name: colorani-u6ec4bef6;
-          animation-name: colorani-u6ec4bef6;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-u6ec4bef6 {
-  from {
-    background: #108000;
-  }
-  to {
-    background: #60a8f0;
-  }
-}
-
-@keyframes colorani-u6ec4bef6 {
-  from {
-    background: #108000;
-  }
-  to {
-    background: #60a8f0;
-  }
-}
-
-body.color-fade-from-results-found-to-no-results {
-  -webkit-animation-name: colorani-ufbb2880e;
-          animation-name: colorani-ufbb2880e;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-ufbb2880e {
-  from {
-    background: #108000;
-  }
-  to {
-    background: #fa5e3d;
-  }
-}
-
-@keyframes colorani-ufbb2880e {
-  from {
-    background: #108000;
-  }
-  to {
-    background: #fa5e3d;
-  }
-}
-
-body.color-fade-from-results-found-to-results-found {
-  -webkit-animation-name: colorani-uaed7ad0c;
-          animation-name: colorani-uaed7ad0c;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-uaed7ad0c {
-  from {
-    background: #108000;
-  }
-  to {
-    background: #108000;
-  }
-}
-
-@keyframes colorani-uaed7ad0c {
-  from {
-    background: #108000;
-  }
-  to {
-    background: #108000;
-  }
-}
-
-body.color-fade-from-results-found-to-too-many-results {
-  -webkit-animation-name: colorani-u0c948802;
-          animation-name: colorani-u0c948802;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-u0c948802 {
-  from {
-    background: #108000;
-  }
-  to {
-    background: #fa8840;
-  }
-}
-
-@keyframes colorani-u0c948802 {
-  from {
-    background: #108000;
-  }
-  to {
-    background: #fa8840;
-  }
+  background: #4cd977;
 }
 
 body.color-too-many-results {
   background: #fa8840;
 }
 
-body.color-fade-from-too-many-results-to-no-search {
-  -webkit-animation-name: colorani-u5bd69fc1;
-          animation-name: colorani-u5bd69fc1;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-u5bd69fc1 {
-  from {
-    background: #fa8840;
-  }
-  to {
-    background: #60a8f0;
-  }
-}
-
-@keyframes colorani-u5bd69fc1 {
-  from {
-    background: #fa8840;
-  }
-  to {
-    background: #60a8f0;
-  }
-}
-
-body.color-fade-from-too-many-results-to-no-results {
-  -webkit-animation-name: colorani-ud8e531a7;
-          animation-name: colorani-ud8e531a7;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-ud8e531a7 {
-  from {
-    background: #fa8840;
-  }
-  to {
-    background: #fa5e3d;
-  }
-}
-
-@keyframes colorani-ud8e531a7 {
-  from {
-    background: #fa8840;
-  }
-  to {
-    background: #fa5e3d;
-  }
-}
-
-body.color-fade-from-too-many-results-to-results-found {
-  -webkit-animation-name: colorani-u4612c6d6;
-          animation-name: colorani-u4612c6d6;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-u4612c6d6 {
-  from {
-    background: #fa8840;
-  }
-  to {
-    background: #108000;
-  }
-}
-
-@keyframes colorani-u4612c6d6 {
-  from {
-    background: #fa8840;
-  }
-  to {
-    background: #108000;
-  }
-}
-
-body.color-fade-from-too-many-results-to-too-many-results {
-  -webkit-animation-name: colorani-u0b72c3a1;
-          animation-name: colorani-u0b72c3a1;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
-@-webkit-keyframes colorani-u0b72c3a1 {
-  from {
-    background: #fa8840;
-  }
-  to {
-    background: #fa8840;
-  }
-}
-
-@keyframes colorani-u0b72c3a1 {
-  from {
-    background: #fa8840;
-  }
-  to {
-    background: #fa8840;
-  }
-}
-
 body .container a {
-  color: #f2ff00;
+  color: #c328fa;
 }
 
 body .container .search .header a {
-  color: #f2ff00;
+  color: #c328fa;
 }
 
 body .container .search .results .results-table table.results tbody tr:nth-child(odd) {
@@ -498,6 +39,11 @@ body .container .search .results .results-table table.results tbody tr:nth-child
 
 body .container .footer {
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
@@ -541,15 +87,16 @@ body .container .search .header {
 }
 
 body .container .search .query input {
-  width: 100vw;
+  width: 100%;
   height: 10vh;
-  font-size: 4vh;
+  font-size: 2rem;
   font-family: serif;
   text-align: center;
   margin: 0;
   padding: 0;
   border: 0;
   font-family: 'Source Code Pro', monospace;
+  outline: none;
 }
 
 body .container .search .results .results-table {
@@ -560,7 +107,7 @@ body .container .search .results .results-table {
 }
 
 body .container .search .results .results-table.hide {
-  max-height: 0;
+  display: none;
 }
 
 body .container .search .results .results-table table.results {
@@ -575,8 +122,7 @@ body .container .search .results .results-table table.results thead {
 }
 
 body .container .search .results .results-table table.results tbody td {
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 0.5rem 5px;
 }
 
 body .container .search .results .results-table table.results tbody tr {
@@ -586,5 +132,5 @@ body .container .search .results .results-table table.results tbody tr {
 
 body .container .footer {
   margin-bottom: 1vh;
-  font-size: 1.5vh;
+  font-size: 0.8rem;
 }

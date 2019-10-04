@@ -59,10 +59,6 @@ var controls = {
 			if (cls.match(colorTestRegex)) $loc.removeClass(cls);
 		});
 		$loc.addClass('color-' + indicator);
-		if (this.oldColor != '') {
-			var fc = 'color-fade-from-' + this.oldColor + '-to-' + indicator;
-			$loc.addClass(fc);
-		}
 		this.oldColor = indicator;
 	}
 };
@@ -78,8 +74,9 @@ $(document).ready(() => {
 	$noResults = $('div.noResults');
 	$colorUpdate = $('body');
 
-	controls.setColor($colorUpdate, 'no-search');
-	controls.hideResults();
+	// Preventing initial fade
+	document.body.classList.add("fade");
+
 	var currentSet = [];
 	var oldSearchValue = '';
 

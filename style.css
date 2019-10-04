@@ -18,7 +18,7 @@ body.color-no-results {
 }
 
 body.color-results-found {
-  background: #4cd977;
+  background: #108000;
 }
 
 body.color-too-many-results {
@@ -26,11 +26,11 @@ body.color-too-many-results {
 }
 
 body .container a {
-  color: #c328fa;
+  color: #f2ff00;
 }
 
 body .container .search .header a {
-  color: #c328fa;
+  color: #f2ff00;
 }
 
 body .container .search .results .results-table table.results tbody tr:nth-child(odd) {

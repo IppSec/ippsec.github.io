@@ -14,7 +14,14 @@ var controls = {
 	doSearch: function(match, dataset){
 		results = [];
 
-		regex = match.toLowerCase();
+		words = match.toLowerCase();
+		words = words.split(" ");
+		regex = "";
+		// Lazy way to create regex (?=.*word1)(?=.*word2) this matches all words.
+		for (i = 0; i < words.length; i++) {
+			regex += '(?=.*' + words[i] + ')';
+		};
+
 		dataset.forEach((e) => {
 			if (e.line.toLowerCase().match(regex) || e.machine.toLowerCase().match(regex)) results.push(e);
 		});

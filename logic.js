@@ -1,4 +1,4 @@
-var searchResultFormat = '<tr><td>$machine</td><td>$line</td><td><a href="$link">YouTube</a></td></tr>';
+var searchResultFormat = '<tr><td>$machine</td><td>$line</td><td><a href="$link" target="_blank">YouTube</a></td></tr>';
 var linkTemplate = 'https://youtube.com/watch?v=$video&start=$time';
 
 var controls = {

@@ -1,5 +1,5 @@
 var searchResultFormat = '<tr><td>$machine</td><td>$line</td><td><a href="$link" target="_blank">YouTube</a></td></tr>';
-var linkTemplate = 'https://youtube.com/watch?v=$video&start=$time';
+var linkTemplate = 'https://youtube.com/watch?v=$video&t=$time';
 
 var controls = {
 	oldColor: '',

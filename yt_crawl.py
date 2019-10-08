@@ -100,11 +100,8 @@ def run(api_key, gitCommit, datasetOutputLocation="dataset.json"):
     print("Sorting data")
     for video in output:
         description = video[3].split('\n')
+        title = video[2]
         for line in description:
-            if "HackTheBox" in video[2] or "VulnHub" in video[2]:
-                title = video[2].split()[2]
-            else:
-                title = video[2]
             if line != "":
                 if not re.search('^\w[\d]*:[\d]', line):
                     line = '00:01 - ' + line

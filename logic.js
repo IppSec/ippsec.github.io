@@ -25,6 +25,9 @@ var controls = {
 		};
 
 		dataset.forEach((e) => {
+			for (i=0; i < replaceStrings.length; i++) {
+				e.machine = (e.machine).replace(replaceStrings[i], '');
+			}
 			
 			if (e.line.toLowerCase().match(regex) || e.machine.toLowerCase().match(regex)) results.push(e);
 		});

@@ -96,7 +96,7 @@ $(document).ready(() => {
 			oldSearchValue = val;
 
 			currentSet = window.controls.doSearch(val, currentSet);
-			if (currentSet.length < 150)
+			if (currentSet.length < 250)
 				window.controls.setColor($colorUpdate, currentSet.length == 0 ? 'no-results' : 'results-found');
 
 			window.controls.updateResults($resultsTable, currentSet);

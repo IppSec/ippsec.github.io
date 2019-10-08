@@ -1,4 +1,5 @@
-var searchResultFormat = '<tr><td>$machine</td><td>$line</td><td><a href="$link" target="_blank">YouTube</a></td></tr>';
+//var searchResultFormat = '<tr><td>$machine</td><td>$line</td><td><a href="$link" target="_blank">YouTube</a></td></tr>';
+var searchResultFormat = '<tr><td><a href="$link" target="_blank">$machine</a></td><td align="left">$line</td></tr>';
 var linkTemplate = 'https://youtube.com/watch?v=$video&t=$time';
 var totalLimit = 250;
 var replaceStrings = ['HackTheBox - ', 'VulnHub - '];

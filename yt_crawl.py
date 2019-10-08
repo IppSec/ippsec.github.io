@@ -103,6 +103,8 @@ def run(api_key, gitCommit, datasetOutputLocation="dataset.json"):
         for line in description:
             if "HackTheBox" in video[2] or "VulnHub" in video[2]:
                 title = video[2].split()[2]
+            else:
+                title = video[2]
             if line != "":
                 if not re.search('^\w[\d]*:[\d]', line):
                     line = '00:01 - ' + line
@@ -137,7 +139,7 @@ def run(api_key, gitCommit, datasetOutputLocation="dataset.json"):
         gitDescription = "Updated dataset"
         print(f"Commiting to git, with commit description {gitDescription}")
         from subprocess import call
-        call(["git", "commit", "-m", gitDescription, datasetOutputLocation])
+#        call(["git", "commit", "-m", gitDescription, datasetOutputLocation])
     else:
         print("Done! Now commit to git")
 

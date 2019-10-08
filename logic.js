@@ -1,5 +1,7 @@
 var searchResultFormat = '<tr><td>$machine</td><td>$line</td><td><a href="$link" target="_blank">YouTube</a></td></tr>';
 var linkTemplate = 'https://youtube.com/watch?v=$video&t=$time';
+var totalLimit = 250;
+var replaceStrings = ['HackTheBox - ', 'VulnHub - '];
 
 var controls = {
 	oldColor: '',
@@ -23,6 +25,7 @@ var controls = {
 		};
 
 		dataset.forEach((e) => {
+			
 			if (e.line.toLowerCase().match(regex) || e.machine.toLowerCase().match(regex)) results.push(e);
 		});
 		return results;
@@ -33,7 +36,7 @@ var controls = {
 			$noResults.text('No Results Found');
 			$resultsTableHideable.addClass('hide');
 		}
-		else if (results.length > 150) {
+		else if (results.length > totalLimit) {
 			$noResults.show();
 			$resultsTableHideable.addClass('hide');
 			$noResults.text('Error: ' + results.length + ' results were found, try being more specific');
@@ -96,7 +99,7 @@ $(document).ready(() => {
 			oldSearchValue = val;
 
 			currentSet = window.controls.doSearch(val, currentSet);
-			if (currentSet.length < 250)
+			if (currentSet.length < totalLimit)
 				window.controls.setColor($colorUpdate, currentSet.length == 0 ? 'no-results' : 'results-found');
 
 			window.controls.updateResults($resultsTable, currentSet);

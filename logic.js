@@ -110,7 +110,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (val != '') {
             controls.displayResults();
-            if (val.length < oldSearchValue.length) currentSet = window.dataset;
+            currentSet = window.dataset;
+            //if (val.length < oldSearchValue.length) currentSet = window.dataset;
             oldSearchValue = val;
 
             currentSet = window.controls.doSearch(val, currentSet);
@@ -120,6 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             controls.hideResults();
             window.controls.setColor(colorUpdate, 'no-search');
+            noResults.style.display = 'none';
+            currentSet = window.dataset;
         }
 
         if (event.type == 'submit') event.preventDefault();

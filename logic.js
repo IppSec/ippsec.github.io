@@ -111,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (val != '') {
             controls.displayResults();
             currentSet = window.dataset;
-            //if (val.length < oldSearchValue.length) currentSet = window.dataset;
             oldSearchValue = val;
 
             currentSet = window.controls.doSearch(val, currentSet);

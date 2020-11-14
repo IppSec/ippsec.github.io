@@ -1,0 +1,17 @@
+Academy: Learning Process;9;Free HackTheBox Course on getting into the right mindset to learn.
+Academy: Intro to Academy;15;Free HackTheBox Course on using the Academy Platform
+Academy: Hacking Wordpress;17;HackTheBox Course on Hacking Wordpress.  This cost 100 cubes, which is ~$10
+Academy: Network Enumeration with Nmap;19;HackTheBox Course on using NMAP to its fullest.  This cost 50 cubes, which is ~$5
+Academy: Cracking Passwords with Hashcat;20;HackTheBox Course on using Hashcat to its fullest.  This cost 100 cubes, which is ~$10
+Academy: Active Directory LDAP;22;HackTheBox Course on Enumerating Active Directory over LDAP.  This cost 1000 cubes, which is ~$100
+Academy: File Inclusion / Directory Traversal;23;Free HackTheBox Course on performing Directory Traversal and File Inclusion attacks
+Academy: Web Requests;35;Free HackTheBox Course about HTTP or Web Requests
+Academy: Secure Coding 101: Javascript;38;HackTheBox Course on Javascript Coding.  This cost 1000 cubes, which is ~$100
+Academy: Javascript Deobfuscation;41;Free HackTheBox Course on Deobfuscating Javascript
+Academy: Whitebox Pentesting 101: Command Injection;48;HackTheBox Course on Command Injection Vulnerabilities.  This cost 500 cubes, which is ~$50
+Academy: Windows Fundamentals;49;Free HackTheBox Introductory Course on Windows
+Academy: Linux Privilege Escalation;51;HackTheBox Course on Linux Privilege Escalation.  This cost 500 cubes, which is ~$50
+Academy: Attacking Web Applications with FFUF;54;Free HackTheBox Course on using FFUF
+Academy: Login Brute Forcing;57;Free HackTheBox course on bruteforcing common logins
+Academy: Active Directory PowerView;68;HackTheBox course on Active Directory Enumeration and Exploitation with PowerView.  This cost 1000 cubes, which is $100
+Academy: Active Directory BloodHound;69;HackTheBox Course on using Bloodhound, including writing cypher queries for custom graphs!  This cost 500 cubes, which is $50

@@ -1,6 +1,7 @@
 //var searchResultFormat = '<tr><td>$machine</td><td>$line</td><td><a href="$link" target="_blank">YouTube</a></td></tr>';
 var searchResultFormat = '<tr><td><a href="$link" target="_blank">$machine</a></td><td align="left">$line</td></tr>';
 var linkTemplate = 'https://youtube.com/watch?v=$video&t=$time';
+var linkTemplateAcademy = 'https://academy.hackthebox.eu/module/details/$course';
 var totalLimit = 250;
 var replaceStrings = ['HackTheBox - ', 'VulnHub - '];
 
@@ -61,11 +62,19 @@ var controls = {
             results.forEach(r => {
                 //Not the fastest but it makes for easier to read code :>
 
-                timeInSeconds = r.timestamp.minutes * 60 + r.timestamp.seconds;
-                el = searchResultFormat
-                    .replace('$machine', r.machine)
-                    .replace('$line', r.line)
-                    .replace('$link', linkTemplate.replace('$video', r.videoId).replace('$time', timeInSeconds));
+		if (r.academy) {
+			el = searchResultFormat
+			    .replace('$machine', r.machine)
+			    .replace('$line', r.line)
+			    .replace('$link', linkTemplateAcademy.replace('$course', r.academy));
+		
+		} else {
+			timeInSeconds = r.timestamp.minutes * 60 + r.timestamp.seconds;
+			el = searchResultFormat
+			    .replace('$machine', r.machine)
+			    .replace('$line', r.line)
+			    .replace('$link', linkTemplate.replace('$video', r.videoId).replace('$time', timeInSeconds));
+		};
 
                 var wrapper = document.createElement('table');
                 wrapper.innerHTML = el;

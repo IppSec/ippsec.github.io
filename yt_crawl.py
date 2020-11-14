@@ -29,6 +29,21 @@ class SearchEntry:
             "line": self.line
         }
 
+class AcademyEntry:
+    # JSON serializey stuff
+    machine = ""
+    academy = ""
+    line = ""
+
+    def __init__(self, machine, academy, line):
+        self.machine, self.academy, self.line = machine, academy, line
+
+    def AsJsonSerializable(self):
+        return {
+            "machine": self.machine,
+            "academy": self.academy,
+            "line": self.line
+        }
 
 api_url = 'https://www.googleapis.com/youtube/v3/'
 channel_id = 'UCa6eh7gCkpPo5XXUDfygQQA'
@@ -92,9 +107,21 @@ def GetVideosInPlaylist(api_key):
             output.append([date, vId, title, description])
     return output
 
+def parseAcademy():
+    output = []
+    for line in open('academy.csv').readlines():
+        course,course_id,description = line.split(";")
+        entry = AcademyEntry(
+            course, course_id, description).AsJsonSerializable()
+        output.append(entry)
+    return output
 
 def run(api_key, gitCommit, datasetOutputLocation="dataset.json"):
     videos = []
+    print("Parsing Academy Courses")
+    output = parseAcademy()
+    for x in output:
+        videos.append(x)
     print("Grabbing video list")
     output = GetVideosInPlaylist(api_key)
     print("Sorting data")

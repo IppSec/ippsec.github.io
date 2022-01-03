@@ -3,7 +3,7 @@ var searchResultFormat = '<tr><td><a href="$link" target="_blank">$machine</a></
 var linkTemplate = 'https://youtube.com/watch?v=$video&t=$time';
 var linkTemplateAcademy = 'https://academy.hackthebox.eu/module/details/$course';
 var totalLimit = 250;
-var replaceStrings = ['HackTheBox - ', 'VulnHub - '];
+var replaceStrings = ['HackTheBox - ', 'VulnHub - ', 'UHC - '];
 
 var controls = {
     oldColor: '',
@@ -27,7 +27,12 @@ var controls = {
         regex = '';
         // Lazy way to create regex (?=.*word1)(?=.*word2) this matches all words.
         for (i = 0; i < words.length; i++) {
-            regex += '(?=.*' + words[i] + ')';
+            if (words[i][0] != '-') {
+                regex += '(?=.*' + words[i] + ')';
+            } else {
+                regex += '^((?!' + words[i].substring(1) + ').)*$';
+            }
+
         }
 
         dataset.forEach(e => {

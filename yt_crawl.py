@@ -157,8 +157,6 @@ def GetVideosInPlaylist(api_key, playlist):
 
     total_videos = response.get('pageInfo').get('totalResults')
     pages = total_videos//50
-    if pages > 0:
-        print("WARNING MORE THAN 50 VIDEOS HERE")
     return videos
 
 def parseAcademy():

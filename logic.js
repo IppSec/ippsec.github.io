@@ -25,14 +25,27 @@ var controls = {
         words = match.toLowerCase();
         words = words.split(' ');
         regex = '';
+        posmatch = [];
+        negmatch= [];
         // Lazy way to create regex (?=.*word1)(?=.*word2) this matches all words.
         for (i = 0; i < words.length; i++) {
             if (words[i][0] != '-') {
+                posmatch.push(words[i]);
                 regex += '(?=.*' + words[i] + ')';
             } else {
-                regex += '^((?!' + words[i].substring(1) + ').)*$';
+                negmatch.push(words[i].substring(1));
+                //regex += '(^((?!' + words[i].substring(1) + ').)*$)';
             }
-
+        }
+        if (negmatch.length > 0 ) {
+          regex += '(^((?!('; // + words[i].substring(1) + ').)*$)';
+          for (i= 0; i < negmatch.length; i++) {
+            regex += negmatch[i];
+            if (i != negmatch.length -1) {
+              regex += '|';
+            }
+          }
+        regex += ')).)*$)';
         }
 
         dataset.forEach(e => {

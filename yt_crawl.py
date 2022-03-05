@@ -187,6 +187,7 @@ def run(api_key, gitCommit, datasetOutputLocation="dataset.json"):
         tag = ""
         description = video[3].split('\n')
         title = video[2]
+        print(title)
         if title in tags.keys():
             tag = tags[title]
         for line in description:

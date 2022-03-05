@@ -133,6 +133,7 @@ def run(api_key, gitCommit, datasetOutputLocation="dataset.json"):
     for video in output:
         description = video[3].split('\n')
         title = video[2]
+        print(title)
         for line in description:
             if line != "":
                 if not re.search('^\w[\d]*:[\d]', line):

@@ -46,7 +46,8 @@ var controls = {
         }
 
         dataset.forEach(e => {
-            if ( (e.date+ e.title + e.description).toLowerCase().match(regex) ) results.push(e);
+            searchTerm = ( (e.date + e.title + e.description).toLowerCase()).replace(/[^a-zA-Z0-9 ]/g, '');
+            if (searchTerm.match(regex) ) results.push(e);
         });
         return results;
     },

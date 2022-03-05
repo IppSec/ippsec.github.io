@@ -130,10 +130,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             window.controls.updateResults(resultsTable, currentSet);
         } else {
-            controls.hideResults();
-            window.controls.setColor(colorUpdate, 'no-search');
-            noResults.style.display = 'none';
+            controls.displayResults();
+            window.controls.setColor(colorUpdate, 'results-found');
             currentSet = window.dataset;
+            window.controls.updateResults(resultsTable, currentSet);
         }
 
         if (event.type == 'submit') event.preventDefault();

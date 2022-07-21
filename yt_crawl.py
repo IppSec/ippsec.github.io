@@ -131,6 +131,8 @@ def GetVideosInPlaylist(api_key, playlist):
         'playlistId': playlist,
         'part': 'snippet',
         'maxResults': '50'}
+    print(f'{api_url}playlistItems')
+    print(data)
     r = requests.get(f'{api_url}playlistItems', params=data)
     response = json.loads(r.text)
     for video in response['items']:
@@ -175,9 +177,11 @@ def run(api_key, gitCommit, datasetOutputLocation="dataset.json"):
     for x in output:
         videos.append(x)
 
+    print("Done Parsing Academy Courses")
     tags = {}
     for i in playlists:
         for v in GetVideosInPlaylist(api_key,i[1]):
+            print(i[0])
             tags[v] = i[0]
     
     print("Grabbing video list")

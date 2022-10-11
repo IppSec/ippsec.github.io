@@ -170,7 +170,7 @@ def parseAcademy():
         output.append(entry)
     return output
 
-def run(api_key, gitCommit, datasetOutputLocation="dataset.json"):
+def run(api_key, gitCommit, datasetOutputLocation):
     videos = []
     print("Parsing Academy Courses")
     output = parseAcademy()
@@ -229,7 +229,7 @@ def run(api_key, gitCommit, datasetOutputLocation="dataset.json"):
         gitDescription = "Updated dataset"
         print(f"Commiting to git, with commit description {gitDescription}")
         from subprocess import call
-#        call(["git", "commit", "-m", gitDescription, datasetOutputLocation])
+        call(["git", "commit", "-m", gitDescription, datasetOutputLocation])
     else:
         print("Done! Now commit to git")
 
@@ -246,16 +246,15 @@ def parser():
             help="The output path", 
             default="dataset.json")
     parser.add_argument(
-        '-g', '--git-commit',
-        help="Automatically commit the dataset file to git (uses git cli)", 
-        default=False, 
-        type=bool)
+        '-g', '--git_commit',
+        help="Automatically commit the dataset file to git (uses git cli)",
+        action='store_true')
     args = parser.parse_args()
     if not args.api_key:
         args.api_key = open('yt.secret').read()
 
-    run(args.api_key, args.output_file)
+    run(args.api_key, args.git_commit, args.output_file)
 
 
-if __name__ == "__main__":
+if(__name__ == "__main__"):
     parser()

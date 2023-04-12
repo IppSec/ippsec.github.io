@@ -70,6 +70,8 @@ var controls = {
             noResults.textContent = 'Error: ' + results.length + ' results were found, try being more specific';
             this.setColor(colorUpdate, 'too-many-results');
         } else {
+            sponsor.classList.add('hide');
+            sponsor.style.display = 'none';
             var tableRows = loc.getElementsByTagName('tr');
             for (var x = tableRows.length - 1; x >= 0; x--) {
                 loc.removeChild(tableRows[x]);
@@ -81,19 +83,19 @@ var controls = {
             results.forEach(r => {
                 //Not the fastest but it makes for easier to read code :>
 
-		if (r.academy) {
-			el = searchResultFormat
-			    .replace('$machine', r.machine)
-			    .replace('$line', r.line)
-			    .replace('$link', linkTemplateAcademy.replace('$course', r.academy));
-		
-		} else {
-			timeInSeconds = r.timestamp.minutes * 60 + r.timestamp.seconds;
-			el = searchResultFormat
-			    .replace('$machine', r.machine)
-			    .replace('$line', r.line)
-			    .replace('$link', linkTemplate.replace('$video', r.videoId).replace('$time', timeInSeconds));
-		};
+                if (r.academy) {
+                    el = searchResultFormat
+                        .replace('$machine', r.machine)
+                        .replace('$line', r.line)
+                        .replace('$link', linkTemplateAcademy.replace('$course', r.academy));
+                
+                } else {
+                    timeInSeconds = r.timestamp.minutes * 60 + r.timestamp.seconds;
+                    el = searchResultFormat
+                        .replace('$machine', r.machine)
+                        .replace('$line', r.line)
+                        .replace('$link', linkTemplate.replace('$video', r.videoId).replace('$time', timeInSeconds));
+              };
 
                 var wrapper = document.createElement('table');
                 wrapper.innerHTML = el;
@@ -125,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     resultsTable = document.querySelector('tbody.results');
     resultsTable = document.querySelector('tbody.results');
     noResults = document.querySelector('div.noResults');
+    sponsor = document.querySelector('div.sponsor');
     colorUpdate = document.body;
 
     // Preventing initial fade

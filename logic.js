@@ -1,7 +1,6 @@
 //var searchResultFormat = '<tr><td>$machine</td><td>$line</td><td><a href="$link" target="_blank">YouTube</a></td></tr>';
 var searchResultFormat = '<tr><td><a href="$link" target="_blank">$machine</a></td><td align="left">$line</td></tr>';
 var linkTemplate = 'https://youtube.com/watch?v=$video&t=$time';
-var linkTemplateAcademy = 'https://academy.hackthebox.eu/module/details/$course';
 var totalLimit = 250;
 var replaceStrings = ['HackTheBox - ', 'VulnHub - ', 'UHC - '];
 
@@ -48,13 +47,9 @@ var controls = {
         regex += ')).)*$)';
         }
 
+        regex = new RegExp(regex);
         dataset.forEach(e => {
-            for (i = 0; i < replaceStrings.length; i++) {
-                e.machine = e.machine.replace(replaceStrings[i], '');
-            }
-
-            if ( (e.line + e.machine + e.tag).toLowerCase().match(regex) ) results.push(e);
-            //if (e.line.toLowerCase().match(regex) || e.machine.toLowerCase().match(regex) || e.tag.toLowerCase().match(regex)) results.push(e);
+            if (regex.test(e.haystack)) results.push(e);
         });
         return results;
     },
@@ -83,19 +78,10 @@ var controls = {
             results.forEach(r => {
                 //Not the fastest but it makes for easier to read code :>
 
-                if (r.academy) {
-                    el = searchResultFormat
-                        .replace('$machine', r.machine)
-                        .replace('$line', r.line)
-                        .replace('$link', linkTemplateAcademy.replace('$course', r.academy));
-                
-                } else {
-                    timeInSeconds = r.timestamp.minutes * 60 + r.timestamp.seconds;
-                    el = searchResultFormat
-                        .replace('$machine', r.machine)
-                        .replace('$line', r.line)
-                        .replace('$link', linkTemplate.replace('$video', r.videoId).replace('$time', timeInSeconds));
-              };
+                el = searchResultFormat
+                    .replace('$machine', r.machine)
+                    .replace('$line', r.line)
+                    .replace('$link', linkTemplate.replace('$video', r.videoId).replace('$time', r.time));
 
                 var wrapper = document.createElement('table');
                 wrapper.innerHTML = el;
@@ -161,7 +147,23 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('./dataset.json')
         .then(res => res.json())
         .then(data => {
-            window.dataset = data;
+            // dataset.json is grouped per video; flatten it to one searchable entry per timestamp.
+            window.dataset = [];
+            data.forEach(v => {
+                var machine = v.title;
+                for (i = 0; i < replaceStrings.length; i++) {
+                    machine = machine.replace(replaceStrings[i], '');
+                }
+                v.lines.forEach(([time, line]) => {
+                    window.dataset.push({
+                        machine: machine,
+                        videoId: v.id,
+                        time: time,
+                        line: line,
+                        haystack: (line + machine + v.tag).toLowerCase()
+                    });
+                });
+            });
             currentSet = window.dataset;
             window.controls.updateResults(resultsTable, window.dataset);
             doSearch({ type: 'none' });

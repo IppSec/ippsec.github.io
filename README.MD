@@ -10,7 +10,7 @@ To update the dataset do the following (assuming you have git cli and python3)
 git clone https://github.com/IppSec/ippsec.github.io.git ippsec
 # Or you can use the SSH link if you prefer
 cd ippsec
-python yt_crawl.py -g [put your api key here]]
+python3 yt_crawl.py -g -a [put your api key here]   # or put the key in yt.secret and omit -a
 git push
 ```
 

@@ -1,0 +1,58 @@
+# Adds the past week's videos to dataset.json and commits it.
+#
+# Needs two repository secrets (Settings -> Secrets and variables -> Actions):
+#   YOUTUBE_API_KEY   the YouTube Data API key (same value as the local yt.secret)
+#   HTB_API_KEY       an HTB App Token, used to look up each new box's OS and difficulty (same as htb.secret)
+name: Update dataset
+
+on:
+  schedule:
+    # Cron is always UTC. Videos go public Saturdays at 15:00 UTC; this runs an hour later.
+    - cron: '0 16 * * 6'
+  workflow_dispatch:   # adds a "Run workflow" button in the Actions tab
+
+permissions:
+  contents: write      # lets the job push the commit
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - run: pip install requests
+
+      - name: Crawl the past week
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          HTB_API_KEY: ${{ secrets.HTB_API_KEY }}
+        run: |
+          if [ -z "$YOUTUBE_API_KEY" ]; then
+            echo "::error::The YOUTUBE_API_KEY secret is not set."
+            exit 1
+          fi
+          if [ -z "$HTB_API_KEY" ]; then
+            echo "::error::The HTB_API_KEY secret is not set. New videos would get no OS/difficulty tag."
+            exit 1
+          fi
+          printf '%s' "$YOUTUBE_API_KEY" > yt.secret
+          printf '%s' "$HTB_API_KEY" > htb.secret
+          # 8 days rather than 7 so a late upload or a skipped run is still picked up next week.
+          # Videos already in the dataset are refreshed in place, so the overlap is harmless.
+          python3 yt_crawl.py --days 8
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dataset.json
+          if git diff --cached --quiet; then
+            echo "dataset.json is unchanged"
+            exit 0
+          fi
+          git commit -m "Updated dataset"
+          git push
